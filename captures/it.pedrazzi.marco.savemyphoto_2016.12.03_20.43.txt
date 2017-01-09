@@ -1,0 +1,90 @@
+Applications Graphics Acceleration Info:
+Uptime: 209477126 Realtime: 442557423
+
+** Graphics info for pid 5252 [it.pedrazzi.marco.savemyphoto] **
+
+Recent DisplayList operations
+              Save
+              ClipRect
+              Translate
+              DrawPatch
+              DrawRenderNode
+                DrawText
+              RestoreToCount
+            DrawRenderNode
+            RestoreToCount
+        DrawRenderNode
+    RestoreToCount
+  DrawRenderNode
+RestoreToCount
+DrawRect
+DrawPatch
+DrawPatch
+DrawText
+DrawShadow
+Save
+DrawRenderNode
+  DrawRenderNode
+    DrawRect
+  DrawRenderNode
+    Save
+    ClipRect
+    DrawRenderNode
+      DrawRenderNode
+        DrawRenderNode
+          DrawRenderNode
+            Save
+            ClipRect
+            DrawRenderNode
+              DrawRenderNode
+                DrawPatch
+              Save
+              ClipRect
+              Translate
+              DrawRenderNode
+                DrawText
+              RestoreToCount
+            DrawRenderNode
+            RestoreToCount
+        DrawRenderNode
+    RestoreToCount
+  DrawRenderNode
+RestoreToCount
+DrawRect
+DrawPatch
+DrawText
+DrawShadow
+
+Caches:
+Current memory usage / total memory usage (bytes):
+  TextureCache         32489044 / 37748736
+  LayerCache             786432 / 25165824 (numLayers = 2)
+  Garbage layers              0
+  Active layers               0
+  RenderBufferCache           0 /  2097152
+  GradientCache               0 /   524288
+  PathCache                   0 / 10485760
+  TessellationCache           0 /  1048576
+  TextDropShadowCache     33840 /  2097152
+  PatchCache               7616 /   131072
+  FontRenderer 0 A8      524288 /   524288
+  FontRenderer 0 RGBA         0 /        0
+  FontRenderer 0 total   524288 /   524288
+Other:
+  FboCache                    0 /        0
+Total memory usage:
+  33841220 bytes, 32.27 MB
+
+Profile data in ms:
+
+	it.pedrazzi.marco.savemyphoto/it.pedrazzi.marco.savemyphoto.SearchView/android.view.ViewRootImpl@3b981130 (visibility=0)
+View hierarchy:
+
+  it.pedrazzi.marco.savemyphoto/it.pedrazzi.marco.savemyphoto.SearchView/android.view.ViewRootImpl@3b981130
+  51 views, 52,33 kB of display lists
+
+
+Total ViewRootImpl: 1
+Total Views:        51
+Total DisplayList:  52,33 kB
+
