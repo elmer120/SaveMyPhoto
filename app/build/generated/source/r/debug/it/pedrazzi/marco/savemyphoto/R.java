@@ -2583,6 +2583,7 @@ containing a value of this type.
         public static final int parallax=0x7f0d0021;
         public static final int parentPanel=0x7f0d0047;
         public static final int pin=0x7f0d0022;
+        public static final int principale1=0x7f0d0097;
         public static final int progress_circular=0x7f0d0006;
         public static final int progress_horizontal=0x7f0d0007;
         public static final int radio=0x7f0d0055;
@@ -2605,6 +2606,8 @@ containing a value of this type.
         public static final int search_plate=0x7f0d0064;
         public static final int search_src_text=0x7f0d0065;
         public static final int search_voice_btn=0x7f0d0069;
+        public static final int secondaria1_1=0x7f0d0098;
+        public static final int secondaria1_2=0x7f0d0099;
         public static final int select_dialog_listview=0x7f0d006a;
         public static final int shortcut=0x7f0d0054;
         public static final int showCustom=0x7f0d0011;

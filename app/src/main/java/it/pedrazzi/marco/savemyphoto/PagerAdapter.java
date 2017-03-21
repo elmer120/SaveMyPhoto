@@ -13,7 +13,7 @@ public class PagerAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> fragments;
 
-    // Costruttore passo la lista dei fragment al pagerAdapter
+    // Costruttore -- passo la lista dei fragment al pagerAdapter
     public PagerAdapter(FragmentManager supportFragmentManager, List<Fragment> fragments) {
         super(supportFragmentManager);
         this.fragments=fragments;

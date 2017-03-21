@@ -3,6 +3,7 @@ package it.pedrazzi.marco.savemyphoto;
 import android.Manifest;
 import android.app.ActionBar;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -54,7 +55,7 @@ public class SearchView extends FragmentActivity implements AdapterView.OnItemCl
         fragments.add(Fragment.instantiate(this, Page2Fragment.class.getName()));
         fragments.add(Fragment.instantiate(this, Page3Fragment.class.getName()));
 
-        // creo l'adapter e lo agg al viewPager
+        // creo l'adapter e lo aggiungo al viewPager
         this.mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
         viewPager = (ViewPager) super.findViewById(R.id.pager);
         viewPager.setAdapter(this.mPagerAdapter);
@@ -106,8 +107,6 @@ public class SearchView extends FragmentActivity implements AdapterView.OnItemCl
 */
 
     }
-
-
 
 
     @Override //invocato all'avvio 2° -//invocato alla ripresa dalla sospensione 2°
@@ -190,11 +189,21 @@ public class SearchView extends FragmentActivity implements AdapterView.OnItemCl
         int id=item.getItemId();
         switch(id)
         {
-            case 0:
+            case R.id.secondaria1_1:
 
+                new Thread()
+                {
+                    @Override
+                    public void run()
+                    {
+                        SendFile s=new SendFile();
+            s.Send();
+                    }
+                }.start();
                 break;
             case 1:
 
+                break;
         }
         return false;
     }

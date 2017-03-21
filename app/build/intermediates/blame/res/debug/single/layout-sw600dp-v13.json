@@ -1,6 +1,6 @@
 [
     {
-        "merged": "/home/elmer/AndroidStudioProjects/SaveMyPhoto/app/build/intermediates/res/merged/debug/layout-sw600dp-v13/design_layout_snackbar.xml",
-        "source": "/home/elmer/AndroidStudioProjects/SaveMyPhoto/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/res/layout-sw600dp-v13/design_layout_snackbar.xml"
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\layout-sw600dp-v13\\design_layout_snackbar.xml",
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\bb66ecfd0585d095431f870c44bcdaa0249475f8\\output\\res\\layout-sw600dp-v13\\design_layout_snackbar.xml"
     }
 ]
