@@ -2,8 +2,11 @@ package it.pedrazzi.marco.savemyphoto;
 
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapRegionDecoder;
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,9 +35,16 @@ public class SendFile {
 
         try {
 
+            //VARIABILI DI SUPPORTO
+
+            //DEBUG
+            //String percorsoFoto="/storage/emulated/0/WhatsApp/Media/WhatsApp Images/test.jpg";
+            //Bitmap img= BitmapFactory.decodeFile(percorsoFoto);
+
             Bitmap img = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888);
+
             //Url server
-            String urlServer="http://posttestserver.com/post.php?dir=example";
+            String urlServer="http://posttestserver.com/post.php";
 
             //definisco un boundary
             String lineEnd = "\r\n";
@@ -42,7 +52,6 @@ public class SendFile {
             String boundary = "*****";
 
 
-            String parametro = "Valore";
             //Creo l'oggetto url
             URL url = new URL(urlServer);
             //Istanzio la connessione/client
@@ -58,7 +67,7 @@ public class SendFile {
             //imposto Metodo http utilizzato
             client.setRequestMethod("POST");
 
-            //impostp che in caso di disconnessione ritenta
+            //impostO che in caso di disconnessione ritenti
             client.setRequestProperty("Connection", "Keep-Alive");
 
             //imposto il content type multipart + il delimitatore/boundary
@@ -83,27 +92,27 @@ public class SendFile {
             //Apro lo streaming verso la servlet
             DataOutputStream dos = new DataOutputStream( client.getOutputStream() );
 
-            //Scrivo la prima riga
-            dos.writeBytes(twoHyphens + boundary + lineEnd); //--+delimitatore+\r\n
-            //dos.writeBytes("Content-Disposition: form-data; name=\"upload\";" + " filename=\"" + img+"\"" + lineEnd);
-            dos.writeBytes(lineEnd);
+            for (int i = 0; i <2 ; i++) {
 
 
+                //Scrivo la prima riga
+                dos.writeBytes(twoHyphens + boundary + lineEnd); //--+delimitatore+\r\n
+                dos.writeBytes("Content-Disposition: form-data; name=\"upload"+i+"\";" + " filename=\"" + "nomeFile"+i+"\"" + lineEnd);
+                dos.writeBytes(lineEnd);
 
-            client.getOutputStream().write(("parametro="+parametro).getBytes());
+                //Leggo il file e invio il contenuto
 
-
-
-
-
-
-
-//Invio il boundary per delimitare la fine del file
-            dos.writeBytes(lineEnd);
-            dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
-
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                img.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+                dos.write(byteArray);
 
 
+                //Invio il boundary per delimitare la fine del file
+                dos.writeBytes(lineEnd);
+                dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+
+            }
 
             //Leggo la RISPOSTA dallo stream
             byte[] rawlettura = new byte[1024];
