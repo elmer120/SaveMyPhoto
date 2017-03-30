@@ -10,28 +10,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+
 
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //headers gridview
 
 import java.util.ArrayList;
 
-public class Page1Fragment extends Fragment {
+public class Page1Fragment extends Fragment implements StickyGridHeadersGridView.OnItemClickListener, StickyGridHeadersGridView.OnLongClickListener{
 
     public static StickyGridHeadersGridView gridHeadersGridView;
     public static ArrayList<FileMedia> listMedia;
     public static Bitmap placeholder;
     public ContentProviderScanner contentProviderScanner;
 
-    // activity listener interface
-    private OnPageListener pageListener;
-    public interface OnPageListener {
-        public void onPage1(String s);
-    }
 
-    // onAttach : set activity listener
    /*segnala il momento in cui il Fragment scopre l’Activity di appartenenza.
    Attenzione che a quel punto l’Activity non è stata ancora creata
    quindi si può solo conservare un riferimento ad essa ma non interagirvi
@@ -70,20 +64,8 @@ public class Page1Fragment extends Fragment {
 
     }
 
-    /**
-     * Called to do initial creation of a fragment.  This is called after
-     * {@link #onAttach(Activity)} and before
-     * {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
-     * <p>
-     * <p>Note that this can be called while the fragment's activity is
-     * still in the process of being created.  As such, you can not rely
-     * on things like the activity's content view hierarchy being initialized
-     * at this point.  If you want to do work once the activity itself is
-     * created, see {@link #onActivityCreated(Bundle)}.
-     * <p>
-     * <p>Any restored child fragments will be created before the base
-     * <code>Fragment.onCreate</code> method returns.</p>
-     *
+   /*
+     *Chiamato tra on Attach e onStart il fragment si sta creando
      * @param savedInstanceState If the fragment is being re-created from
      *                           a previous saved state, this is the state.
      */
@@ -96,15 +78,46 @@ public class Page1Fragment extends Fragment {
     }
 
     /**
-     * Called when the Fragment is visible to the user.  This is generally
-     * tied to {@link Activity#onStart() Activity.onStart} of the containing
-     * Activity's lifecycle.
+    Chiamato quando il fragment è creato e visibile all'utente
      */
     @Override
     public void onStart() {
         super.onStart();
         this.gridHeadersGridView=(StickyGridHeadersGridView)getView().findViewById(R.id.gridviewWithHeaders);
         this.gridHeadersGridView.setAdapter(new ImageAdapter(getContext(), listMedia, placeholder));
-        //gridHeadersGridView.setOnItemClickListener(this);
+        gridHeadersGridView.setOnItemClickListener(this);
+
     }
+
+    //-----------------------------------EVENTI----------------------------------------------------------------
+
+
+    // riferimento all'activity
+    private OnPageListener pageListener;
+
+    //click su un elemento del listview
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        inviaDatiActivity("nome:"+this.listMedia.get(i).getNome());//stampo nome file
+    }
+
+
+    //click lungo su un elemento del listview
+    @Override
+    public boolean onLongClick(View view) {
+        //inviaDatiActivity("selezionato",this.listMedia.get(view.).getNome());
+        return true;
+    }
+
+    //Interfaccia applicata all'activity
+    public interface OnPageListener {
+        public void onPage1(String s);
+    }
+
+    // Metodo per inviare gli eventi all'activity (es. click) questo
+    // perchè è sconsigliato gestire gli eventi localmente nel fragment
+    private void inviaDatiActivity(String s) {
+        pageListener.onPage1(s);
+    }
+
 }

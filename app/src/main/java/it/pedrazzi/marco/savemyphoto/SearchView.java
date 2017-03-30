@@ -3,8 +3,6 @@ package it.pedrazzi.marco.savemyphoto;
 import android.Manifest;
 import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -17,16 +15,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Toast;
 
-import com.lalosoft.easypermission.RegisterPermission;
+import com.lalosoft.easypermission.RegisterPermission; //permessi x android >V5
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //headers gridview
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import it.pedrazzi.marco.savemyphoto.http.HttpMultipart;
+import it.pedrazzi.marco.savemyphoto.http.testService;
+
 @RegisterPermission(permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
 
-public class SearchView extends FragmentActivity implements AdapterView.OnItemClickListener,ActivityCompat.OnRequestPermissionsResultCallback{
+public class SearchView extends FragmentActivity implements ActivityCompat.OnRequestPermissionsResultCallback,Page1Fragment.OnPageListener{
 
 
     private ArrayList<FileMedia> listCamera;
@@ -65,8 +66,6 @@ public class SearchView extends FragmentActivity implements AdapterView.OnItemCl
                 new ViewPager.SimpleOnPageChangeListener() {
                     @Override
                     public void onPageSelected(int position) {
-                        // When swiping between pages, select the
-                        // corresponding tab.
                         getActionBar().setSelectedNavigationItem(position);
                     }
                 });
@@ -109,6 +108,21 @@ public class SearchView extends FragmentActivity implements AdapterView.OnItemCl
     }
 
 
+    //listener degli eventi dei fragment
+    @Override
+    public void onPage1(String s) {
+
+        Toast.makeText(this,s+"",Toast.LENGTH_SHORT).show();
+
+        }
+
+
+       /* @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String file= listCamera.get(position).getPath();
+        Toast.makeText(this,file.toString(),Toast.LENGTH_SHORT).show();
+    }*/
+
     @Override //invocato all'avvio 2° -//invocato alla ripresa dalla sospensione 2°
     protected void onStart() {
         Toast.makeText(this,"ON START",Toast.LENGTH_SHORT).show();
@@ -150,18 +164,13 @@ public class SearchView extends FragmentActivity implements AdapterView.OnItemCl
     }
 
 
-
     @Override //invocato alla ripresa dalla sospensione 1°
     protected void onRestart() {
         super.onRestart();
         Toast.makeText(this,"ON RESTART",Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String file= listCamera.get(position).getPath();
-        Toast.makeText(this,file.toString(),Toast.LENGTH_SHORT).show();
-    }
+
 
     /* Permessi runTime android 6 marshmallow da libreria esterna
     @Override
@@ -191,18 +200,29 @@ public class SearchView extends FragmentActivity implements AdapterView.OnItemCl
         {
             case R.id.secondaria1_1:
 
-                new Thread()
+               new Thread()
                 {
                     @Override
                     public void run()
                     {
-                        SendFile s=new SendFile();
-            s.Send();
+
+                        HttpMultipart s=new HttpMultipart();
+                        s.Invia();
                     }
                 }.start();
-                break;
-            case 1:
 
+
+                break;
+            case R.id.secondaria1_2:
+
+                break;
+
+            case R.id.secondaria1_3:
+                startService(new Intent(this,testService.class));
+                break;
+
+            case R.id.secondaria1_4:
+                stopService(new Intent(this,testService.class));
                 break;
         }
         return false;

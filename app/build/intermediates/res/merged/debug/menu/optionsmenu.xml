@@ -8,6 +8,10 @@
                     android:title="secondaria1.1" />
                 <item android:id="@+id/secondaria1.2"
                     android:title="secondaria1.2" />
+                <item android:id="@+id/secondaria1.3"
+                    android:title="AvviaServizio" />
+                <item android:id="@+id/secondaria1.4"
+                    android:title="TerminaServizio" />
             </menu>
         </item>
 </menu>

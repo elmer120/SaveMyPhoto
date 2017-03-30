@@ -60,8 +60,10 @@ public class ContentProviderScanner {
         //recupero indice colonne
         int pathColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.DATA);
         int dateColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.DATE_TAKEN);
+        int nameColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME);
         int dirColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
         int mimeColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.MIME_TYPE);
+
 
         int count = cursorImage.getCount();
             for (int i = 0; i < count; i++) {
@@ -76,8 +78,10 @@ public class ContentProviderScanner {
             if(file.exists()) {
                 //estraggo le informazioni del media
                 String bucket = cursorImage.getString(dirColumnIndex);
+                String nome = cursorImage.getString(nameColumnIndex);
                 String mimeType = cursorImage.getString(mimeColumnIndex);
                 Long timestamp = cursorImage.getLong(dateColumnIndex);
+
 
                 Calendar calendario = Calendar.getInstance();
                 calendario.setTimeInMillis(timestamp);
@@ -86,7 +90,7 @@ public class ContentProviderScanner {
                 int anno=calendario.get(Calendar.YEAR);
 
                 //aggiungo il media alla lista
-                fileMedia = new FileMedia(giorno,mese,anno,path, bucket, mimeType);
+                fileMedia = new FileMedia(giorno,mese,anno,path,nome,bucket, mimeType);
 
                 this.listMedia.add(fileMedia);
 
@@ -105,6 +109,7 @@ public class ContentProviderScanner {
             //recupero indice colonne
             pathColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.DATA);
             dateColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.DATE_TAKEN);
+            nameColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.DISPLAY_NAME);
             dirColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.BUCKET_DISPLAY_NAME);
             mimeColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.MIME_TYPE);
 
@@ -121,6 +126,7 @@ public class ContentProviderScanner {
                 if(file.exists()) {
                     //estraggo le informazioni del media
                     String bucket = cursorVideo.getString(dirColumnIndex);
+                    String nome = cursorVideo.getString(nameColumnIndex);
                     String mimeType = cursorVideo.getString(mimeColumnIndex);
                     Long timestamp = cursorVideo.getLong(dateColumnIndex);
 
@@ -131,7 +137,7 @@ public class ContentProviderScanner {
                     int anno=calendario.get(Calendar.YEAR);
 
                     //aggiungo il media alla lista
-                    fileMedia = new FileMedia(giorno,mese,anno,path, bucket, mimeType);
+                    fileMedia = new FileMedia(giorno,mese,anno,path,nome,bucket, mimeType);
 
                     this.listMedia.add(fileMedia);
 
@@ -156,6 +162,7 @@ public class ContentProviderScanner {
         //definisco le colonne che voglio estrarre
         final String[] selezione = {MediaStore.Images.Media.DATA,
                 MediaStore.Images.Media.DATE_TAKEN,
+                MediaStore.Images.Media.DISPLAY_NAME,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
                 MediaStore.Images.Media.MIME_TYPE};
 
@@ -188,6 +195,7 @@ public class ContentProviderScanner {
         //definisco le colonne che voglio estrarre
         final String[] selezione = {MediaStore.Video.VideoColumns.DATA,
                 MediaStore.Video.VideoColumns.DATE_TAKEN,
+                MediaStore.Video.VideoColumns.DISPLAY_NAME,
                 MediaStore.Video.VideoColumns.BUCKET_DISPLAY_NAME,
                 MediaStore.Video.VideoColumns.MIME_TYPE};
 

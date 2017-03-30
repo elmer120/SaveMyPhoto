@@ -60,7 +60,7 @@ public class LoadPhotoBackgroud extends AsyncTask<FileMedia,Void,Bitmap> {
         Bitmap anteprima = Bitmap.createBitmap(200, 200, Bitmap.Config.ALPHA_8);
         BitmapFactory.Options opzioniBitmap = null;
         opzioniBitmap = new BitmapFactory.Options();
-        opzioniBitmap.inPreferredConfig = Bitmap.Config.RGB_565;
+        opzioniBitmap.inPreferredConfig = Bitmap.Config.RGB_565; //TODO verificare codifica foto
 
         try {
             switch (tipoFile) {

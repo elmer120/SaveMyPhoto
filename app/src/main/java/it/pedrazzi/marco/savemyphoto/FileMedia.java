@@ -21,6 +21,10 @@ public class FileMedia implements Comparable,Parcelable{
 
     public String getPath() {return path;}
 
+    public String getNome() {
+        return nome;
+    }
+
     public String getBucket() {
         return bucket;
     }
@@ -36,6 +40,7 @@ public class FileMedia implements Comparable,Parcelable{
         return anno;
     }
 
+    private String nome;
     private String path;
     private String bucket;
     private String mimeType;
@@ -43,7 +48,8 @@ public class FileMedia implements Comparable,Parcelable{
     private int mese;
     private int anno;
 
-    public FileMedia(int giorno,int mese,int anno, String path,String bucket,String mimeType){
+
+    public FileMedia(int giorno,int mese,int anno, String path,String nome,String bucket,String mimeType){
         super();
         this.path=path;
         this.bucket=bucket;
@@ -51,6 +57,7 @@ public class FileMedia implements Comparable,Parcelable{
         this.giorno=giorno;
         this.mese=mese;
         this.anno=anno;
+        this.nome=nome;
     }
 
     public int compareTo(Object o) {
@@ -78,6 +85,7 @@ public class FileMedia implements Comparable,Parcelable{
         return 1;
     }
 
+//Parcelable per trasferire l'oggetto tra activity
 
     @Override
     public int describeContents() {
@@ -87,6 +95,7 @@ public class FileMedia implements Comparable,Parcelable{
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.path);
+        dest.writeString(this.nome);
         dest.writeString(this.bucket);
         dest.writeString(this.mimeType);
         dest.writeInt(this.giorno);
@@ -103,6 +112,7 @@ public class FileMedia implements Comparable,Parcelable{
 
     private void readFromParcel(Parcel in) {
         this.path = in.readString();
+        this.nome = in.readString();
         this.bucket = in.readString();
         this.mimeType = in.readString();
         this.giorno = in.readInt();
