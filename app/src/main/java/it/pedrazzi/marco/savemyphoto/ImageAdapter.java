@@ -61,9 +61,9 @@ public class ImageAdapter extends BaseAdapter implements StickyGridHeadersBaseAd
             if (convertView == null) //controllo se esiste già la view e posso riutilizzarla
             {
                 imageView = new ImageView(mContext);
-                imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
-                imageView.setScaleType(ImageView.ScaleType.CENTER);
-                imageView.setPadding(0, 0, 0, 0);
+                //imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
+                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+                //imageView.setPadding(0, 0, 0, 0);
             } else {
                 imageView = (ImageView) convertView;
             }

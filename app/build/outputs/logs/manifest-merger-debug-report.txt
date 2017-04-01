@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:2:1-29:12
+ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:2:1-33:12
 	package
 		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:3:5-44
 		INJECTED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml
@@ -27,7 +27,7 @@ MERGED from [lalosoft.android-utilities:easypermissions:1.0.1] C:\Users\Elmer\.a
 	android:name
 		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:7:22-64
 application
-ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:9:5-27:19
+ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:9:5-31:19
 MERGED from [com.android.support:design:23.4.0] C:\Users\Elmer\.android\build-cache\bb66ecfd0585d095431f870c44bcdaa0249475f8\output\AndroidManifest.xml:22:5-20
 MERGED from [lalosoft.android-utilities:easypermissions:1.0.1] C:\Users\Elmer\.android\build-cache\e87319a161025ab5245633963091da59be9c7458\output\AndroidManifest.xml:13:5-17:19
 MERGED from [com.android.support:appcompat-v7:25.0.0] C:\Users\Elmer\.android\build-cache\67d02e31b40205caf1260b1347769f5c4b51985f\output\AndroidManifest.xml:25:5-20
@@ -50,29 +50,31 @@ MERGED from [com.android.support:support-compat:25.0.0] C:\Users\Elmer\.android\
 	android:theme
 		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:14:9-70
 service#it.pedrazzi.marco.savemyphoto.http.testService
-ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:15:9-52
+ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:16:9-19:15
+	android:exported
+		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:18:13-37
 	android:name
-		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:15:18-50
+		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:17:13-45
 activity#it.pedrazzi.marco.savemyphoto.SearchView
-ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:16:9-47
+ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:20:9-47
 	android:name
-		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:16:19-45
+		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:20:19-45
 activity#it.pedrazzi.marco.savemyphoto.SplashActivity
-ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:18:9-25:20
+ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:22:9-29:20
 	android:theme
-		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:19:13-46
+		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:23:13-46
 	android:name
-		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:20:13-43
+		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:24:13-43
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:21:13-24:29
+ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:25:13-28:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:22:17-69
+ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:26:17-69
 	android:name
-		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:22:25-66
+		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:26:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:23:17-77
+ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:27:17-77
 	android:name
-		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:23:27-74
+		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:27:27-74
 uses-sdk
 INJECTED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 MERGED from [com.android.support:design:23.4.0] C:\Users\Elmer\.android\build-cache\bb66ecfd0585d095431f870c44bcdaa0249475f8\output\AndroidManifest.xml:20:5-43

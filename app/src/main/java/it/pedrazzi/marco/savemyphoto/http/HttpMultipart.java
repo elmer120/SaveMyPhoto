@@ -29,7 +29,11 @@ public class HttpMultipart {
     //Richieste multipart
     //http://posttestserver.com/post.php?dir=example
 
-    public void Invia()  {
+
+    public HttpMultipart(){
+    //costruttore default
+    }
+    public void Invia(String path)  {
 
         try {
 
@@ -42,19 +46,18 @@ public class HttpMultipart {
             //Muletto PHP
             // String urlServer="http://192.168.1.9";
             //Locale Asp.net
-            String urlServer="http://192.168.1.20:23591/index.aspx";
-
             //Foto creata run-time
             //Bitmap img = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888);
 
             //Url server
             //String urlServer="http://posttestserver.com/post.php?dir=example";
 
+            String urlServer="http://192.168.1.20:23591/index.aspx";
+
             //definisco un boundary
             String lineEnd = "\r\n";
             String twoHyphens = "--";
             String boundary = "*****";
-
 
             //Creo l'oggetto url
             URL url = new URL(urlServer);
@@ -170,6 +173,7 @@ public class HttpMultipart {
 
             //DISCONNESSIONE
             client.disconnect();
+
         }
         catch (ProtocolException e) {
             Log.i("protocol",e.getMessage());

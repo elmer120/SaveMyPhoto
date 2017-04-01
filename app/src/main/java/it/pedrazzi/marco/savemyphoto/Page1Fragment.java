@@ -1,8 +1,11 @@
 package it.pedrazzi.marco.savemyphoto;
 
+import android.animation.Animator;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,8 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //headers gridview
@@ -24,6 +30,7 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     public static ArrayList<FileMedia> listMedia;
     public static Bitmap placeholder;
     public ContentProviderScanner contentProviderScanner;
+
 
 
    /*segnala il momento in cui il Fragment scopre l’Activity di appartenenza.
@@ -98,6 +105,11 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     //click su un elemento del listview
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        //ANIMAZIONE
+        //Animation anim=AnimationUtils.loadAnimation(getActivity().getBaseContext(),R.anim.selected);
+        //view.startAnimation(anim);
+
         inviaDatiActivity("nome:"+this.listMedia.get(i).getNome());//stampo nome file
     }
 

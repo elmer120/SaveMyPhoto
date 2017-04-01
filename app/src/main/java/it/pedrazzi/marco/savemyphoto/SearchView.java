@@ -3,16 +3,16 @@ package it.pedrazzi.marco.savemyphoto;
 import android.Manifest;
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.lalosoft.easypermission.RegisterPermission; //permessi x android >V5
@@ -40,7 +40,6 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
     private PagerAdapter mPagerAdapter;
     // view pager
     private ViewPager viewPager;
-
     //action bar
     ActionBar actionBar;
 
@@ -108,7 +107,7 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
     }
 
 
-    //listener degli eventi dei fragment
+    //listener degli eventi del fragment 1
     @Override
     public void onPage1(String s) {
 
@@ -200,7 +199,7 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
         {
             case R.id.secondaria1_1:
 
-               new Thread()
+               /*new Thread()
                 {
                     @Override
                     public void run()
@@ -209,7 +208,7 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
                         HttpMultipart s=new HttpMultipart();
                         s.Invia();
                     }
-                }.start();
+                }.start();*/
 
 
                 break;
@@ -218,11 +217,15 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
                 break;
 
             case R.id.secondaria1_3:
-                startService(new Intent(this,testService.class));
+                Intent intent=new Intent(this,testService.class);
+                intent.putExtra("upload","/storage/emulated/0/WhatsApp/Media/WhatsApp Images/test0.jpg");
+                startService(intent);
+                Log.i(this.getClass().getSimpleName(),"Servizio avviato");
                 break;
 
             case R.id.secondaria1_4:
                 stopService(new Intent(this,testService.class));
+                Log.i(this.getClass().getSimpleName(),"Servizio fermato");
                 break;
         }
         return false;
@@ -235,5 +238,7 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.contextmenu,menu);
     }*/
+
+    //-------------METODI DI SUPPORTO------------------------
 
 }

@@ -16,6 +16,10 @@
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\anim\\abc_popup_exit.xml"
     },
     {
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\anim\\selected.xml",
+        "source": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\anim\\selected.xml"
+    },
+    {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\anim\\abc_slide_in_bottom.xml",
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\anim\\abc_slide_in_bottom.xml"
     },

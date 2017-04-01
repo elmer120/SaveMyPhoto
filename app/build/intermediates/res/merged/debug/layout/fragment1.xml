@@ -11,16 +11,15 @@
         android:id="@+id/gridviewWithHeaders"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnWidth="100dp"
-        android:numColumns="auto_fit"
+        android:numColumns="3"
         android:verticalSpacing="1dp"
         android:horizontalSpacing="1dp"
         android:stretchMode="columnWidth"
-        android:gravity="center"
+        android:gravity="fill"
         android:layout_below="@+id/TxtRicercaFoto"
         android:longClickable="true"
         android:scrollingCache="true"
-        android:smoothScrollbar="false"
+        android:smoothScrollbar="true"
         android:textFilterEnabled="false"
         android:touchscreenBlocksFocus="false"
         android:transitionGroup="true"
@@ -28,7 +27,12 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:stackFromBottom="false">
+        android:stackFromBottom="false"
+        android:listSelector="@color/black_overlay"
+        android:background="@color/black"
+        android:choiceMode="multipleChoice"
+
+        >
     </com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView>
 
 
