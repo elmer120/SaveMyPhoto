@@ -1,5 +1,9 @@
 [
     {
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\menu\\contexmenumultiselection.xml",
+        "source": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\menu\\contexmenumultiselection.xml"
+    },
+    {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\menu\\contextmenu.xml",
         "source": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\menu\\contextmenu.xml"
     },

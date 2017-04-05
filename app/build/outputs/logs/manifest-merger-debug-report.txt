@@ -28,7 +28,6 @@ MERGED from [lalosoft.android-utilities:easypermissions:1.0.1] C:\Users\Elmer\.a
 		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:7:22-64
 application
 ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:9:5-27:19
-MERGED from [com.android.support:design:23.4.0] C:\Users\Elmer\.android\build-cache\bb66ecfd0585d095431f870c44bcdaa0249475f8\output\AndroidManifest.xml:22:5-20
 MERGED from [lalosoft.android-utilities:easypermissions:1.0.1] C:\Users\Elmer\.android\build-cache\e87319a161025ab5245633963091da59be9c7458\output\AndroidManifest.xml:13:5-17:19
 MERGED from [com.android.support:appcompat-v7:25.0.0] C:\Users\Elmer\.android\build-cache\67d02e31b40205caf1260b1347769f5c4b51985f\output\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:animated-vector-drawable:25.0.0] C:\Users\Elmer\.android\build-cache\a652ad75f7e832c149ea6f219a797aaa5740611a\output\AndroidManifest.xml:22:5-20
@@ -75,8 +74,6 @@ ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifes
 		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:23:27-74
 uses-sdk
 INJECTED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [com.android.support:design:23.4.0] C:\Users\Elmer\.android\build-cache\bb66ecfd0585d095431f870c44bcdaa0249475f8\output\AndroidManifest.xml:20:5-43
-MERGED from [com.android.support:recyclerview-v7:23.4.0] C:\Users\Elmer\.android\build-cache\7df42657f73e62c454cd9008a2545a1b021ec01b\output\AndroidManifest.xml:20:5-43
 MERGED from [lalosoft.android-utilities:easypermissions:1.0.1] C:\Users\Elmer\.android\build-cache\e87319a161025ab5245633963091da59be9c7458\output\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:25.0.0] C:\Users\Elmer\.android\build-cache\67d02e31b40205caf1260b1347769f5c4b51985f\output\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:animated-vector-drawable:25.0.0] C:\Users\Elmer\.android\build-cache\a652ad75f7e832c149ea6f219a797aaa5740611a\output\AndroidManifest.xml:20:5-44

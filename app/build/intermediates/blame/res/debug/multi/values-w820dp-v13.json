@@ -20,6 +20,25 @@
                         "endOffset": 348
                     }
                 }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 113,
+                    "endColumn": 51,
+                    "endOffset": 160
+                },
+                "from": {
+                    "file": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\values-w820dp\\strings.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 57,
+                        "endColumn": 51,
+                        "endOffset": 104
+                    }
+                }
             }
         ]
     }

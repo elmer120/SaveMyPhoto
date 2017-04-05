@@ -51,9 +51,9 @@ public class LoadPhotoBackgroud extends AsyncTask<FileMedia,Void,Bitmap> {
         Log.w("OnPreExecute", "");
     }
 
+    //metodo eseguito in un thread separato
     @Override
     protected Bitmap doInBackground(FileMedia... params) {
-
 
         String tipoFile = params[0].getMimeType();
         String percorsoFile = params[0].getPath();
@@ -61,11 +61,14 @@ public class LoadPhotoBackgroud extends AsyncTask<FileMedia,Void,Bitmap> {
         BitmapFactory.Options opzioniBitmap = null;
         opzioniBitmap = new BitmapFactory.Options();
         opzioniBitmap.inPreferredConfig = Bitmap.Config.RGB_565; //TODO verificare codifica foto
+        String log="";
 
         try {
             switch (tipoFile) {
                 case "video/mp4":
                     anteprima = ThumbnailUtils.createVideoThumbnail(percorsoFile, MediaStore.Video.Thumbnails.MICRO_KIND); //96x96 dp
+                    log+="Video";
+                    Log.d("Video: ", "H: " + anteprima.getHeight() + " W: " + anteprima.getWidth()+" "+log);
                     break;
                 case "image/jpg":
                 case "image/jpeg":
@@ -83,6 +86,7 @@ public class LoadPhotoBackgroud extends AsyncTask<FileMedia,Void,Bitmap> {
                         //decodifico
                         opzioniBitmap.inJustDecodeBounds = false;
                         anteprima = BitmapFactory.decodeByteArray(thumbnail, 0, thumbnail.length, opzioniBitmap);
+                        log+="DatiExif";
 
                     }
                     else { //Altrimenti la creà scalando l'immagine
@@ -95,6 +99,7 @@ public class LoadPhotoBackgroud extends AsyncTask<FileMedia,Void,Bitmap> {
 
                         opzioniBitmap.inJustDecodeBounds = false; //ora decodifico
                         anteprima = BitmapFactory.decodeFile(percorsoFile, opzioniBitmap);
+                        log+="NoDatiExif";
                     }
                     break;
             }
@@ -103,7 +108,7 @@ public class LoadPhotoBackgroud extends AsyncTask<FileMedia,Void,Bitmap> {
             e.printStackTrace();
         }
 
-        Log.d("Immagine scalata: ", "H: " + anteprima.getHeight() + " W: " + anteprima.getWidth());
+        Log.d("Immagine scalata: ", "H: " + anteprima.getHeight() + " W: " + anteprima.getWidth()+" "+log);
 
         return anteprima;
     }
@@ -144,7 +149,7 @@ public class LoadPhotoBackgroud extends AsyncTask<FileMedia,Void,Bitmap> {
         return scaleFactor;
     }
 
-//da guida google
+    //da guida google
     //classe statica che mantiene un riferimento al thread che decodifica l'immagine
     static class AsyncDrawable extends BitmapDrawable {
 
@@ -169,15 +174,15 @@ public class LoadPhotoBackgroud extends AsyncTask<FileMedia,Void,Bitmap> {
         if (imageView != null) {
             final Drawable drawable = imageView.getDrawable();
 
-                if (drawable instanceof AsyncDrawable) {
-                    final AsyncDrawable asyncDrawable = (AsyncDrawable) drawable;
-                    return asyncDrawable.getRiferimentoAlThread();
-                }
+            if (drawable instanceof AsyncDrawable) {
+                final AsyncDrawable asyncDrawable = (AsyncDrawable) drawable;
+                return asyncDrawable.getRiferimentoAlThread();
+            }
 
         }
         return null;
     }
-//da guida google
+    //da guida google
     public static boolean NeccessarioNuovoThread(int hashCode, ImageView imageView) {
         final LoadPhotoBackgroud threadAssociato = getThreadAssociato(imageView);
 

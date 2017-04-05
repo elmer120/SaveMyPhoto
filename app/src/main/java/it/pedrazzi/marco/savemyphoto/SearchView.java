@@ -1,5 +1,4 @@
 package it.pedrazzi.marco.savemyphoto;
-
 import android.Manifest;
 import android.app.ActionBar;
 import android.content.Intent;
@@ -11,17 +10,12 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Toast;
-
 import com.lalosoft.easypermission.RegisterPermission; //permessi x android >V5
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //headers gridview
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-
 import it.pedrazzi.marco.savemyphoto.http.HttpMultipart;
 import it.pedrazzi.marco.savemyphoto.http.testService;
 

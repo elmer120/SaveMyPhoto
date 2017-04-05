@@ -3,6 +3,10 @@ package it.pedrazzi.marco.savemyphoto;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.StateListDrawable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +22,7 @@ import com.tonicartos.widget.stickygridheaders.StickyGridHeadersBaseAdapter;
 import java.io.File;
 import java.util.ArrayList;
 
+import static android.R.attr.activatedBackgroundIndicator;
 import static it.pedrazzi.marco.savemyphoto.LoadPhotoBackgroud.NeccessarioNuovoThread;
 
 public class ImageAdapter extends BaseAdapter implements StickyGridHeadersBaseAdapter {
@@ -61,20 +66,18 @@ public class ImageAdapter extends BaseAdapter implements StickyGridHeadersBaseAd
             if (convertView == null) //controllo se esiste già la view e posso riutilizzarla
             {
                 imageView = new ImageView(mContext);
-                imageView.setLayoutParams(new GridView.LayoutParams(200, 200));
-                imageView.setScaleType(ImageView.ScaleType.CENTER);
-                imageView.setPadding(0, 0, 0, 0);
             } else {
                 imageView = (ImageView) convertView;
             }
 
             //immagine già presente in cache?
             Bitmap bitmap = cachePhoto.get((long) position);
+
             if (bitmap != null) {
                 imageView.setImageBitmap(cachePhoto.get((long) position));
                 Log.d("Load image: ", "Cache");
 
-            } else { //se non presente in cache la carico (prima in cache) in modo asincrono
+            } else { //se non presente in cache la carico in modo asincrono
                 try {
 
                    CaricaImmagine(listMedia.get(position),imageView,position);
@@ -85,6 +88,20 @@ public class ImageAdapter extends BaseAdapter implements StickyGridHeadersBaseAd
             }
 
         //Log.w("Immagine caricata: ","H: "+bitmap.getHeight()+"W: "+bitmap.getWidth());
+        imageView.setScaleType(ImageView.ScaleType.CENTER_CROP); //scalo l'img centrata
+
+
+
+       if(listMedia.get(position).isSelezionata())
+       {imageView.setPadding(10,10,10,10);;
+        imageView.setBackgroundColor(Color.rgb(72,92,225));
+       }
+        else {imageView.setPadding(0,0,0,0);
+           imageView.setBackgroundColor(Color.BLACK);}
+
+
+
+
         return imageView;
 
     }
@@ -115,9 +132,7 @@ public class ImageAdapter extends BaseAdapter implements StickyGridHeadersBaseAd
     @Override  //tipo di intestazione
     public View getHeaderView(int i, View view, ViewGroup viewGroup) {
 
-        TextView txt=new TextView(this.mContext);
-       // txt.setText(listFileMedia.get(i).getData().getDisplayName(Calendar.MONTH,Calendar.LONG, Locale.getDefault()));
-        return (View) txt;
+        return view;
     }
 
 }

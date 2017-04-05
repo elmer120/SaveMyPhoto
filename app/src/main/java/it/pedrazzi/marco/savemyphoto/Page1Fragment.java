@@ -7,10 +7,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+import android.view.ActionMode;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 
 
@@ -18,13 +23,13 @@ import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //head
 
 import java.util.ArrayList;
 
-public class Page1Fragment extends Fragment implements StickyGridHeadersGridView.OnItemClickListener, StickyGridHeadersGridView.OnLongClickListener{
+public class Page1Fragment extends Fragment implements StickyGridHeadersGridView.OnItemClickListener, StickyGridHeadersGridView.OnItemLongClickListener,StickyGridHeadersGridView.MultiChoiceModeListener{
 
     public static StickyGridHeadersGridView gridHeadersGridView;
     public static ArrayList<FileMedia> listMedia;
     public static Bitmap placeholder;
     public ContentProviderScanner contentProviderScanner;
-
+    ImageAdapter rImageAdapter;
 
    /*segnala il momento in cui il Fragment scopre l’Activity di appartenenza.
    Attenzione che a quel punto l’Activity non è stata ancora creata
@@ -84,8 +89,13 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     public void onStart() {
         super.onStart();
         this.gridHeadersGridView=(StickyGridHeadersGridView)getView().findViewById(R.id.gridviewWithHeaders);
-        this.gridHeadersGridView.setAdapter(new ImageAdapter(getContext(), listMedia, placeholder));
+        //
+        rImageAdapter=new ImageAdapter(getContext(), listMedia, placeholder);
+        this.gridHeadersGridView.setAdapter(rImageAdapter);
         gridHeadersGridView.setOnItemClickListener(this);
+        gridHeadersGridView.setMultiChoiceModeListener(this);
+        gridHeadersGridView.setChoiceMode(StickyGridHeadersGridView.CHOICE_MODE_MULTIPLE_MODAL);
+        gridHeadersGridView.setOnItemLongClickListener(this);
 
     }
 
@@ -99,15 +109,58 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         inviaDatiActivity("nome:"+this.listMedia.get(i).getNome());//stampo nome file
+        Log.i("Evento","onItemClick");
     }
 
 
     //click lungo su un elemento del listview
+    //callback setOnItemLongClick
+        @Override
+        public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
+            Log.i("Evento","onLongClick");
+
+            return false;
+        }
+
+    //callbacj multichoice
     @Override
-    public boolean onLongClick(View view) {
-        //inviaDatiActivity("selezionato",this.listMedia.get(view.).getNome());
+    public void onItemCheckedStateChanged(ActionMode actionMode, int i, long l, boolean b) {
+        if(b) {
+            this.listMedia.get(i).setSelezionata(true);
+        }else
+            {this.listMedia.get(i).setSelezionata(false);}
+        rImageAdapter.notifyDataSetChanged();
+        Log.i("Evento","onItemCheckedStateChanged");
+    }
+
+    //callback classe Action mode
+    @Override
+    public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        Log.i("Evento","onCreateActionMode");
         return true;
     }
+
+    @Override
+    public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        Log.i("Evento","onPrepareActionMode");
+        return false;
+    }
+
+    @Override
+    public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        Log.i("Evento","onActionItemClicked");
+        return false;
+    }
+
+    @Override
+    public void onDestroyActionMode(ActionMode actionMode) {
+        for (FileMedia fileMedia:listMedia) {
+            fileMedia.setSelezionata(false);
+        }
+        Log.i("Evento","onDestroyActionMode");
+    }
+
+
 
     //Interfaccia applicata all'activity
     public interface OnPageListener {

@@ -4,8 +4,16 @@
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\drawable\\abc_dialog_material_background.xml"
     },
     {
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mca__list_item_selector.xml",
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\c88a484a2fa9405f9358e3446d2ef54a51fd3c47\\output\\res\\drawable\\mca__list_item_selector.xml"
+    },
+    {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_seekbar_tick_mark_material.xml",
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\drawable\\abc_seekbar_tick_mark_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\selector.xml",
+        "source": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\drawable\\selector.xml"
     },
     {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_text_cursor_material.xml",
@@ -92,6 +100,10 @@
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\drawable\\abc_seekbar_track_material.xml"
     },
     {
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mca__gallery_selector.xml",
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\c88a484a2fa9405f9358e3446d2ef54a51fd3c47\\output\\res\\drawable\\mca__gallery_selector.xml"
+    },
+    {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\notification_tile_bg.xml",
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\drawable\\notification_tile_bg.xml"
     },
@@ -122,6 +134,10 @@
     {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_background_transition_holo_dark.xml",
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\mca__grid_item_fg_pressed.xml",
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\c88a484a2fa9405f9358e3446d2ef54a51fd3c47\\output\\res\\drawable\\mca__grid_item_fg_pressed.xml"
     },
     {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_list_selector_holo_dark.xml",

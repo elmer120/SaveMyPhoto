@@ -40,6 +40,15 @@ public class FileMedia implements Comparable,Parcelable{
         return anno;
     }
 
+
+
+    public boolean getSelezionata() {
+        return selezionata;
+    }
+    public void setSelezionata() {
+         this.selezionata=selezionata;}
+
+
     private String nome;
     private String path;
     private String bucket;
@@ -47,6 +56,13 @@ public class FileMedia implements Comparable,Parcelable{
     private int giorno;
     private int mese;
     private int anno;
+
+
+    public void setGiorno(int giorno) {
+        this.giorno = giorno;
+    }
+
+    private boolean selezionata=false;
 
 
     public FileMedia(int giorno,int mese,int anno, String path,String nome,String bucket,String mimeType){
@@ -131,5 +147,13 @@ public class FileMedia implements Comparable,Parcelable{
             return new FileMedia[size];
         }
     };
+
+    public boolean isSelezionata() {
+        return selezionata;
+    }
+
+    public void setSelezionata(boolean selezionata) {
+        this.selezionata = selezionata;
+    }
 }
 

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import static it.pedrazzi.marco.savemyphoto.Page1Fragment.listMedia;
 
 public class Page2Fragment extends Fragment {
 
+    public static GridView gridView;
     public static StickyGridHeadersGridView gridHeadersGridView;
     public static ArrayList<FileMedia> listMedia;
     public static Bitmap placeholder;
@@ -58,7 +60,9 @@ public class Page2Fragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        this.gridHeadersGridView=(StickyGridHeadersGridView)getView().findViewById(R.id.gridviewWithHeaders);
-        this.gridHeadersGridView.setAdapter(new ImageAdapter(getContext(), listMedia, placeholder));
+        this.gridView=(GridView)getView().findViewById(R.id.gridview2);
+        this.gridView.setAdapter(new ImageAdapter(getContext(),listMedia,placeholder));
+        /*this.gridHeadersGridView=(StickyGridHeadersGridView)getView().findViewById(R.id.gridviewWithHeaders);
+        this.gridHeadersGridView.setAdapter(new ImageAdapter(getContext(), listMedia, placeholder));*/
     }
 }
