@@ -6,7 +6,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="splashDescription">Splash image</string>
     <string name="ricercaFoto">Cerca...</string>
-    <string name="versione">V 0.6.8</string>
+    <string name="versione">V 0.6.9</string>
 
     <string-array name="tab">
         <item>Foto</item>
