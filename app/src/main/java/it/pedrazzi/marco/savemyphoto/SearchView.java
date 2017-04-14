@@ -1,12 +1,18 @@
 package it.pedrazzi.marco.savemyphoto;
 import android.Manifest;
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -98,6 +104,15 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
         this.listCamera =intent.getParcelableArrayListExtra("listaCamera");
         this.listWhatApp=intent.getParcelableArrayListExtra("listaWhatApp");
 */
+        ConnectivityManager connManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        if (networkInfo.isConnected())
+        {
+            final WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+            final WifiInfo connectionInfo = wifiManager.getConnectionInfo();
+            Toast.makeText(this,"Mac Address: "+connectionInfo.getMacAddress(),Toast.LENGTH_SHORT).show();
+            Log.i("Mac Address", connectionInfo.getMacAddress());
+        }
 
     }
 

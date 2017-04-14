@@ -1,8 +1,10 @@
 <resources>
 
-    <!-- Base application theme. -->
+
+
+    <!--//TODO Temi utilizzati non corretti!!! Stile base dell'app-->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        <!-- Qui si possono personalizzare i colori ed altro -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -11,11 +13,10 @@
         <item name="windowActionBarOverlay">true</item>-->
     </style>
 
-    <!-- stile per fullscreen usato nella splash activity-->
+    <!-- stile fullscreen x splash activity-->
     <style name="Fullscreen" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowFullscreen">true</item>
     </style>
-
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

@@ -37,7 +37,7 @@ public class SplashActivity extends AppCompatActivity implements View.OnClickLis
         //ContentProviderScanner contentProviderScanner=new ContentProviderScanner(this);
 
 
-        this.intent=new Intent(this,SearchView.class);
+        this.intent=new Intent(this,LoginActivity.class);
 
         /*this.listCamera =new ContentProviderScanner(this).getListMedia(Album.Camera,true);
 

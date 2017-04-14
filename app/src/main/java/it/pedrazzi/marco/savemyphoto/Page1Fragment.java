@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import android.widget.LinearLayout;
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //headers gridview
 
 import java.util.ArrayList;
+
+import static android.R.attr.mode;
 
 public class Page1Fragment extends Fragment implements StickyGridHeadersGridView.OnItemClickListener, StickyGridHeadersGridView.OnItemLongClickListener,StickyGridHeadersGridView.MultiChoiceModeListener{
 
@@ -89,7 +92,6 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     public void onStart() {
         super.onStart();
         this.gridHeadersGridView=(StickyGridHeadersGridView)getView().findViewById(R.id.gridviewWithHeaders);
-        //
         rImageAdapter=new ImageAdapter(getContext(), listMedia, placeholder);
         this.gridHeadersGridView.setAdapter(rImageAdapter);
         gridHeadersGridView.setOnItemClickListener(this);
@@ -99,7 +101,7 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
 
     }
 
-    //-----------------------------------EVENTI----------------------------------------------------------------
+    //-----------------------------------EVENTI TOUCH----------------------------------------------------------------
 
 
     // riferimento all'activity
@@ -122,13 +124,25 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
             return false;
         }
 
-    //callbacj multichoice
+
+    //---------------------------------ACTION MODE INIZIO --------------------------------------------------------
+
+    //callback multichoice
     @Override
     public void onItemCheckedStateChanged(ActionMode actionMode, int i, long l, boolean b) {
         if(b) {
             this.listMedia.get(i).setSelezionata(true);
         }else
             {this.listMedia.get(i).setSelezionata(false);}
+
+
+        //Imposto titolo dinamicamente
+        String titolo="";
+        int countSelezione=this.gridHeadersGridView.getCheckedItemCount();
+        if(countSelezione==1){titolo=" Selezionata";} else {titolo=" Selezionate";}
+        actionMode.setTitle(countSelezione+titolo);
+
+        //notifico all'adapter il cambio della base dati
         rImageAdapter.notifyDataSetChanged();
         Log.i("Evento","onItemCheckedStateChanged");
     }
@@ -136,6 +150,9 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     //callback classe Action mode
     @Override
     public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        //popolo il menu contestuale
+        MenuInflater inflater = actionMode.getMenuInflater();
+        inflater.inflate(R.menu.contexmenumultiselection, menu);
         Log.i("Evento","onCreateActionMode");
         return true;
     }
@@ -148,17 +165,32 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
 
     @Override
     public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        //ricerco la voce del menu selezionata
+        switch (menuItem.getItemId())
+        {
+            case R.id.Elimina:
+                Log.i("ActionMode","Click su elimina");
+                actionMode.finish();
+                break;
+            case R.id.backup:
+                Log.i("ActionMode","Click su backup");
+                actionMode.finish();
+                break;
+        }
         Log.i("Evento","onActionItemClicked");
-        return false;
+        return true;
     }
 
     @Override
     public void onDestroyActionMode(ActionMode actionMode) {
-        for (FileMedia fileMedia:listMedia) {
-            fileMedia.setSelezionata(false);
-        }
+        //All'uscita dall'action mode ripristino gli elementi della lista come non selezionati
+        for (FileMedia fileMedia:listMedia)
+        {fileMedia.setSelezionata(false);}
+
         Log.i("Evento","onDestroyActionMode");
     }
+
+//---------------------------------ACTION MODE FINE --------------------------------------------------------
 
 
 

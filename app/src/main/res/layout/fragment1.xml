@@ -27,10 +27,7 @@
         android:transitionGroup="true"
 
         android:stackFromBottom="false"
-        android:listSelector="@drawable/selector"
-        android:background="@color/black"
-
-        >
+        android:background="@color/black">
     </com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView>
 
 

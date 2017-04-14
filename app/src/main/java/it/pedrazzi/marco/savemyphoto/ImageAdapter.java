@@ -88,23 +88,36 @@ public class ImageAdapter extends BaseAdapter implements StickyGridHeadersBaseAd
             }
 
         //Log.w("Immagine caricata: ","H: "+bitmap.getHeight()+"W: "+bitmap.getWidth());
+
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP); //scalo l'img centrata
 
-
-
+        //l'immagine è selezionata
        if(listMedia.get(position).isSelezionata())
-       {imageView.setPadding(10,10,10,10);;
-        imageView.setBackgroundColor(Color.rgb(72,92,225));
+       {
+           return SelezionaImmagine(imageView,true);
        }
-        else {imageView.setPadding(0,0,0,0);
-           imageView.setBackgroundColor(Color.BLACK);}
+        else
+       {
+           return SelezionaImmagine(imageView,false);
+       }
 
-
-
-
-        return imageView;
 
     }
+
+    //selezione immagini
+    public ImageView SelezionaImmagine(ImageView imageView,Boolean b){
+        if(b)
+        {   imageView.setCropToPadding(true);
+            imageView.setPadding(10,10,10,10);
+            imageView.setBackgroundColor(Color.rgb(27,213,215));
+        }else
+            {
+                imageView.setPadding(0,0,0,0);
+                imageView.setBackgroundColor(Color.BLACK);
+            }
+        return imageView;
+    }
+
 
     //da guida google
     public void CaricaImmagine(FileMedia fileMedia, ImageView imageView,int position) {

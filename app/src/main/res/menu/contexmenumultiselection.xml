@@ -4,6 +4,19 @@
 
     <item
         android:id="@+id/upload"
-        android:icon="@android:drawable/arrow_up_float"
-        android:title="@string/upload" />
+        android:icon="@android:drawable/ic_dialog_dialer"
+        android:title="@string/upload">
+        <!-- "file" submenu -->
+        <menu>
+            <item android:id="@+id/Elimina"
+                android:title="Elimina"
+                android:icon="@drawable/ic_menu_file_delete"/>
+            <item android:id="@+id/backup"
+                android:title="Backup su Server"
+                android:icon="@drawable/ic_menu_file_upload"/>
+        </menu>
+    </item>
+
+
+
 </menu>
