@@ -18,9 +18,8 @@
     <bookmark url="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Page1Fragment.java" line="90" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fb847eb-0d65-475a-b4ba-30dee5135df3" name="V 0.6.4 " comment="V 0.6.9&#10; - Add first Login and first test of localDb">
+    <list default="true" id="3fb847eb-0d65-475a-b4ba-30dee5135df3" name="V 0.6.4 " comment="V 0.6.9&#10; - Add first Login and first test of localDb + update version code">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -2555,7 +2554,14 @@
       <option name="project" value="LOCAL" />
       <updated>1492207735719</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="V 0.6.9&#10; - Add first Login and first test of localDb + update version code">
+      <created>1492207797068</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1492207797068</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2645,7 +2651,8 @@
     <MESSAGE value="V 0.6.7&#10;- Succefull test multifile upload to ISS Server!" />
     <MESSAGE value="V 0.6.8&#10; - Add Content mode and multiple select" />
     <MESSAGE value="V 0.6.9&#10; - Add first Login and first test of localDb" />
-    <option name="LAST_COMMIT_MESSAGE" value="V 0.6.9&#10; - Add first Login and first test of localDb" />
+    <MESSAGE value="V 0.6.9&#10; - Add first Login and first test of localDb + update version code" />
+    <option name="LAST_COMMIT_MESSAGE" value="V 0.6.9&#10; - Add first Login and first test of localDb + update version code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
