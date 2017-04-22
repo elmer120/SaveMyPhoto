@@ -32,27 +32,29 @@
         <!-- service per sincronizzare i media -->
         <service android:name="it.pedrazzi.marco.savemyphoto.http.testService" />
 
-        <!-- Splash -->
-        <activity
-            android:name="it.pedrazzi.marco.savemyphoto.SplashActivity"
-            android:theme="@style/Fullscreen" >
+        <!-- Scelta accesso -->
 
-            <!-- dichiarazione che questa è l'activity iniziale -->
+
+        <!-- Login -->
+        <activity
+            android:name="it.pedrazzi.marco.savemyphoto.AccediActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme" />
+
+        <!-- SearchView -->
+        <activity android:name="it.pedrazzi.marco.savemyphoto.SearchView" />
+        <activity
+            android:name="it.pedrazzi.marco.savemyphoto.ChooseAccessActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_choose_access"
+            android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- Login -->
-        <activity
-            android:name="it.pedrazzi.marco.savemyphoto.LoginActivity"
-            android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme" />
-
-        <!-- SearchView -->
-        <activity android:name="it.pedrazzi.marco.savemyphoto.SearchView" />
+        <activity android:name="it.pedrazzi.marco.savemyphoto.RegistrazioneActivity" />
     </application>
 
 </manifest>

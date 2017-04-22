@@ -104,16 +104,6 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
         this.listCamera =intent.getParcelableArrayListExtra("listaCamera");
         this.listWhatApp=intent.getParcelableArrayListExtra("listaWhatApp");
 */
-        ConnectivityManager connManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (networkInfo.isConnected())
-        {
-            final WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-            final WifiInfo connectionInfo = wifiManager.getConnectionInfo();
-            Toast.makeText(this,"Mac Address: "+connectionInfo.getMacAddress(),Toast.LENGTH_SHORT).show();
-            Log.i("Mac Address", connectionInfo.getMacAddress());
-        }
-
     }
 
 

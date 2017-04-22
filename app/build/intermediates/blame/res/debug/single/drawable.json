@@ -108,6 +108,10 @@
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\drawable\\abc_ic_menu_overflow_material.xml"
     },
     {
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\splash.png",
+        "source": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\drawable\\splash.png"
+    },
+    {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable\\abc_btn_borderless_material.xml",
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\drawable\\abc_btn_borderless_material.xml"
     },

@@ -1,0 +1,51 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context="it.pedrazzi.marco.savemyphoto.ChooseAccessActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitCenter" />
+
+                    <!-- This FrameLayout insets its children based on system windows using
+                         android:fitsSystemWindows. -->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fitsSystemWindows="true"
+                        android:saveEnabled="false">
+
+                        <LinearLayout
+                            android:id="@+id/fullscreen_content_controls"
+                            style="?metaButtonBarStyle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center_horizontal"
+                            android:background="@color/black_overlay"
+                            android:orientation="horizontal"
+                            tools:ignore="UselessParent"
+                            android:weightSum="1">
+
+                            <Button
+                                android:id="@+id/btnAccedi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/accedi" />
+
+                            <Button
+                                android:id="@+id/btnRegistrati"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/registrati" />
+
+                        </LinearLayout>
+                    </FrameLayout>
+
+</FrameLayout>
