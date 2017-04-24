@@ -7,7 +7,7 @@ package it.pedrazzi.marco.savemyphoto;
 
 public final class DbString {
 
-        public static final String nomeDB="SaveMyPhotoTestProva4";
+        public static final String nomeDB="SaveMyPhotoTestProva8";
 
         //TABELLE
 

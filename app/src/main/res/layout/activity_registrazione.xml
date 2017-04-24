@@ -17,62 +17,61 @@ android:paddingTop="@dimen/activity_vertical_margin">
     android:text="@string/registrazione"
     android:textAppearance="?android:attr/textAppearanceLarge" />
 
-<EditText
-    android:id="@+id/txtUtente"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_below="@+id/txtTitolo"
-    android:ems="10"
-    android:hint="Nome Utente"
-    android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/txtUtente"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txtTitolo"
+        android:ems="10"
+        android:hint="@string/nomeUtente"
+        android:inputType="textPersonName" />
 
-<EditText
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:inputType="textPassword"
-    android:ems="10"
-    android:id="@+id/txtPassword"
-    android:layout_below="@+id/txtUtente"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_alignParentRight="true"
-    android:layout_alignParentEnd="true"
-    android:hint="Password" />
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txtUtente"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
 
-<EditText
-    android:id="@+id/txtMail"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:ems="10"
-    android:inputType="textEmailAddress"
-    android:hint="E-Mail"
-    android:layout_below="@+id/txtPassword"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true" />
+    <EditText
+        android:id="@+id/txtMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txtPassword"
+        android:ems="10"
+        android:hint="@string/mail"
+        android:inputType="textEmailAddress" />
 
-<EditText
-    android:id="@+id/txtDataNascita"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_alignParentLeft="true"
-    android:layout_alignParentStart="true"
-    android:layout_below="@+id/txtMail"
-    android:layout_marginTop="8dp"
-    android:ems="10"
-    android:hint="Data di nascita"
-    android:inputType="date" />
+    <EditText
+        android:id="@+id/txtDataNascita"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/txtMail"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/dataNascita"
+        android:inputType="date" />
 
     <Button
         android:id="@+id/btnAvanti"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtDataNascita"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="36dp"
+        android:layout_centerVertical="true"
         android:background="#BD5132"
         android:padding="20dp"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:visibility="visible"
         tools:text="@string/avanti" />
 
 </RelativeLayout>

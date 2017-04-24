@@ -13,11 +13,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.File;
+import java.lang.reflect.Array;
 import java.util.concurrent.ExecutionException;
 
-import it.pedrazzi.marco.savemyphoto.WebService.FKCWSsaveMyphotoSoap12;
+import it.pedrazzi.marco.savemyphoto.WebService.AssociaNuovoDispositivo;
+import it.pedrazzi.marco.savemyphoto.WebService.CredenzialiCheckAsync;
 import it.pedrazzi.marco.savemyphoto.WebService.NuovoUtente;
-import it.pedrazzi.marco.savemyphoto.WebService.RegistrazioneUtenteAsync;
 
 public class AccediActivity extends AppCompatActivity implements View.OnClickListener //imposto l'interfaccia per l'evento on click
 {
@@ -67,7 +68,7 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
                 //se password è compilato
                 if (!isEmpty(getEditTextPassword()))
                 {
-                    //se il database locale non c'è significa che c'è da associare un nuovo dispositivo all'account
+                    //se il database locale non c'è, significa che è una nuovo dispositivo e bisogna associarlo all'account esistente
                     if (!DatabaseCheck(this, DbString.nomeDB))
                     {
 
@@ -75,12 +76,30 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
                         if (WifiCheck())
                         {
                             //controllo che l'utente esista e che la password sia corretta
-                            if (true)
-                            {
-                                //inserisco il nuovo dispositivo nel db remoto e popolo il db locale
+                            String[] arrayString={getEditTextUtente().getText().toString(),getEditTextPassword().getText().toString()};
+                            CredenzialiCheckAsync credenzialiCheckAsync=new CredenzialiCheckAsync();
+                            credenzialiCheckAsync.execute(arrayString);
 
-                                Toast.makeText(this, "Nuovo dispositivo associato correttamente a !!", Toast.LENGTH_SHORT).show();
+                            try {
+                                if (credenzialiCheckAsync.get())
+                                {
+                                    //Associo il nuovo dispositivo nel db remoto e popolo il db locale
+                                    if(AssociaNuovoDispositivo())
+                                    {
+                                        Toast.makeText(this, "Nuovo dispositivo associato correttamente all'account di "+getEditTextUtente().getText().toString()+" !", Toast.LENGTH_SHORT).show();
+                                        AvvioActivitySuccessiva(getEditTextUtente().getText().toString());
+                                        //rimuovo dallo stack l'activity precedente e la corrente
+                                        this.getParent().finish();
+                                        finish();
+                                        return;
+                                    }
 
+                                    Toast.makeText(this, "Ops qualcosa è andato storto!!", Toast.LENGTH_SHORT).show();
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            } catch (ExecutionException e) {
+                                e.printStackTrace();
                             }
                             Toast.makeText(this, "Utente o password errati!!", Toast.LENGTH_SHORT).show();
                         }
@@ -88,61 +107,24 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
                     }
                     else //se c'è posso far fare il login anche offline controllando che le credenziali siano corrette nel db locale
                     {
-                        if(true)
+                        //controllo utente e password
+                        if(CredenzialiCheckDbLocale())
                         {
 
-                            Toast.makeText(this, "Bentornato !!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Bentornato!! "+ getEditTextUtente().getText().toString(), Toast.LENGTH_SHORT).show();
+                            //avvio activity
+                            AvvioActivitySuccessiva(getEditTextUtente().getText().toString());
+                            finish();
                         }
-                        Toast.makeText(this, "Utente o password errati!!", Toast.LENGTH_SHORT).show();
+                        else
+                        {
+                            Toast.makeText(this, "Utente o password errati!!", Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                 }
             }
-                FKCWSsaveMyphotoSoap12 service=new FKCWSsaveMyphotoSoap12();
-                service.enableLogging=true;
-                try {
-                    service.MacAddrCheck("5454");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
 
-                /*
-                //verifico che non sia un nuovo dispositivo
-                if(!DatabaseCheck(this,DbString.nomeDB))
-                {
-                    if (WifiCheck())
-                    {
-                        AccessoDaNuovoDispositivo();
-                    }
-                }
-                //altrimenti controllo i campi inseriti e faccio check sul Utente
-                else if ((getEditTextPassword().getText().toString().trim().length()>0 && getEditTextUtente().getText().toString().trim().length()>0))
-                {
-                    if (UtenteCheckDbLocale()) {
-
-                        AvvioActivitySuccessiva(getEditTextUtente().getText().toString());
-
-                    } else {
-                        Toast.makeText(this, "Utente o password errati!!", Toast.LENGTH_SHORT).show();
-                    }
-                }
-                else {
-                    Toast.makeText(this, "Nome utente e/o password non presenti!!", Toast.LENGTH_SHORT).show();
-                }*/
-
-/*
-                if(WifiCheck())
-                {
-                    //se i campi non sono vuoti
-                    if (!isEmpty(getEditTextUtente()) && !isEmpty(getEditTextPassword()) && !isEmpty(getEditTextMail()))
-                    {
-                        if (Registrazione()) {
-                            Toast.makeText(this, "Registrazione di " + getEditTextUtente().getText().toString() + " avvenuta con successo!!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(this, "Utente già presente!!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }*/
         }
 
     }
@@ -152,32 +134,25 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
 
         if(editText.getText().toString().trim().length() == 0)
         {
-            Toast.makeText(this, "Non hai inserito "+editTextUtente.getHint(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Non hai inserito "+editText.getHint(), Toast.LENGTH_SHORT).show();
             return true;
         }
         return false;
     }
 
-
-//TODO Controllare il testo immesso in quanto sqlite non controlla i tipi di dati
     //Controlla credenziali
-    private boolean UtenteCheckDbLocale() {
+    private boolean CredenzialiCheckDbLocale() {
 
         String utenteInserito = getEditTextUtente().getText().toString();
         String passwordInserita = getEditTextPassword().getText().toString();
 
-        return dBgestione.UtenteCheckDbLocale(utenteInserito, passwordInserita,false);
+        return dBgestione.UtenteCheckDbLocale(utenteInserito, passwordInserita);
     }
 
-    //registra nuovo utente
-    private boolean Registrazione()
+    //Associa nuovo dispositivo e registra credenziali nel db locale
+    private boolean AssociaNuovoDispositivo()
     {
-        //fare activity precedente a questa con la scelta registrati o accedi (su accedi bisogna controllare se il dispositivo è già associato ad un account)
-
-
         String nomeUtente=getEditTextUtente().getText().toString();
-
-       /* String mail=getEditTextMail().getText().toString();
         String password=getEditTextPassword().getText().toString();
         String macAddr=this.macAddr;
         String marca="HTC";
@@ -185,39 +160,38 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
         String versioneAndroid="7";
         Integer spazioLibero=10;
 
-        NuovoUtente nuovoUtente=new NuovoUtente(nomeUtente,mail,password,macAddr,marca,modello,versioneAndroid,spazioLibero);
-        RegistrazioneUtenteAsync registrazioneUtenteAsync=new RegistrazioneUtenteAsync();
-        registrazioneUtenteAsync.execute(nuovoUtente);
+        NuovoUtente nuovoUtente=new NuovoUtente(nomeUtente,"",password,macAddr,marca,modello,versioneAndroid,spazioLibero);
+        AssociaNuovoDispositivo associaNuovoDispositivo=new AssociaNuovoDispositivo();
+        associaNuovoDispositivo.execute(nuovoUtente);
         try {
-            return registrazioneUtenteAsync.get();
+
+            //se l'inserimento del nuovo dispositivo sul db remoto è andata a buon fine
+            if(associaNuovoDispositivo.get()) {
+
+                //registro anche in locale
+                DBgestione dBgestione = new DBgestione(this);
+                if (dBgestione.RegistrazioneDbLocale(nomeUtente,"", password, macAddr, marca, modello, versioneAndroid, spazioLibero)) {
+                    return true;
+                }
+                return false;
+            }
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
             e.printStackTrace();
-        }*/
+        }
         return false;
-        //return dBgestione.RegistraUtente(utenteInserito,"data","prova@mail.com",passwordInserita);
     }
 
-    //Accesso da nuovo dispositivo
-    private boolean AccessoDaNuovoDispositivo() {
-        String utenteInserito = getEditTextUtente().getText().toString();
-        String passwordInserita = getEditTextPassword().getText().toString();
-        if(dBgestione.AccessoDaNuovoDispositivo(utenteInserito,passwordInserita))
-        {return true;}
-        Toast.makeText(this, "Impossibile procedere!\n Utente e/o password non sono presenti sul server!!.", Toast.LENGTH_SHORT).show();
-        return false;
-    }
 
     //Avvio activity successiva
     private void AvvioActivitySuccessiva(String nomeUtente)
     {
-        //stampo msg e mando nome utente
-        Toast.makeText(this, "Benvenuto " + nomeUtente, Toast.LENGTH_SHORT).show();
+        // mando nome utente
         Intent intent = new Intent(this, SearchView.class);
         Bundle bundle = new Bundle();
-        //TODO Mandare utente mi server??
-        bundle.putString("utente","te");
+        //TODO Mandare utente mi serve??
+        bundle.putString("utente",nomeUtente);
         intent.putExtras(bundle);
         startActivity(intent);
     }

@@ -2,6 +2,7 @@ package it.pedrazzi.marco.savemyphoto;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -92,6 +93,11 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
                             if(Registrazione())
                             {
                                 Toast.makeText(this, "Registrazione di " + getEditTextUtente().getText().toString() + " avvenuta con successo!!", Toast.LENGTH_SHORT).show();
+                                AvvioActivitySuccessiva(getEditTextUtente().getText().toString());
+                                //rimuovo dallo stack l'activity precedente e la corrente
+                                this.getParent().finish();
+                                finish();
+                                return;
                             }
                             else
                             {
@@ -142,7 +148,7 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
         return false;
     }
 
-    //registra nuovo utente
+    //registra nuovo utente nel db remoto e aggiungi le credenziali nel db locale
     private boolean Registrazione()
     {
         //recupero dati utente e del dispositivo
@@ -194,12 +200,24 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
     }
 
     //trova lo spazio libero rimasto sul filesystem
-    private void GetSpazioLibero()
+    public void GetSpazioLibero()
     {
 
 
         Double freeBytesExternal = (new File(getExternalFilesDir(null).toString()).getFreeSpace())/1073741824.0;
 
         //TODO arrotondare il double a 2 cifre decimali
+    }
+
+    //Avvio activity successiva
+    private void AvvioActivitySuccessiva(String nomeUtente)
+    {
+        // mando nome utente
+        Intent intent = new Intent(this, SearchView.class);
+        Bundle bundle = new Bundle();
+        //TODO Mandare utente mi serve??
+        bundle.putString("utente",nomeUtente);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }

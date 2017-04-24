@@ -33,20 +33,10 @@
         <service android:name="it.pedrazzi.marco.savemyphoto.http.testService" />
 
         <!-- Scelta accesso -->
-
-
-        <!-- Login -->
-        <activity
-            android:name="it.pedrazzi.marco.savemyphoto.AccediActivity"
-            android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme" />
-
-        <!-- SearchView -->
-        <activity android:name="it.pedrazzi.marco.savemyphoto.SearchView" />
         <activity
             android:name="it.pedrazzi.marco.savemyphoto.ChooseAccessActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/title_activity_choose_access"
+            android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +44,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="it.pedrazzi.marco.savemyphoto.RegistrazioneActivity" />
+
+        <!-- Login -->
+        <activity
+            android:name="it.pedrazzi.marco.savemyphoto.AccediActivity"
+            android:label="@string/title_activity_login"
+            android:theme="@style/AppTheme" />
+
+        <!-- Registrazione -->
+        <activity
+            android:name="it.pedrazzi.marco.savemyphoto.RegistrazioneActivity"
+            android:label="@string/registrati"
+            android:theme="@style/AppTheme" />
+
+        <!-- SearchView -->
+        <activity android:name="it.pedrazzi.marco.savemyphoto.SearchView" />
     </application>
 
 </manifest>

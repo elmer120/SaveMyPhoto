@@ -1,10 +1,7 @@
 package it.pedrazzi.marco.savemyphoto.WebService;
 
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.util.Log;
-
-import java.lang.reflect.Array;
 
 /**
  * Created by Elmer on 19/04/2017.
@@ -22,11 +19,12 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Boolea
 
     @Override
     protected Boolean doInBackground(NuovoUtente... nuovoUtentes) {
-        FKCWSsaveMyphotoSoap12 service=new FKCWSsaveMyphotoSoap12();
+        IBNWSsaveMyphotoSoap12 service=new IBNWSsaveMyphotoSoap12();
         service.enableLogging=true;
         try {
             //ritorna la risp del WS
-            boolean risposta= service.RegistrazioneUtente(nuovoUtentes[0].nomeUtente,
+            boolean risposta= service.RegistrazioneNuovoUtente(
+                                        nuovoUtentes[0].nomeUtente,
                                         nuovoUtentes[0].mail,
                                         nuovoUtentes[0].password,
                                         nuovoUtentes[0].macAddr,

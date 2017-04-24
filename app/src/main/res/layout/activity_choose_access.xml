@@ -16,36 +16,51 @@
 
                     <!-- This FrameLayout insets its children based on system windows using
                          android:fitsSystemWindows. -->
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:fitsSystemWindows="true"
-                        android:saveEnabled="false">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:saveEnabled="false">
 
-                        <LinearLayout
-                            android:id="@+id/fullscreen_content_controls"
-                            style="?metaButtonBarStyle"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center_horizontal"
-                            android:background="@color/black_overlay"
-                            android:orientation="horizontal"
-                            tools:ignore="UselessParent"
-                            android:weightSum="1">
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
+            style="?metaButtonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:background="@color/black_overlay"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            tools:ignore="UselessParent">
 
-                            <Button
-                                android:id="@+id/btnAccedi"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/accedi" />
+            <Button
+                android:id="@+id/btnAccedi"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.97"
+                android:text="@string/accedi" />
 
-                            <Button
-                                android:id="@+id/btnRegistrati"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/registrati" />
+            <Button
+                android:id="@+id/btnRegistrati"
+                style="@style/Widget.AppCompat.Button"
+                android:layout_width="166dp"
+                android:layout_height="wrap_content"
+                android:text="@string/registrati" />
 
-                        </LinearLayout>
-                    </FrameLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.97"
+            android:lineSpacingExtra="8sp"
+            android:text="@string/versione"
+            android:textAlignment="viewStart"
+            android:textColor="?android:attr/colorBackgroundCacheHint"
+            android:textStyle="bold|italic"
+            android:visibility="visible" />
+    </FrameLayout>
 
 </FrameLayout>

@@ -11,7 +11,14 @@
     <string name="accedi">Accedi</string>
     <string name="login">Login</string>
     <string name="avanti">Avanti</string>
-    <string name="versione">V 0.6.9</string>
+    <string name="versione">V 0.7.4</string>
+
+
+
+    <string name="nomeUtente">Nome Utente</string>
+    <string name="password">Password</string>
+    <string name="mail">E-mail</string>
+    <string name="dataNascita">Data nascita</string>
 
     <string-array name="tab">
         <item>Foto</item>
