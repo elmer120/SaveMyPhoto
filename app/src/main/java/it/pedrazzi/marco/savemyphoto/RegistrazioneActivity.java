@@ -54,9 +54,16 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
     private EditText editTextPassword;
     private EditText editTextMail;
     private EditText editTextDataNascita;
-    private String UtenteBundle;
-    private DBgestione dBgestione;
-    private String macAddr;
+
+
+    public String nomeUtente;
+    public String mail;
+    public String password;
+    public String macAddr;
+    public String marca;
+    public String modello;
+    public String versioneAndroid;
+    public int spazioLibero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +75,7 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
         btnAvanti.setOnClickListener(this);
 
         // creo db istanzio la classe che consente le operazioni sul db
-        this.dBgestione=new DBgestione(this);
+        //this.dBgestione=new DBgestione(this);
     }
 
 
@@ -76,7 +83,6 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
     public void onClick(View view) {
         if (view.getId()==R.id.btnAvanti)
         {
-
             //richiedo il wifi attivo per recuperare il mac-addr e accedere al db remoto
             if (WifiCheck())
             {
@@ -90,28 +96,12 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
                         if (!isEmpty(getEditTextMail()))
                         {
                             //Effettuo la registrazione
-                            if(Registrazione())
-                            {
-                                Toast.makeText(this, "Registrazione di " + getEditTextUtente().getText().toString() + " avvenuta con successo!!", Toast.LENGTH_SHORT).show();
-                                AvvioActivitySuccessiva(getEditTextUtente().getText().toString());
-                                //rimuovo dallo stack l'activity precedente e la corrente
-                                this.getParent().finish();
-                                finish();
-                                return;
-                            }
-                            else
-                            {
-                                Toast.makeText(this, "Utente o dispositivo già presente!!", Toast.LENGTH_SHORT).show();
-                            }
+                            Registrazione();
                         }
 
                     }
                 }
             }
-
-
-
-
         }
     }
 
@@ -148,55 +138,31 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
         return false;
     }
 
-    //registra nuovo utente nel db remoto e aggiungi le credenziali nel db locale
-    private boolean Registrazione()
+    //registra nuovo utente nel db remoto e aggiunge le credenziali nel db locale
+    private void Registrazione()
     {
         //recupero dati utente e del dispositivo
-        String nomeUtente=getEditTextUtente().getText().toString();
-        String mail=getEditTextMail().getText().toString();
-        String password=getEditTextPassword().getText().toString();
-        String macAddr=this.macAddr;
-        String marca=   Build.MANUFACTURER;
-        String modello= Build.MODEL;
-        String versioneAndroid= null;
+        this.nomeUtente=getEditTextUtente().getText().toString();
+        this.mail=getEditTextMail().getText().toString();
+        this.password=getEditTextPassword().getText().toString();
+        this.marca=   Build.MANUFACTURER;
+        this.modello= Build.MODEL;
+        this.versioneAndroid= null;
         try
         {
-            versioneAndroid = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            this.versioneAndroid = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
         }
         catch (PackageManager.NameNotFoundException e)
         {
-            versioneAndroid="Non trovata";
+            this.versioneAndroid="Non trovata";
             e.printStackTrace();
         }
-
-        int spazioLibero=10;
+        this.spazioLibero=10;
 
         //chiamo il Web service remoto
         NuovoUtente nuovoUtente=new NuovoUtente(nomeUtente,mail,password,macAddr,marca,modello,versioneAndroid,spazioLibero);
-        RegistrazioneUtenteAsync registrazioneUtenteAsync=new RegistrazioneUtenteAsync();
+        RegistrazioneUtenteAsync registrazioneUtenteAsync=new RegistrazioneUtenteAsync(this,this);
         registrazioneUtenteAsync.execute(nuovoUtente);
-
-        try
-        {
-            //se la registrazione sul db remoto è andata a buon fine
-            if(registrazioneUtenteAsync.get())
-            {
-                //registro anche in locale
-                DBgestione dBgestione=new DBgestione(this);
-                if(dBgestione.RegistrazioneDbLocale(nomeUtente,mail,password,macAddr,marca,modello,versioneAndroid,spazioLibero))
-                {
-                    return true;
-                }
-            }
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            return false;
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return false;
     }
 
     //trova lo spazio libero rimasto sul filesystem
@@ -210,7 +176,7 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
     }
 
     //Avvio activity successiva
-    private void AvvioActivitySuccessiva(String nomeUtente)
+    public void AvvioActivitySuccessiva(String nomeUtente)
     {
         // mando nome utente
         Intent intent = new Intent(this, SearchView.class);
@@ -219,5 +185,8 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
         bundle.putString("utente",nomeUtente);
         intent.putExtras(bundle);
         startActivity(intent);
+        //rimuovo dallo stack l'activity  corrente
+        finish();
+        return;
     }
 }

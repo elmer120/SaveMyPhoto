@@ -36,13 +36,13 @@ public class HttpMultipart {
             //VARIABILI DI SUPPORTO
 
             //DEBUG
-            String percorsoFoto="/storage/emulated/0/WhatsApp/Media/WhatsApp Images/test0.jpg";
+            String percorsoFoto="/storage/emulated/0/DCIM/100MEDIA/IMAG0487.jpg";
             Bitmap img= BitmapFactory.decodeFile(percorsoFoto);
 
             //Muletto PHP
             // String urlServer="http://192.168.1.9";
             //Locale Asp.net
-            String urlServer="http://192.168.1.20:23591/index.aspx";
+            String urlServer="http://192.168.1.20:51262/WFUpload.aspx";
 
             //Foto creata run-time
             //Bitmap img = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888);

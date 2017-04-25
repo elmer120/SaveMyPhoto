@@ -13,7 +13,7 @@ import java.io.File;
 
 public class ChooseAccessActivity extends Activity implements View.OnClickListener {
 
-
+ private Button btnRegistrati;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +22,8 @@ public class ChooseAccessActivity extends Activity implements View.OnClickListen
         ImageView background=(ImageView)findViewById(R.id.background);
         background.setImageDrawable(getResources().getDrawable(R.drawable.splash));
 
-        Button btnRegistrati=(Button)findViewById(R.id.btnRegistrati);
-        btnRegistrati.setOnClickListener(this);
+        this.btnRegistrati=(Button)findViewById(R.id.btnRegistrati);
+        this.btnRegistrati.setOnClickListener(this);
 
         Button btnAccedi=(Button)findViewById(R.id.btnAccedi);
         btnAccedi.setOnClickListener(this);
@@ -32,7 +32,7 @@ public class ChooseAccessActivity extends Activity implements View.OnClickListen
         //dunque non pùò registrarsi un altra volta
         if(DatabaseCheck(this,DbString.nomeDB))
         {
-            btnRegistrati.setVisibility(View.GONE);
+            this.btnRegistrati.setVisibility(View.GONE);
         }
     }
 
@@ -40,6 +40,17 @@ public class ChooseAccessActivity extends Activity implements View.OnClickListen
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
+    }
+
+    @Override //invocato alla ripresa dalla sospensione 1°
+    protected void onRestart() {
+        super.onRestart();
+        //se il database esiste il dispositivo è già registrato in un account sul server
+        //dunque non pùò registrarsi un altra volta
+        if(DatabaseCheck(this,DbString.nomeDB))
+        {
+            btnRegistrati.setVisibility(View.GONE);
+        }
     }
 
     @Override

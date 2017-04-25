@@ -1,30 +1,27 @@
 package it.pedrazzi.marco.savemyphoto;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import java.io.File;
-import java.lang.reflect.Array;
-import java.util.concurrent.ExecutionException;
-
-import it.pedrazzi.marco.savemyphoto.WebService.AssociaNuovoDispositivo;
+import it.pedrazzi.marco.savemyphoto.WebService.AssociaNuovoDispositivoAsync;
 import it.pedrazzi.marco.savemyphoto.WebService.CredenzialiCheckAsync;
 import it.pedrazzi.marco.savemyphoto.WebService.NuovoUtente;
 
 public class AccediActivity extends AppCompatActivity implements View.OnClickListener //imposto l'interfaccia per l'evento on click
 {
     public DBgestione dBgestione=null;
-    public String macAddr=null;
-
 
     public EditText getEditTextUtente() {
         editTextUtente=(EditText) findViewById(R.id.txtUtente);
@@ -38,8 +35,15 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
 
     private EditText editTextUtente;
     private EditText editTextPassword;
-    private String UtenteBundle;
+    public String nomeUtente;
+    public String password;
+    public String macAddr;
+    public String marca;
+    public String modello;
+    public String versioneAndroid;
+    public Integer spazioLibero;
 
+    ProgressBar progressBarAccOffline;
 
 
     @Override
@@ -51,7 +55,9 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
         Button btnAvanti=(Button)findViewById(R.id.btnAvanti);
         btnAvanti.setOnClickListener(this);
 
-        // creo db istanzio la classe che consente le operazioni sul db
+        this.progressBarAccOffline=(ProgressBar) findViewById(R.id.progressBarAcc);
+
+        // creo db istanzio la classe che consente le operazioni sul db locale
         this.dBgestione=new DBgestione(this);
 
     }
@@ -75,33 +81,10 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
                         //allora richiedo il wifi attivo per recuperare il mac-addr e accedere al db remoto
                         if (WifiCheck())
                         {
-                            //controllo che l'utente esista e che la password sia corretta
+                            //Avvio task asincrono per controllare che l'utente esista e che la password sia corretta
                             String[] arrayString={getEditTextUtente().getText().toString(),getEditTextPassword().getText().toString()};
-                            CredenzialiCheckAsync credenzialiCheckAsync=new CredenzialiCheckAsync();
+                            CredenzialiCheckAsync credenzialiCheckAsync=new CredenzialiCheckAsync(this,this);
                             credenzialiCheckAsync.execute(arrayString);
-
-                            try {
-                                if (credenzialiCheckAsync.get())
-                                {
-                                    //Associo il nuovo dispositivo nel db remoto e popolo il db locale
-                                    if(AssociaNuovoDispositivo())
-                                    {
-                                        Toast.makeText(this, "Nuovo dispositivo associato correttamente all'account di "+getEditTextUtente().getText().toString()+" !", Toast.LENGTH_SHORT).show();
-                                        AvvioActivitySuccessiva(getEditTextUtente().getText().toString());
-                                        //rimuovo dallo stack l'activity precedente e la corrente
-                                        this.getParent().finish();
-                                        finish();
-                                        return;
-                                    }
-
-                                    Toast.makeText(this, "Ops qualcosa è andato storto!!", Toast.LENGTH_SHORT).show();
-                                }
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            } catch (ExecutionException e) {
-                                e.printStackTrace();
-                            }
-                            Toast.makeText(this, "Utente o password errati!!", Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -112,12 +95,14 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
                         {
 
                             Toast.makeText(this, "Bentornato!! "+ getEditTextUtente().getText().toString(), Toast.LENGTH_SHORT).show();
+                            this.progressBarAccOffline.setVisibility(View.INVISIBLE);
                             //avvio activity
                             AvvioActivitySuccessiva(getEditTextUtente().getText().toString());
                             finish();
                         }
                         else
                         {
+                            this.progressBarAccOffline.setVisibility(View.INVISIBLE);
                             Toast.makeText(this, "Utente o password errati!!", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -140,9 +125,10 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
         return false;
     }
 
-    //Controlla credenziali
+    //Controlla credenziali db locale
     private boolean CredenzialiCheckDbLocale() {
 
+        this.progressBarAccOffline.setVisibility(View.VISIBLE);
         String utenteInserito = getEditTextUtente().getText().toString();
         String passwordInserita = getEditTextPassword().getText().toString();
 
@@ -150,42 +136,35 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     //Associa nuovo dispositivo e registra credenziali nel db locale
-    private boolean AssociaNuovoDispositivo()
+    public void AssociaNuovoDispositivo()
     {
-        String nomeUtente=getEditTextUtente().getText().toString();
-        String password=getEditTextPassword().getText().toString();
-        String macAddr=this.macAddr;
-        String marca="HTC";
-        String modello="10";
-        String versioneAndroid="7";
-        Integer spazioLibero=10;
-
-        NuovoUtente nuovoUtente=new NuovoUtente(nomeUtente,"",password,macAddr,marca,modello,versioneAndroid,spazioLibero);
-        AssociaNuovoDispositivo associaNuovoDispositivo=new AssociaNuovoDispositivo();
-        associaNuovoDispositivo.execute(nuovoUtente);
-        try {
-
-            //se l'inserimento del nuovo dispositivo sul db remoto è andata a buon fine
-            if(associaNuovoDispositivo.get()) {
-
-                //registro anche in locale
-                DBgestione dBgestione = new DBgestione(this);
-                if (dBgestione.RegistrazioneDbLocale(nomeUtente,"", password, macAddr, marca, modello, versioneAndroid, spazioLibero)) {
-                    return true;
-                }
-                return false;
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
+        this.nomeUtente=getEditTextUtente().getText().toString();
+        this.password=getEditTextPassword().getText().toString();
+        this.marca=   Build.MANUFACTURER;
+        this.modello= Build.MODEL;
+        this.versioneAndroid= null;
+        try
+        {
+            this.versioneAndroid = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+        }
+        catch (PackageManager.NameNotFoundException e)
+        {
+            this.versioneAndroid="Non trovata";
             e.printStackTrace();
         }
-        return false;
+        this.spazioLibero=10;
+
+
+        //avvia task asincrono per associare il nuovo dispositivo nel db remoto
+        NuovoUtente nuovoUtente=new NuovoUtente(nomeUtente,"",password,macAddr,marca,modello,versioneAndroid,spazioLibero);
+        AssociaNuovoDispositivoAsync associaNuovoDispositivo=new AssociaNuovoDispositivoAsync(this,this);
+        associaNuovoDispositivo.execute(nuovoUtente);
+
     }
 
 
     //Avvio activity successiva
-    private void AvvioActivitySuccessiva(String nomeUtente)
+    public void AvvioActivitySuccessiva(String nomeUtente)
     {
         // mando nome utente
         Intent intent = new Intent(this, SearchView.class);
@@ -194,6 +173,9 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
         bundle.putString("utente",nomeUtente);
         intent.putExtras(bundle);
         startActivity(intent);
+        //rimuovo dallo stack l'activity corrente
+        finish();
+        return;
     }
 
     //Controllo se il wifi è attivo cosi posso recuperare il mac-address
