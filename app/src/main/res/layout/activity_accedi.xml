@@ -27,7 +27,8 @@
         android:layout_below="@+id/txtTitolo"
         android:ems="10"
         android:hint="@string/nomeUtente"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:text="elmer" />
 
     <EditText
         android:id="@+id/txtPassword"
@@ -40,7 +41,8 @@
         android:layout_below="@+id/txtUtente"
         android:ems="10"
         android:hint="@string/password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:text="eer" />
 
     <Button
         android:id="@+id/btnAvanti"

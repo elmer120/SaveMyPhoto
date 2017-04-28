@@ -157,6 +157,7 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
             this.versioneAndroid="Non trovata";
             e.printStackTrace();
         }
+        //TODO mancante spazio libero
         this.spazioLibero=10;
 
         //chiamo il Web service remoto

@@ -34,6 +34,9 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
     private ArrayList<FileMedia> listWhatApp;
     private StickyGridHeadersGridView gridHeadersGridView;
 
+    String nomeUtente;
+    String macAddr;
+
     // lista di fragment
     List<Fragment> fragments = new Vector<>();
     //pagerAdapter
@@ -51,10 +54,20 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_view);
 
+        //recupero dati da activity precedente
+        this.nomeUtente=getIntent().getExtras().getString("nomeUtente");
+        this.macAddr=getIntent().getExtras().getString("macAddr");
+
+
         // creo i fragments e li aggiungo alla lista
-        fragments.add(Fragment.instantiate(this, Page1Fragment.class.getName()));
-        fragments.add(Fragment.instantiate(this, Page2Fragment.class.getName()));
-        fragments.add(Fragment.instantiate(this, Page3Fragment.class.getName()));
+        Fragment fragmentPage1=Fragment.instantiate(this, Page1Fragment.class.getName());
+        //passo dati al fragment1
+        fragmentPage1.setArguments(getIntent().getExtras());
+        Fragment fragmentPage2=Fragment.instantiate(this, Page2Fragment.class.getName());
+        Fragment fragmentPage3=Fragment.instantiate(this, Page3Fragment.class.getName());
+        fragments.add(fragmentPage1);
+        fragments.add(fragmentPage2);
+        fragments.add(fragmentPage3);
 
         // creo l'adapter e lo aggiungo al viewPager
         this.mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
@@ -206,7 +219,7 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
                     {
 
                         HttpMultipart s=new HttpMultipart();
-                        s.Invia();
+                        //s.Invia("elmer","e8:99:c4:9f:9f:3a");
                     }
                 }.start();
 

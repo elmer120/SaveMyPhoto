@@ -3,10 +3,12 @@ package it.pedrazzi.marco.savemyphoto;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.media.ExifInterface;
 import android.provider.MediaStore;
 import android.util.Log;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -26,16 +28,18 @@ public class ContentProviderScanner {
 
     public ContentProviderScanner(Context mContext){
         this.mContext=mContext;
+
     }
 
 
-    public ArrayList<FileMedia> getListMedia(Album album,boolean video) {
+    public ArrayList<FileMedia> getListMedia(Album album,boolean video){
         this.listMedia=null;
         this.listMedia=new ArrayList<FileMedia>();
         FileMedia fileMedia=null;
         String where=null;
         Cursor cursorVideo=null;
 
+        //controllo che album si vuole estrarre
         switch (album)
         {
             case Camera:
@@ -48,62 +52,101 @@ public class ContentProviderScanner {
                 where=this.all;
                 break;
         }
+
+        //recupero il cursore per le immagini
         Cursor cursorImage=searchImage(where);
 
+        //se la ricerca comprende anche i video
         if(video)
         {
+            //recupero il cursore per i video
             cursorVideo=searchVideo(where);
         }
-            else {
+        else
+        {
                 Log.i("Video: ", "ricerca non richiesta");
-            }
+        }
+
         //recupero indice colonne
         int pathColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.DATA);
         int dateColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.DATE_TAKEN);
         int nameColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME);
         int dirColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.BUCKET_DISPLAY_NAME);
         int mimeColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.MIME_TYPE);
+        int sizeColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.SIZE);
+        int heightColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.HEIGHT);
+        int widthColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.WIDTH);
+        int orientationColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.ORIENTATION);
+        int latitudeColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.LATITUDE);
+        int longitudeColumnIndex = cursorImage.getColumnIndex(MediaStore.Images.Media.LONGITUDE);
+
+        //recupero il numero di righe ritornate
+        int countRow = cursorImage.getCount();
+
+        //ciclo per ogni riga
+            for (int i = 0; i < countRow; i++)
+            {
+                fileMedia=null;
+                //sposto il cursore sulla ennesima riga
+                cursorImage.moveToPosition(i);
+
+                //estraggo il persorso assoluto del media
+                String path = (pathColumnIndex != -1) ? cursorImage.getString(pathColumnIndex):null;
+                File file=new File(path);
+
+                    //se il file esiste
+                    if(file.exists())
+                    {
+                        ExifInterface ex= null;
+                        try
+                        {
+                            ex = new ExifInterface(path);
+                        } catch (IOException e)
+                        {
+                            e.printStackTrace();
+                            Log.i("Exif interface","non trovata");
+                        }
+
+                        //estraggo le informazioni del media
+                        //operatore ternario
+                        //se colonna esiste assegno il suo valore alla variabile altrimenti assegno alla variabile il valore dell'interfaccia exif o null
+                        String bucket = (dirColumnIndex != -1) ? cursorImage.getString(dirColumnIndex) : null;
+                        String nome   = (nameColumnIndex!= -1) ? cursorImage.getString(nameColumnIndex): null;
+                        String mimeType= (mimeColumnIndex!=-1) ? cursorImage.getString(mimeColumnIndex): null;
+                        String dimensione = (sizeColumnIndex!=-1) ?  cursorImage.getString(sizeColumnIndex):ex.getAttribute(ExifInterface.TAG_IMAGE_LENGTH);
+                        String altezza    = (heightColumnIndex!=-1)? cursorImage.getString(heightColumnIndex):null;
+                        String larghezza  = (widthColumnIndex!=-1) ? cursorImage.getString(widthColumnIndex):ex.getAttribute(ExifInterface.TAG_IMAGE_WIDTH);
+                        String orientamento= (orientationColumnIndex!=-1) ? cursorImage.getString(orientationColumnIndex):ex.getAttribute(ExifInterface.TAG_ORIENTATION);
+                        String latitudine= (latitudeColumnIndex!=-1) ? cursorImage.getString(latitudeColumnIndex):ex.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
+                        String longitudine= (longitudeColumnIndex!=-1) ? cursorImage.getString(longitudeColumnIndex): ex.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
 
 
-        int count = cursorImage.getCount();
-            for (int i = 0; i < count; i++) {
-            fileMedia=null;
-            cursorImage.moveToPosition(i);
-
-            //estraggo il path del media
-            String path = cursorImage.getString(pathColumnIndex);
-            File file=new File(path);
-            //il file esiste?
-
-            if(file.exists()) {
-                //estraggo le informazioni del media
-                String bucket = cursorImage.getString(dirColumnIndex);
-                String nome = cursorImage.getString(nameColumnIndex);
-                String mimeType = cursorImage.getString(mimeColumnIndex);
-                Long timestamp = cursorImage.getLong(dateColumnIndex);
+                        Long timestamp = cursorImage.getLong(dateColumnIndex);
 
 
-                Calendar calendario = Calendar.getInstance();
-                calendario.setTimeInMillis(timestamp);
-                int giorno=calendario.get(Calendar.DAY_OF_MONTH);
-                int mese=calendario.get(Calendar.MONTH);
-                int anno=calendario.get(Calendar.YEAR);
+                        Calendar calendario = Calendar.getInstance();
+                        calendario.setTimeInMillis(timestamp);
+                        int giorno=calendario.get(Calendar.DAY_OF_MONTH);
+                        int mese=calendario.get(Calendar.MONTH);
+                        int anno=calendario.get(Calendar.YEAR);
 
-                //aggiungo il media alla lista
-                fileMedia = new FileMedia(giorno,mese,anno,path,nome,bucket, mimeType);
+                        //aggiungo il media alla lista
+                        fileMedia = new FileMedia(giorno,mese,anno,path,nome,bucket, mimeType,dimensione,altezza,larghezza,orientamento,latitudine,longitudine);
 
-                this.listMedia.add(fileMedia);
 
-              /*  Log.i("---", "____________");
-                Log.i("Bucket", bucket);
-                Log.i("MimeType", mimeType);
-                Log.i("DATA", timestamp.toString());
-                Log.i("PATH", path);*/
-            }
+                        this.listMedia.add(fileMedia);
+
+                      /*  Log.i("---", "____________");
+                        Log.i("Bucket", bucket);
+                        Log.i("MimeType", mimeType);
+                        Log.i("DATA", timestamp.toString());
+                        Log.i("PATH", path);*/
+                    }
         }
-
+        //chiudo il cursore
         cursorImage.close();
 
+        //se sono compresi anche i video
         if (video)
         {
             //recupero indice colonne
@@ -112,42 +155,75 @@ public class ContentProviderScanner {
             nameColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.DISPLAY_NAME);
             dirColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.BUCKET_DISPLAY_NAME);
             mimeColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.MIME_TYPE);
+            sizeColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.SIZE);
+            heightColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.HEIGHT);
+            widthColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.WIDTH);
+            latitudeColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.LATITUDE);
+            longitudeColumnIndex = cursorVideo.getColumnIndex(MediaStore.Video.VideoColumns.LONGITUDE);
 
-            count = cursorVideo.getCount();
-            for (int i = 0; i < count; i++) {
-                fileMedia=null;
-                cursorVideo.moveToPosition(i);
 
-                //estraggo il path del media
-                String path = cursorVideo.getString(pathColumnIndex);
-                File file=new File(path);
-                //il file esiste?
 
-                if(file.exists()) {
-                    //estraggo le informazioni del media
-                    String bucket = cursorVideo.getString(dirColumnIndex);
-                    String nome = cursorVideo.getString(nameColumnIndex);
-                    String mimeType = cursorVideo.getString(mimeColumnIndex);
-                    Long timestamp = cursorVideo.getLong(dateColumnIndex);
+            //recupero il numero di righe ritornate
+            countRow = cursorVideo.getCount();
 
-                    Calendar calendario = Calendar.getInstance();
-                    calendario.setTimeInMillis(timestamp);
-                    int giorno=calendario.get(Calendar.DAY_OF_MONTH);
-                    int mese=calendario.get(Calendar.MONTH);
-                    int anno=calendario.get(Calendar.YEAR);
+                //ciclo per ogni riga
+                for (int i = 0; i < countRow; i++)
+                {
+                    fileMedia=null;
+                    cursorVideo.moveToPosition(i);
 
-                    //aggiungo il media alla lista
-                    fileMedia = new FileMedia(giorno,mese,anno,path,nome,bucket, mimeType);
+                    //estraggo il path del media
+                    String path = (pathColumnIndex!=-1)?cursorVideo.getString(pathColumnIndex):null;
+                    File file=new File(path);
 
-                    this.listMedia.add(fileMedia);
+                        //il file esiste?
+                        if(file.exists())
+                        {
 
-                 /*   Log.i("---", "____________");
-                    Log.i("Bucket", bucket);
-                    Log.i("MimeType", mimeType);
-                    Log.i("DATA", timestamp.toString());
-                    Log.i("PATH", path);*/
+                            ExifInterface ex= null;
+                            try
+                            {
+                                ex = new ExifInterface(path);
+                            } catch (IOException e)
+                            {
+                                e.printStackTrace();
+                                Log.i("Exif interface","non trovata");
+                            }
+
+                            //estraggo le informazioni del media
+                            //operatore ternario
+                            //se colonna esiste assegno il suo valore alla variabile altrimenti assegno alla variabile il valore dell'interfaccia exif o null
+                            String bucket = (dirColumnIndex != -1) ? cursorVideo.getString(dirColumnIndex) : null;
+                            String nome   = (nameColumnIndex!= -1) ? cursorVideo.getString(nameColumnIndex): null;
+                            String mimeType= (mimeColumnIndex!=-1) ? cursorVideo.getString(mimeColumnIndex): null;
+                            String dimensione = (sizeColumnIndex!=-1) ?  cursorVideo.getString(sizeColumnIndex):ex.getAttribute(ExifInterface.TAG_IMAGE_LENGTH);
+                            String altezza    = (heightColumnIndex!=-1)? cursorVideo.getString(heightColumnIndex):null;
+                            String larghezza  = (widthColumnIndex!=-1) ? cursorVideo.getString(widthColumnIndex):ex.getAttribute(ExifInterface.TAG_IMAGE_WIDTH);
+
+                            String latitudine= (latitudeColumnIndex!=-1) ? cursorVideo.getString(latitudeColumnIndex):ex.getAttribute(ExifInterface.TAG_GPS_LATITUDE);
+                            String longitudine= (longitudeColumnIndex!=-1) ? cursorVideo.getString(longitudeColumnIndex): ex.getAttribute(ExifInterface.TAG_GPS_LONGITUDE);
+
+
+                            Long timestamp = cursorVideo.getLong(dateColumnIndex);
+
+                            Calendar calendario = Calendar.getInstance();
+                            calendario.setTimeInMillis(timestamp);
+                            int giorno=calendario.get(Calendar.DAY_OF_MONTH);
+                            int mese=calendario.get(Calendar.MONTH);
+                            int anno=calendario.get(Calendar.YEAR);
+
+                            //aggiungo il media alla lista
+                            fileMedia = new FileMedia(giorno,mese,anno,path,nome,bucket, mimeType,dimensione,altezza,larghezza,"",latitudine,longitudine);
+
+                            this.listMedia.add(fileMedia);
+
+                         /*   Log.i("---", "____________");
+                            Log.i("Bucket", bucket);
+                            Log.i("MimeType", mimeType);
+                            Log.i("DATA", timestamp.toString());
+                            Log.i("PATH", path);*/
+                        }
                 }
-            }
             cursorVideo.close();
         }
 
@@ -164,7 +240,14 @@ public class ContentProviderScanner {
                 MediaStore.Images.Media.DATE_TAKEN,
                 MediaStore.Images.Media.DISPLAY_NAME,
                 MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
-                MediaStore.Images.Media.MIME_TYPE};
+                MediaStore.Images.Media.MIME_TYPE,
+                MediaStore.Images.Media.SIZE,
+                MediaStore.Images.Media.HEIGHT,
+                MediaStore.Images.Media.WIDTH,
+                MediaStore.Images.Media.ORIENTATION,
+                MediaStore.Images.Media.LATITUDE,
+                MediaStore.Images.Media.LONGITUDE};
+
 
         //definisco l'ordine del interrogazione
         final String orderBy = MediaStore.Images.Media.BUCKET_DISPLAY_NAME+" and "+MediaStore.Images.Media.DATE_TAKEN+ " DESC";
@@ -197,7 +280,12 @@ public class ContentProviderScanner {
                 MediaStore.Video.VideoColumns.DATE_TAKEN,
                 MediaStore.Video.VideoColumns.DISPLAY_NAME,
                 MediaStore.Video.VideoColumns.BUCKET_DISPLAY_NAME,
-                MediaStore.Video.VideoColumns.MIME_TYPE};
+                MediaStore.Video.VideoColumns.MIME_TYPE,
+                MediaStore.Video.VideoColumns.SIZE,
+                MediaStore.Video.VideoColumns.HEIGHT,
+                MediaStore.Video.VideoColumns.WIDTH,
+                MediaStore.Video.VideoColumns.LATITUDE,
+                MediaStore.Video.VideoColumns.LONGITUDE};
 
         //definisco l'ordine del interrogazione
         final String orderBy = MediaStore.Video.VideoColumns.BUCKET_DISPLAY_NAME+" and "+MediaStore.Video.VideoColumns.DATE_TAKEN+ " DESC";

@@ -40,14 +40,36 @@ public class FileMedia implements Comparable,Parcelable{
         return anno;
     }
 
-
+    public String getDimensione() {
+        return dimensione;
+    }
 
     public boolean getSelezionata() {
         return selezionata;
     }
+
     public void setSelezionata() {
          this.selezionata=selezionata;}
 
+    public String getAltezza() {
+        return altezza;
+    }
+
+    public String getLarghezza() {
+        return larghezza;
+    }
+
+    public String getOrientamento() {
+        return orientamento;
+    }
+
+    public String getLatitudine() {
+        return latitudine;
+    }
+
+    public String getLongitudine() {
+        return longitudine;
+    }
 
     private String nome;
     private String path;
@@ -56,6 +78,15 @@ public class FileMedia implements Comparable,Parcelable{
     private int giorno;
     private int mese;
     private int anno;
+    private String altezza;
+    private String larghezza;
+    private String orientamento;
+    private String latitudine;
+    private String longitudine;
+
+
+
+    private String dimensione;
 
 
     public void setGiorno(int giorno) {
@@ -65,8 +96,10 @@ public class FileMedia implements Comparable,Parcelable{
     private boolean selezionata=false;
 
 
-    public FileMedia(int giorno,int mese,int anno, String path,String nome,String bucket,String mimeType){
+    public FileMedia(int giorno,int mese,int anno, String path,String nome,String bucket,String mimeType,
+                     String dimensione,String altezza,String larghezza,String orientamento,String latitudine,String longitudine){
         super();
+
         this.path=path;
         this.bucket=bucket;
         this.mimeType=mimeType;
@@ -74,6 +107,13 @@ public class FileMedia implements Comparable,Parcelable{
         this.mese=mese;
         this.anno=anno;
         this.nome=nome;
+        this.dimensione=dimensione;
+        this.altezza=altezza;
+        this.larghezza=larghezza;
+        this.orientamento=orientamento;
+        this.latitudine=latitudine;
+        this.longitudine=longitudine;
+
     }
 
     public int compareTo(Object o) {

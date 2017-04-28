@@ -168,9 +168,10 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
     {
         // mando nome utente
         Intent intent = new Intent(this, SearchView.class);
+        this.macAddr=this.dBgestione.getMacAddr(nomeUtente);
         Bundle bundle = new Bundle();
-        //TODO Mandare utente mi serve??
-        bundle.putString("utente",nomeUtente);
+        bundle.putString("nomeUtente",nomeUtente);
+        bundle.putString("macAddr",macAddr);
         intent.putExtras(bundle);
         startActivity(intent);
         //rimuovo dallo stack l'activity corrente

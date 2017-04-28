@@ -55,7 +55,10 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Boolea
             this.nomeUtente=nuovoUtentes[0].nomeUtente;
             return risposta;
         } catch (Exception e) {
+
             e.printStackTrace();
+            Log.i("Server irraggiungibile", e.getMessage());
+
         }
         return false;
     }
@@ -92,7 +95,7 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Boolea
         }
         else
         {
-            Toast.makeText(ctx, "Utente o dispositivo già presente!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(ctx, "Utente già presente!!", Toast.LENGTH_SHORT).show();
             progressBarReg.setVisibility(View.INVISIBLE);
         }
     }

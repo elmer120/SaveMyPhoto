@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 /**
  * Created by Elmer on 14/04/2017.
  */
@@ -70,6 +72,75 @@ public class DBgestione {
                 cursor.close();
                 return false;
             }
+    }
+
+
+    public String getMacAddr(String nomeUtente)
+    {
+        //lettura su db
+        SQLiteDatabase db=dbddl.getReadableDatabase();
+        Cursor cursor=null;
+
+        //recupero l'id del utente
+        cursor = db.rawQuery("SELECT "+DbString.tbUtenti.ID+" FROM " + DbString.tbUtenti.tbNome + " WHERE nomeUtente = ?",new String[]{nomeUtente});
+        if (cursor.getCount() > 0) //se esiste l'utente
+        {
+            cursor.moveToFirst();
+            int columnID=cursor.getColumnIndex(DbString.tbUtenti.ID);
+            String idUtente=cursor.getString(columnID);
+
+            cursor = db.rawQuery("SELECT "+DbString.tbDispositivi.ID+" FROM " + DbString.tbDispositivi.tbNome + " WHERE "+DbString.tbDispositivi.FKUtenti+" = ?",new String[]{idUtente});
+
+            if (cursor.getCount() > 0) //se esiste il dispositivo
+            {
+                cursor.moveToFirst();
+                columnID=cursor.getColumnIndex(DbString.tbDispositivi.ID);
+                String macAddr=cursor.getString(columnID);
+                cursor.close();
+                return macAddr;
+            }
+
+        }
+        return null;
+    }
+
+    public boolean SyncListMedia(ArrayList<FileMedia> listMedia,String macAddr)
+    {
+        //scrittura lettura su db
+        SQLiteDatabase db = dbddl.getWritableDatabase();
+
+        ContentValues cv = new ContentValues();
+
+        //scorro la lista e inserisco i media nel db
+        for (FileMedia media:listMedia)
+        {
+            cv.put(DbString.tbMedia.Nome, media.getNome());
+            cv.put(DbString.tbMedia.Album, media.getBucket());
+            cv.put(DbString.tbMedia.DataAcquisizione, media.getGiorno() + media.getMese() + media.getAnno());
+            cv.put(DbString.tbMedia.Dimensione, media.getDimensione());
+            cv.put(DbString.tbMedia.Altezza, media.getAltezza());
+            cv.put(DbString.tbMedia.Larghezza, media.getLarghezza());
+            cv.put(DbString.tbMedia.Formato, media.getMimeType());
+            cv.put(DbString.tbMedia.Orientamento, media.getOrientamento());
+            cv.put(DbString.tbMedia.GpsLat, media.getLatitudine());
+            cv.put(DbString.tbMedia.GpsLong,media.getLongitudine());
+            cv.put(DbString.tbMedia.Server,0);
+            cv.put(DbString.tbMedia.FKDispositivo, macAddr);
+
+            //TODO se il record esiste già?
+
+            long idMedia = db.insert(DbString.tbMedia.tbNome, null, cv);
+            if (idMedia != -1)
+            {
+                Log.i("DbLocale", "Nuovo media inserito nel db locale!");
+            }
+            else
+            {
+                Log.i("DbLocale", "Errore nel inserimento del media nel db locale!");
+                return false;
+            }
+        }
+        return true;
     }
 
     //svuota il db

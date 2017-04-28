@@ -24,6 +24,8 @@ import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //head
 
 import java.util.ArrayList;
 
+import it.pedrazzi.marco.savemyphoto.http.HttpMultipart;
+
 import static android.R.attr.mode;
 
 public class Page1Fragment extends Fragment implements StickyGridHeadersGridView.OnItemClickListener, StickyGridHeadersGridView.OnItemLongClickListener,StickyGridHeadersGridView.MultiChoiceModeListener{
@@ -33,6 +35,11 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     public static Bitmap placeholder;
     public ContentProviderScanner contentProviderScanner;
     ImageAdapter rImageAdapter;
+
+    public static String nomeUtente;
+    public static String macAddr;
+
+    public DBgestione dBgestione;
 
    /*segnala il momento in cui il Fragment scopre l’Activity di appartenenza.
    Attenzione che a quel punto l’Activity non è stata ancora creata
@@ -83,6 +90,14 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
         this.contentProviderScanner=new ContentProviderScanner(this.getContext());
         this.listMedia=contentProviderScanner.getListMedia(Album.Camera,true);
         this.placeholder= BitmapFactory.decodeResource(this.getResources(), R.drawable.placeholder);
+
+        //recupero i dati passati dall'activity
+        this.nomeUtente = this.getArguments().getString("nomeUtente");
+        this.macAddr = this.getArguments().getString("macAddr");
+
+        //aggiorno la lista dei media nel db locale da thread separato
+        DbSyncListMedia dbSyncListMedia=new DbSyncListMedia(this.getContext(),this.macAddr);
+        dbSyncListMedia.execute(this.listMedia);
     }
 
     /**
@@ -174,6 +189,31 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
                 break;
             case R.id.backup:
                 Log.i("ActionMode","Click su backup");
+
+                //recupero la lista di elementi selezionati e li invio
+
+                ArrayList<FileMedia> elementiSelezionati=new ArrayList<FileMedia>();
+
+                for (FileMedia media:listMedia)
+                {
+                    //se l'elemento è selezionato lo aggiungo alla lista da inviare
+                    if(media.getSelezionata())
+                    {
+                        elementiSelezionati.add(media);
+                    }
+                }
+
+                new Thread()
+                {
+                    @Override
+                    public void run()
+                    {
+
+                        HttpMultipart httpMultipart=new HttpMultipart();
+                        httpMultipart.Invia(nomeUtente,macAddr,listMedia);
+                    }
+                }.start();
+
                 actionMode.finish();
                 break;
         }

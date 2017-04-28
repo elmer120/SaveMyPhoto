@@ -165,7 +165,7 @@ public class ListFileMedia extends ArrayList<FileMedia> implements Parcelable{
         //dest.writeSerializable(this.secondaryStorage);
         int size = this.size();
 
-        // We have to write the list size, we need him recreating the list
+
         dest.writeInt(size);
 
         for (int i = 0; i < size; i++) {
@@ -187,7 +187,8 @@ public class ListFileMedia extends ArrayList<FileMedia> implements Parcelable{
         int size = in.readInt();
 
         for (int i = 0; i < size; i++) {
-            FileMedia r = new FileMedia(in.readInt(),in.readInt(),in.readInt(),in.readString(),in.readString(), in.readString(), in.readString());
+            FileMedia r = new FileMedia(in.readInt(),in.readInt(),in.readInt(),in.readString(),in.readString(), in.readString(), in.readString(),in.readString(),
+                    in.readString(),in.readString(),in.readString(),in.readString(),in.readString());
             this.add(r);
         }
     }
