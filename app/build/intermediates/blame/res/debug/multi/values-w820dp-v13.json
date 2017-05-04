@@ -26,8 +26,27 @@
                     "startLine": 3,
                     "startColumn": 4,
                     "startOffset": 113,
+                    "endColumn": 60,
+                    "endOffset": 169
+                },
+                "from": {
+                    "file": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\values-w820dp\\strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 110,
+                        "endColumn": 60,
+                        "endOffset": 166
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 174,
                     "endColumn": 51,
-                    "endOffset": 160
+                    "endOffset": 221
                 },
                 "from": {
                     "file": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\values-w820dp\\strings.xml",

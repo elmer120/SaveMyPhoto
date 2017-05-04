@@ -1,8 +1,9 @@
-package it.pedrazzi.marco.savemyphoto.http;
+package it.pedrazzi.marco.savemyphoto.Http;
 
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
@@ -16,7 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import it.pedrazzi.marco.savemyphoto.FileMedia;
-import it.pedrazzi.marco.savemyphoto.old.ListFileMedia;
+import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.VJPWSsaveMyPhotoSoap12;
 
 
 /**
@@ -32,21 +33,20 @@ public class HttpMultipart {
 
     //Richieste multipart
     //http://posttestserver.com/post.php?dir=example
-    public String fineRiga = "\r\n";
-    public String dueLinee = "--";
-    public String separatore = "*****";
-    public String campoUno = "nomeUtente";
-    public String campoDue = "macAddr";
-    //public String urlServer="http://10.0.0.85:51262/WFUpload.aspx"; //server locale
-    public String urlServer="http://posttestserver.com/post.php?dir=example"; //server dubug http
-    //public String urlServer="http://savemyphoto.gear.host/WFUpload.aspx"; //server hosting di test
-    public int qualitaJpeg=50;
+    private String fineRiga = "\r\n";
+    private String dueLinee = "--";
+    private String separatore = "*****";
+    private String campoUno = "nomeUtente";
+    private String campoDue = "idDispositivo";
+    private String campoTre = "album";
+    //public String urlServer="http://muletto.elmer.it"; //server casalingo
+    //public String urlServer="http://10.0.0.85:51262/WFupload.aspx"; //server locale
+    //public String urlServer="http://posttestserver.com/post.php?dir=example"; //server dubug http
+    public String urlServer="http://savemyphoto.gear.host/WFupload.aspx"; //server hosting di test
+    public int qualitaJpeg=80;
 
-    public void Invia(String nomeUtente, String macAddr, ArrayList<FileMedia> listMedia)
+    public void Invia(String nomeUtente, Integer idDispositivo, ArrayList<FileMedia> listMedia)
     {
-
-
-
             //VARIABILI DI SUPPORTO
 
             //DEBUG
@@ -55,19 +55,25 @@ public class HttpMultipart {
 
             //Creo l'oggetto url
             URL url = null;
-            try {
+            try
+            {
                 url = new URL(urlServer);
-            } catch (MalformedURLException e) {
+            }
+            catch (MalformedURLException e)
+            {
                 e.printStackTrace();
-                Log.i("Url", "Errato");
+                Log.i(this.getClass().getSimpleName(), "Url nn corretto!");
             }
             //Istanzio la connessione/client
             HttpURLConnection client = null;
-            try {
+            try
+            {
                 client = (HttpURLConnection) url.openConnection();
-            } catch (IOException e) {
+            }
+            catch (IOException e)
+            {
                 e.printStackTrace();
-                Log.i("Connesione", "problemi nel contattare il server");
+                Log.i(this.getClass().getSimpleName(), "Problemi nel contattare il server!");
             }
 
             //imposto che la connessione è in uscita(abilita la scrittura sul oggetto) e in entrata
@@ -84,11 +90,14 @@ public class HttpMultipart {
 
             } catch (ProtocolException e) {
                 e.printStackTrace();
-                Log.i("Metodo http", "errato");
+                Log.i(this.getClass().getSimpleName(), "Metodo http impostato è errato!");
             }
 
             //imposto che in caso di disconnessione ritenti
             client.setRequestProperty("Connection", "Keep-Alive");
+
+            //imposto il timeout della connessione ad infinito
+            client.setConnectTimeout(0);
 
             //imposto il content type multipart + il delimitatore/separatore della form
             client.setRequestProperty("Content-Type", "multipart/form-data; boundary=" + separatore);
@@ -110,6 +119,7 @@ public class HttpMultipart {
             //apro la connessione (da qui non posso più impostare nessuna proprietà di connessione)
             try {
                 client.connect();
+                Log.i(this.getClass().getSimpleName(),"Connessione aperta...");
 
                 //STREAM
                 //Faccio lo stream di quello che voglio inviare sulla connessione
@@ -117,95 +127,46 @@ public class HttpMultipart {
                 //Comincio a scrivere sulla connessione
                 DataOutputStream dos = new DataOutputStream(client.getOutputStream());
 
-
                 //Parametri post standard
-                dos.writeBytes(CreaMsgPost(campoUno, "elmer"));
-                dos.writeBytes(CreaMsgPost(campoDue, "20:6E:9C:DC:F9:F5"));
+                dos.writeBytes(CreaMsgPost(campoUno, nomeUtente));
+                dos.writeBytes(CreaMsgPost(campoDue, idDispositivo.toString()));
                 //fine parametri
 
-                /*invio i media
-                for (FileMedia media : listMedia) {
-                    dos.writeBytes(CreaHeadMsgMedia("img", media.getNome(), media.getMimeType()));
-                    Log.i("Upload:", media.getNome() + "..in corso...");
-                    dos.write(CreaBodyMsgMedia(media.getPath()));
-                    dos.writeBytes(CreaTailMsgMedia());
-                }
-*/
-                for (int i = 0; i < 1; i++) {
-                    FileMedia media=listMedia.get(i);
+                //invio i media
+                for (FileMedia media:listMedia)
+                {
+                    Log.i(this.getClass().getSimpleName(), "---\nUpload di "+media.getNome()+"\n DimensioneOriginale: "+media.getDimensione());
                     dos.writeBytes(CreaHeadMsgMedia(media.getNome(), media.getMimeType()));
-                    Log.i("Upload:", media.getNome() + "..in corso...");
-                    dos.write(CreaBodyMsgMedia(media.getPath(),qualitaJpeg));
+
+                    //comprimo il media
+                    byte [] tmp=CreaBodyMsgMedia(media.getPath(),qualitaJpeg);
+                    //setto la nuova dimensione per inviarla al server in quanto la compressione fa perdere i metadati
+                    media.setDimensione(tmp.length);
+
+                    dos.write(tmp);
                     dos.writeBytes(CreaTailMsgMedia());
                 }
+
                 //chiudo la richiesta
                 dos.writeBytes(FineRichiesta());
-                Log.i("Upload: ", "Fine richiesta Content-Lenght "+client.getContentLength());
+                Log.i(this.getClass().getSimpleName(), "Richiesta http conclusa.");
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.i("Connessione", "error");
+                Log.i(this.getClass().getSimpleName(), "Errore durante l'upload");
             }
 
-
-            //Leggo la risposta dal server
-            switch (LetturaRispostaServer(client)) {
+        //Leggo la risposta dal server
+            switch (LetturaRispostaServer(client))
+            {
                 case 200:
-                    Log.i("Risposta server: ", "Richiesta andata a buon fine");
+                    Log.i(this.getClass().getSimpleName(), "Risposta server: 200 OK!");
+                    AggiungiMediaDb(listMedia,nomeUtente,idDispositivo);
                     break;
             }
 
             //DISCONNESSIONE
             client.disconnect();
     }
-            /*//CONTENUTO
-
-            //Leggo l'immagine e invio il contenuto
-
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            img.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-            byte[] byteArray = stream.toByteArray();
-            //dos.write(byteArray);
-
-
-            for (int i = 0; i <2 ; i++) {
-
-
-                //name == nome parametro usato dal server per individuare il file
-                dos.writeBytes(dueLinee + separatore + fineRiga);
-                dos.writeBytes("Content-Disposition: form-data; name=\"immagine\";" + " filename=\"" + "test"+i+".jpg" + "\"" + fineRiga);
-                dos.writeBytes("Content-type: image/jpeg" + fineRiga);
-                dos.writeBytes(fineRiga);
-
-                //CONTENUTO
-
-                //Leggo l'immagine e invio il contenuto
-
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                img.compress(Bitmap.CompressFormat.JPEG, 100, stream);
-                byte[] byteArray = stream.toByteArray();
-                dos.write(byteArray);
-
-                //FINE CONTENUTO
-
-                //Invio il separatore per delimitare la fine del file
-                dos.writeBytes(fineRiga);
-                dos.writeBytes(dueLinee + separatore + fineRiga);
-            }
-
-            //Invio il separatore per delimitare la fine della richiesta
-            dos.writeBytes(fineRiga);
-            dos.writeBytes(dueLinee + separatore + dueLinee + fineRiga);
-
-
-                Log.i("Upload:", img.getConfig().name()+" in corso...");
-                //Thread.sleep(500);
-
-*/
-
-
-
-
-
 
 
 
@@ -243,18 +204,17 @@ public class HttpMultipart {
         return null;
     }
 
-    //Contenuto sezione InvioFile img to byte
+    //Contenuto sezione InvioFile img to byte (compressa)
     private byte[] CreaBodyMsgMedia(String absolutePath,int quality)
     {
+
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
         Bitmap img= BitmapFactory.decodeFile(absolutePath);
-        img.compress(Bitmap.CompressFormat.JPEG, quality, stream);
-
+        img.compress(Bitmap.CompressFormat.JPEG, quality, stream); //con la compressione si perdono i metadati exif
+        Log.i(this.getClass().getSimpleName(),"Dimensione compressa: "+stream.size());
         byte[] byteArray = stream.toByteArray();
         return byteArray;
     }
-
 
     //Chiusura sezione InvioFile
     private String CreaTailMsgMedia()
@@ -275,8 +235,9 @@ public class HttpMultipart {
 
     private int LetturaRispostaServer(HttpURLConnection client)
     {
+        Log.i(this.getClass().getSimpleName(), "Attendo risposta dal server..");
         //Leggo la RISPOSTA dallo stream
-        byte[] rawlettura = new byte[1024];
+        byte[] rawlettura = new byte[2048];
         int i;
         String buffer="-";
         int httpCodiceRisposta=0;
@@ -284,13 +245,14 @@ public class HttpMultipart {
 
         try
         {
-            inputStream = client.getInputStream();
             httpCodiceRisposta=client.getResponseCode();
+            inputStream = client.getInputStream();
+
         }
         catch (IOException e)
         {
             e.printStackTrace();
-            Log.i("Risposta Server:","Problemi nella connessione?!?!");
+            Log.i(this.getClass().getSimpleName(),"Errore! Risposta server: "+httpCodiceRisposta);
             return -1;
         }
 
@@ -306,15 +268,51 @@ public class HttpMultipart {
         catch (IOException e)
         {
             e.printStackTrace();
-            Log.i("Risposta Server:","Errore nella conversione!");
+            Log.i(this.getClass().getSimpleName(),"Errore nella lettura della risposta del server!");
             return -1;
         }
 
-        Log.i("Risposta Server", "Cod.Http: "+httpCodiceRisposta);
-        Log.i("Risposta Server Http", buffer);
+        Log.i(this.getClass().getSimpleName(), "Risposta Http server: "+buffer);
 
         return httpCodiceRisposta;
     }
+
+private boolean AggiungiMediaDb(ArrayList<FileMedia> listmedia,String nomeUtente,Integer idDispositivo)
+{
+    for (FileMedia media:listmedia)
+    {
+        VJPWSsaveMyPhotoSoap12 service=new VJPWSsaveMyPhotoSoap12();
+        service.enableLogging=true;
+        boolean risultato= false;
+        try {
+            risultato = service.AggiungiMedia(
+                                                        media.getNome(),
+                                                        media.getBucket(),
+                                                        media.getDimensione(),
+                                                        nomeUtente,
+                                                        media.getAltezza(),
+                                                        media.getLarghezza(),
+                                                        media.getMimeType(),
+                                                        media.getOrientamento(),
+                                                        media.getLatitudine(),
+                                                        media.getLongitudine(),
+                                                        idDispositivo);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        if (!risultato)
+        {
+            Log.i(this.getClass().getSimpleName(),"Errore nel aggiunta dei media al Db remoto!");
+            return false;
+        }
+
+    }
+    Log.i(this.getClass().getSimpleName(),"Media aggiunti correttamente al Db remoto!");
+    return true;
+}
+
     //Msg post test
     /*dos.writeBytes(dueLinee + separatore + fineRiga); //--*****\r\n
                 dos.writeBytes("Content-Disposition: form-data; name=\"nomeUtente\" "+fineRiga);

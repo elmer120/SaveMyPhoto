@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="activity_horizontal_margin">64dp</dimen>
+    <string name="mantieniAccesso">Mantieni accesso</string>
     <string name="upload">Upload to Server</string>
 </resources>

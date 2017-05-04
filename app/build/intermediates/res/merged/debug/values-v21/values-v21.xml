@@ -4,6 +4,7 @@
     <dimen name="notification_content_margin_start">0dp</dimen>
     <dimen name="notification_main_column_padding_top">0dp</dimen>
     <dimen name="notification_media_narrow_margin">12dp</dimen>
+    <string name="mantieniAccesso">Mantieni accesso</string>
     <string name="upload">Upload to Server</string>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

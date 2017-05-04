@@ -1,4 +1,4 @@
-package it.pedrazzi.marco.savemyphoto;
+package it.pedrazzi.marco.savemyphoto.DbLocale;
 
 /**
  * Created by Elmer on 15/04/2017.
@@ -7,7 +7,7 @@ package it.pedrazzi.marco.savemyphoto;
 
 public final class DbString {
 
-        public static final String nomeDB="SaveMyPhotoTestProva20";
+        public static final String nomeDB="SaveMyPhotoTestProva27";
 
         //TABELLE
 
@@ -22,7 +22,7 @@ public final class DbString {
 
         public class tbDispositivi{
             public static final String tbNome="Dispositivi";
-            public static final String ID="MacAddr";
+            public static final String ID="ID";
             public static final String Marca="marca";
             public static final String Modello="Modello";
             public static final String VersioneAndroid="VersioneAndroid";

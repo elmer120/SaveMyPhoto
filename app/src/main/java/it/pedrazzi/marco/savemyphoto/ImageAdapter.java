@@ -40,6 +40,7 @@ public class ImageAdapter extends BaseAdapter implements StickyGridHeadersBaseAd
         this.listMedia =lista;
         this.placeholder=placeholder;
     }
+
     public int getCount() {
        return listMedia.size();
 

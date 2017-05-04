@@ -7,15 +7,16 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import it.pedrazzi.marco.savemyphoto.DBgestione;
+import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
 import it.pedrazzi.marco.savemyphoto.R;
-import it.pedrazzi.marco.savemyphoto.RegistrazioneActivity;
+import it.pedrazzi.marco.savemyphoto.Activity.RegistrazioneActivity;
+import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.VJPWSsaveMyPhotoSoap12;
 
 /**
  * Created by Elmer on 19/04/2017.
  */
 
-public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Boolean>{
+public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Integer>{
 
     RegistrazioneActivity mRegistrazioneActivity; //riferimento all'activity
     Context ctx;
@@ -37,16 +38,15 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Boolea
     }
 
     @Override
-    protected Boolean doInBackground(NuovoUtente... nuovoUtentes) {
-        IBNWSsaveMyphotoSoap12 service=new IBNWSsaveMyphotoSoap12();
+    protected Integer doInBackground(NuovoUtente... nuovoUtentes) {
+        VJPWSsaveMyPhotoSoap12 service=new VJPWSsaveMyPhotoSoap12();
         service.enableLogging=true;
         try {
             //ritorna la risp del WS
-            boolean risposta= service.RegistrazioneNuovoUtente(
+            int risposta= service.RegistrazioneNuovoUtente(
                                         nuovoUtentes[0].nomeUtente,
                                         nuovoUtentes[0].mail,
                                         nuovoUtentes[0].password,
-                                        nuovoUtentes[0].macAddr,
                                         nuovoUtentes[0].marca,
                                         nuovoUtentes[0].modello,
                                         nuovoUtentes[0].versioneAndroid,
@@ -60,14 +60,14 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Boolea
             Log.i("Server irraggiungibile", e.getMessage());
 
         }
-        return false;
+        return -1;
     }
 
     @Override
-    protected void onPostExecute(Boolean aBoolean) {
-        super.onPostExecute(aBoolean);
+    protected void onPostExecute(Integer risposta) {
+        super.onPostExecute(risposta);
         //se la registrazione sul db remoto è andata a buon fine
-        if(aBoolean)
+        if(risposta!=-1)
         {
             Toast.makeText(ctx, "Registrazione remota di " + this.nomeUtente+ " avvenuta con successo!!", Toast.LENGTH_SHORT).show();
             //registro anche in locale
@@ -75,7 +75,7 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Boolea
             Boolean regLocDb=dBgestione.RegistrazioneDbLocale(  mRegistrazioneActivity.nomeUtente,
                                                                 mRegistrazioneActivity.mail,
                                                                 mRegistrazioneActivity.password,
-                                                                mRegistrazioneActivity.macAddr,
+                                                                risposta,
                                                                 mRegistrazioneActivity.marca,
                                                                 mRegistrazioneActivity.modello,
                                                                 mRegistrazioneActivity.versioneAndroid,

@@ -1,4 +1,4 @@
-package it.pedrazzi.marco.savemyphoto;
+package it.pedrazzi.marco.savemyphoto.DbLocale;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteException;
 import android.util.Log;
 
 import java.util.ArrayList;
+
+import it.pedrazzi.marco.savemyphoto.FileMedia;
 
 /**
  * Created by Elmer on 14/04/2017.
@@ -21,7 +23,7 @@ public class DBgestione {
     }
 
     //registra nuovo utente e dispositivo in locale
-    public boolean RegistrazioneDbLocale(String nomeUtente,String mail,String password,String macAddr,String marca,String modello,String versioneAndroid,int spazioLibero) throws SQLiteException {
+    public boolean RegistrazioneDbLocale(String nomeUtente,String mail,String password,Integer idDispostivo,String marca,String modello,String versioneAndroid,int spazioLibero) throws SQLiteException {
 
         //scrittura lettura su db
         SQLiteDatabase db = dbddl.getWritableDatabase();
@@ -38,7 +40,7 @@ public class DBgestione {
 
         //inserisco il dispositivo
         cv.clear();
-        cv.put(DbString.tbDispositivi.ID, macAddr);
+        cv.put(DbString.tbDispositivi.ID, idDispostivo);
         cv.put(DbString.tbDispositivi.Marca, marca);
         cv.put(DbString.tbDispositivi.Modello, modello);
         cv.put(DbString.tbDispositivi.VersioneAndroid, versioneAndroid);
@@ -49,7 +51,7 @@ public class DBgestione {
 
         if (idUtente != -1 && idDispositivo != -1)
         {
-            Log.i("DbLocale","Nuova registrazione inserita! corretamente");
+            Log.i("DbLocale","Nuova registrazione inserita corretamente!");
             return true;
         }
         return false;
@@ -75,7 +77,7 @@ public class DBgestione {
     }
 
 
-    public String getMacAddr(String nomeUtente)
+    public int getIdDispositivo(String nomeUtente)
     {
         //lettura su db
         SQLiteDatabase db=dbddl.getReadableDatabase();
@@ -95,16 +97,16 @@ public class DBgestione {
             {
                 cursor.moveToFirst();
                 columnID=cursor.getColumnIndex(DbString.tbDispositivi.ID);
-                String macAddr=cursor.getString(columnID);
+                int idDispositivo=cursor.getInt(columnID);
                 cursor.close();
-                return macAddr;
+                return idDispositivo;
             }
 
         }
-        return null;
+        return -1;
     }
 
-    public boolean SyncListMedia(ArrayList<FileMedia> listMedia,String macAddr)
+    public boolean SyncListMedia(ArrayList<FileMedia> listMedia, String macAddr)
     {
         //scrittura lettura su db
         SQLiteDatabase db = dbddl.getWritableDatabase();

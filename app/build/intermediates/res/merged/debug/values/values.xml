@@ -470,6 +470,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="login">Login</string>
     <string name="mail">E-mail</string>
+    <string name="mantieniAccesso">Mantieni accesso</string>
     <string name="nomeUtente">Nome Utente</string>
     <string name="password">Password</string>
     <string name="registrati">Registrati</string>
@@ -482,8 +483,7 @@
     <string name="title_activity_login">Accedi</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="upload">Upload to Server</string>
-    <string name="versione">V 0.7.5
-    </string>
+    <string name="versione">V 0.7.6</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>

@@ -1,29 +1,11 @@
-package it.pedrazzi.marco.savemyphoto.old;
+package it.pedrazzi.marco.savemyphoto.AAold;
 
-import android.content.ContentResolver;
 import android.content.Context;
-import android.database.Cursor;
-import android.media.ExifInterface;
-import android.net.Uri;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.FilenameFilter;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.EventListener;
-import java.util.Locale;
 
 /**
  * Created by elmer on 24/11/16.

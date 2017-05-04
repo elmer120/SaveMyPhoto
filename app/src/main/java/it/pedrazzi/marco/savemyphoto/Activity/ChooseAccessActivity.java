@@ -1,4 +1,4 @@
-package it.pedrazzi.marco.savemyphoto;
+package it.pedrazzi.marco.savemyphoto.Activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import java.io.File;
+
+import it.pedrazzi.marco.savemyphoto.DbLocale.DbString;
+import it.pedrazzi.marco.savemyphoto.R;
 
 public class ChooseAccessActivity extends Activity implements View.OnClickListener {
 
@@ -30,7 +32,7 @@ public class ChooseAccessActivity extends Activity implements View.OnClickListen
 
         //se il database esiste il dispositivo è già registrato in un account sul server
         //dunque non pùò registrarsi un altra volta
-        if(DatabaseCheck(this,DbString.nomeDB))
+        if(DatabaseCheck(this, DbString.nomeDB))
         {
             this.btnRegistrati.setVisibility(View.GONE);
         }

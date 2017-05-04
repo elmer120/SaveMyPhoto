@@ -14,19 +14,17 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //headers gridview
 
 import java.util.ArrayList;
 
-import it.pedrazzi.marco.savemyphoto.http.HttpMultipart;
-
-import static android.R.attr.mode;
+import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
+import it.pedrazzi.marco.savemyphoto.Http.HttpMultipart;
 
 public class Page1Fragment extends Fragment implements StickyGridHeadersGridView.OnItemClickListener, StickyGridHeadersGridView.OnItemLongClickListener,StickyGridHeadersGridView.MultiChoiceModeListener{
 
@@ -37,7 +35,7 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     ImageAdapter rImageAdapter;
 
     public static String nomeUtente;
-    public static String macAddr;
+    public static int idDispositivo;
 
     public DBgestione dBgestione;
 
@@ -93,11 +91,11 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
 
         //recupero i dati passati dall'activity
         this.nomeUtente = this.getArguments().getString("nomeUtente");
-        this.macAddr = this.getArguments().getString("macAddr");
+        this.idDispositivo = this.getArguments().getInt("idDispositivo");
 
         //aggiorno la lista dei media nel db locale da thread separato
-        DbSyncListMedia dbSyncListMedia=new DbSyncListMedia(this.getContext(),this.macAddr);
-        dbSyncListMedia.execute(this.listMedia);
+        //DbSyncListMedia dbSyncListMedia=new DbSyncListMedia(this.getContext(),this.macAddr);
+        //dbSyncListMedia.execute(this.listMedia);
     }
 
     /**
@@ -125,7 +123,19 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     //click su un elemento del listview
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        inviaDatiActivity("nome:"+this.listMedia.get(i).getNome());//stampo nome file
+        FileMedia media=this.listMedia.get(i);
+
+
+
+        Toast.makeText(         this.getContext(),
+                                "Nome: "+media.getNome()+
+                                "\n MimeType: "+media.getMimeType()+
+                                "\n Dimensione: "+media.getDimensione()+
+                                "\n H: "+media.getAltezza()+
+                                "\n L: "+media.getLarghezza()+
+                                "\n Path: " + media.getPath()+
+                                "\n Orientamento: "+media.getOrientamento(),
+                                Toast.LENGTH_SHORT).show();
         Log.i("Evento","onItemClick");
     }
 
@@ -192,7 +202,7 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
 
                 //recupero la lista di elementi selezionati e li invio
 
-                ArrayList<FileMedia> elementiSelezionati=new ArrayList<FileMedia>();
+                final ArrayList<FileMedia> elementiSelezionati=new ArrayList<FileMedia>();
 
                 for (FileMedia media:listMedia)
                 {
@@ -210,7 +220,7 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
                     {
 
                         HttpMultipart httpMultipart=new HttpMultipart();
-                        httpMultipart.Invia(nomeUtente,macAddr,listMedia);
+                        httpMultipart.Invia(nomeUtente,idDispositivo,elementiSelezionati);
                     }
                 }.start();
 

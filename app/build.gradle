@@ -25,7 +25,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile files('libs/stickygridheaders.jar')
+    compile files('libs/stickygridheaders.jar') //libreria per la listview con intestazioni
     compile files('libs/ksoap2-android-assembly-3.6.2-jar-with-dependencies.jar')
     compile 'lalosoft.android-utilities:easypermissions:1.0.1'
     compile 'com.android.support:support-v4:23.4.0'

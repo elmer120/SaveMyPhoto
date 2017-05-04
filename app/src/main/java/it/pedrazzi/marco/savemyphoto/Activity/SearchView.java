@@ -1,18 +1,12 @@
-package it.pedrazzi.marco.savemyphoto;
+package it.pedrazzi.marco.savemyphoto.Activity;
 import android.Manifest;
 import android.app.ActionBar;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,12 +16,19 @@ import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //head
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
-import it.pedrazzi.marco.savemyphoto.http.HttpMultipart;
-import it.pedrazzi.marco.savemyphoto.http.testService;
+
+import it.pedrazzi.marco.savemyphoto.FileMedia;
+import it.pedrazzi.marco.savemyphoto.Page1Fragment;
+import it.pedrazzi.marco.savemyphoto.Page2Fragment;
+import it.pedrazzi.marco.savemyphoto.Page3Fragment;
+import it.pedrazzi.marco.savemyphoto.PagerAdapter;
+import it.pedrazzi.marco.savemyphoto.R;
+import it.pedrazzi.marco.savemyphoto.Http.HttpMultipart;
+import it.pedrazzi.marco.savemyphoto.Http.testService;
 
 @RegisterPermission(permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
 
-public class SearchView extends FragmentActivity implements ActivityCompat.OnRequestPermissionsResultCallback,Page1Fragment.OnPageListener{
+public class SearchView extends FragmentActivity implements ActivityCompat.OnRequestPermissionsResultCallback,Page1Fragment.OnPageListener {
 
 
     private ArrayList<FileMedia> listCamera;
@@ -35,7 +36,7 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
     private StickyGridHeadersGridView gridHeadersGridView;
 
     String nomeUtente;
-    String macAddr;
+    Integer idDispositivo;
 
     // lista di fragment
     List<Fragment> fragments = new Vector<>();
@@ -56,7 +57,7 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
 
         //recupero dati da activity precedente
         this.nomeUtente=getIntent().getExtras().getString("nomeUtente");
-        this.macAddr=getIntent().getExtras().getString("macAddr");
+        this.idDispositivo=getIntent().getExtras().getInt("idDispositivo");
 
 
         // creo i fragments e li aggiungo alla lista
@@ -211,18 +212,6 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
         switch(id)
         {
             case R.id.secondaria1_1:
-
-               new Thread()
-                {
-                    @Override
-                    public void run()
-                    {
-
-                        HttpMultipart s=new HttpMultipart();
-                        //s.Invia("elmer","e8:99:c4:9f:9f:3a");
-                    }
-                }.start();
-
 
                 break;
             case R.id.secondaria1_2:

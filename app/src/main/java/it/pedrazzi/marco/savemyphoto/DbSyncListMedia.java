@@ -1,12 +1,11 @@
 package it.pedrazzi.marco.savemyphoto;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
-import android.util.Log;
 
 import java.util.ArrayList;
+
+import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
 
 /**
  * Created by Elmer on 27/04/2017.

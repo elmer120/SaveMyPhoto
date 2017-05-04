@@ -30,7 +30,12 @@ public class FileMedia implements Comparable,Parcelable{
     }
 
     public String getMimeType() { return mimeType; }
+
     public int getGiorno() {return giorno;}
+
+    public void setGiorno(int giorno) {
+        this.giorno = giorno;
+    }
 
     public int getMese() {
         return mese;
@@ -40,22 +45,21 @@ public class FileMedia implements Comparable,Parcelable{
         return anno;
     }
 
-    public String getDimensione() {
-        return dimensione;
-    }
+    public Integer getDimensione() {return dimensione;}
+
+    public void setDimensione(Integer dimensione) {this.dimensione = dimensione;}
 
     public boolean getSelezionata() {
         return selezionata;
     }
 
-    public void setSelezionata() {
-         this.selezionata=selezionata;}
+    public void setSelezionata() {this.selezionata=selezionata;}
 
-    public String getAltezza() {
+    public Integer getAltezza() {
         return altezza;
     }
 
-    public String getLarghezza() {
+    public Integer getLarghezza() {
         return larghezza;
     }
 
@@ -63,11 +67,11 @@ public class FileMedia implements Comparable,Parcelable{
         return orientamento;
     }
 
-    public String getLatitudine() {
+    public Integer getLatitudine() {
         return latitudine;
     }
 
-    public String getLongitudine() {
+    public Integer getLongitudine() {
         return longitudine;
     }
 
@@ -78,26 +82,18 @@ public class FileMedia implements Comparable,Parcelable{
     private int giorno;
     private int mese;
     private int anno;
-    private String altezza;
-    private String larghezza;
+    private Integer altezza;
+    private Integer larghezza;
     private String orientamento;
-    private String latitudine;
-    private String longitudine;
-
-
-
-    private String dimensione;
-
-
-    public void setGiorno(int giorno) {
-        this.giorno = giorno;
-    }
+    private Integer latitudine;
+    private Integer longitudine;
+    private Integer dimensione;
 
     private boolean selezionata=false;
 
 
     public FileMedia(int giorno,int mese,int anno, String path,String nome,String bucket,String mimeType,
-                     String dimensione,String altezza,String larghezza,String orientamento,String latitudine,String longitudine){
+                     Integer dimensione,Integer altezza,Integer larghezza,String orientamento,Integer latitudine,Integer longitudine){
         super();
 
         this.path=path;

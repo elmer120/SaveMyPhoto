@@ -1,4 +1,4 @@
-package it.pedrazzi.marco.savemyphoto;
+package it.pedrazzi.marco.savemyphoto.DbLocale;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -37,7 +37,7 @@ public class DBddl extends SQLiteOpenHelper {
                 DbString.tbUtenti.Password+" NVARCHAR(128) NOT NULL)";
 
         String qD="CREATE TABLE "+DbString.tbDispositivi.tbNome+
-                " ("+DbString.tbDispositivi.ID+" CHAR(17) PRIMARY KEY NOT NULL," +
+                " ("+DbString.tbDispositivi.ID+" INTEGER PRIMARY KEY NOT NULL," +
                 DbString.tbDispositivi.Marca+" NVARCHAR(30)," +
                 DbString.tbDispositivi.Modello+" NVARCHAR(30)," +
                 DbString.tbDispositivi.VersioneAndroid+" NVARCHAR(15) NOT NULL," +
@@ -57,7 +57,7 @@ public class DBddl extends SQLiteOpenHelper {
                 DbString.tbMedia.GpsLat+" REAL NULL," +
                 DbString.tbMedia.GpsLong+" REAL NULL," +
                 DbString.tbMedia.Server+" INT NOT NULL," +
-                DbString.tbMedia.FKDispositivo+" CHAR(17) NOT NULL)";
+                DbString.tbMedia.FKDispositivo+" INTEGER NOT NULL)";
         String qF="CREATE TABLE "+DbString.tbFoto.tbNome+
                 " ("+DbString.tbFoto.ID+" INTEGER NOT NULL," +
                 DbString.tbFoto.Flash+" INT)";

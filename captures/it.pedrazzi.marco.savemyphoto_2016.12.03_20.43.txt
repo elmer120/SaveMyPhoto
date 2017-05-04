@@ -77,10 +77,10 @@ Total memory usage:
 
 Profile data in ms:
 
-	it.pedrazzi.marco.savemyphoto/it.pedrazzi.marco.savemyphoto.SearchView/android.view.ViewRootImpl@3b981130 (visibility=0)
+	it.pedrazzi.marco.savemyphoto/it.pedrazzi.marco.savemyphoto.Activity.SearchView/android.view.ViewRootImpl@3b981130 (visibility=0)
 View hierarchy:
 
-  it.pedrazzi.marco.savemyphoto/it.pedrazzi.marco.savemyphoto.SearchView/android.view.ViewRootImpl@3b981130
+  it.pedrazzi.marco.savemyphoto/it.pedrazzi.marco.savemyphoto.Activity.SearchView/android.view.ViewRootImpl@3b981130
   51 views, 52,33 kB of display lists
 
 

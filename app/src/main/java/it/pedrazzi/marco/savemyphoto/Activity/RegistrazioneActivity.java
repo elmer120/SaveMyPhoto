@@ -1,4 +1,4 @@
-package it.pedrazzi.marco.savemyphoto;
+package it.pedrazzi.marco.savemyphoto.Activity;
 
 import android.app.Activity;
 import android.content.Context;
@@ -6,11 +6,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.StatFs;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,10 +16,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.util.concurrent.ExecutionException;
 
+import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
+import it.pedrazzi.marco.savemyphoto.R;
 import it.pedrazzi.marco.savemyphoto.WebService.NuovoUtente;
 import it.pedrazzi.marco.savemyphoto.WebService.RegistrazioneUtenteAsync;
 
@@ -59,11 +55,13 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
     public String nomeUtente;
     public String mail;
     public String password;
-    public String macAddr;
+    public Integer idDispositivo;
     public String marca;
     public String modello;
     public String versioneAndroid;
     public int spazioLibero;
+
+    public DBgestione dBgestione=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +73,7 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
         btnAvanti.setOnClickListener(this);
 
         // creo db istanzio la classe che consente le operazioni sul db
-        //this.dBgestione=new DBgestione(this);
+        this.dBgestione=new DBgestione(this);
     }
 
 
@@ -83,8 +81,8 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
     public void onClick(View view) {
         if (view.getId()==R.id.btnAvanti)
         {
-            //richiedo il wifi attivo per recuperare il mac-addr e accedere al db remoto
-            if (WifiCheck())
+            //richiedo una connesione dati per accedere al db remoto
+            if (ConnectionCheck())
             {
                 //se utente è compilato
                 if (!isEmpty(getEditTextUtente()))
@@ -117,24 +115,24 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
         return false;
     }
 
-    //Controllo se il wifi è attivo cosi posso recuperare il mac-address
-    private boolean WifiCheck()
+    //Controllo se c'è una connessione attiva
+    private boolean ConnectionCheck()
     {
         ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo retiAttive = connectivityManager.getActiveNetworkInfo();
 
-        //se ci sono reti attive faccio il check sul tipo di connessione
-        if (retiAttive != null && retiAttive.getType() == ConnectivityManager.TYPE_WIFI)
+        //se ci sono reti attive
+        if (retiAttive != null)
         {
-            if(retiAttive.isConnected()) {
-                final WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                this.macAddr = wifiManager.getConnectionInfo().getMacAddress();
-                Log.i(retiAttive.getTypeName(), "Mac-Address: " + macAddr);
-                return true;
-            }
+                //controllo se c'è connessione
+                if (retiAttive.isConnected())
+                {
+                    return true;
+                }
+
         }
-        Log.i("WifiCheck: ","Nessuna connessione rilevata");
-        Toast.makeText(this, "Impossibile procedere!\n Alla registrazione o al primo accesso su un nuovo dispositivo è richiesta l'attivazione del wifi.", Toast.LENGTH_LONG).show();
+        Log.i("ConnectionCheck: ", "Nessuna connessione rilevata!");
+        Toast.makeText(this, "Impossibile procedere!\n Alla registrazione o al primo accesso su un nuovo dispositivo è richiesta una connessione.", Toast.LENGTH_LONG).show();
         return false;
     }
 
@@ -161,7 +159,7 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
         this.spazioLibero=10;
 
         //chiamo il Web service remoto
-        NuovoUtente nuovoUtente=new NuovoUtente(nomeUtente,mail,password,macAddr,marca,modello,versioneAndroid,spazioLibero);
+        NuovoUtente nuovoUtente=new NuovoUtente(nomeUtente,mail,password,marca,modello,versioneAndroid,spazioLibero);
         RegistrazioneUtenteAsync registrazioneUtenteAsync=new RegistrazioneUtenteAsync(this,this);
         registrazioneUtenteAsync.execute(nuovoUtente);
     }
@@ -182,8 +180,12 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
         // mando nome utente
         Intent intent = new Intent(this, SearchView.class);
         Bundle bundle = new Bundle();
+
+        this.idDispositivo=this.dBgestione.getIdDispositivo(nomeUtente);
+
         //TODO Mandare utente mi serve??
         bundle.putString("utente",nomeUtente);
+        bundle.putInt("idDispositivo",idDispositivo);
         intent.putExtras(bundle);
         startActivity(intent);
         //rimuovo dallo stack l'activity  corrente

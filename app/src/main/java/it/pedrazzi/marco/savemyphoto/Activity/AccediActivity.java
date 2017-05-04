@@ -1,10 +1,9 @@
-package it.pedrazzi.marco.savemyphoto;
+package it.pedrazzi.marco.savemyphoto.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,13 +14,17 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 import java.io.File;
+
+import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
+import it.pedrazzi.marco.savemyphoto.DbLocale.DbString;
+import it.pedrazzi.marco.savemyphoto.R;
 import it.pedrazzi.marco.savemyphoto.WebService.AssociaNuovoDispositivoAsync;
 import it.pedrazzi.marco.savemyphoto.WebService.CredenzialiCheckAsync;
 import it.pedrazzi.marco.savemyphoto.WebService.NuovoUtente;
 
 public class AccediActivity extends AppCompatActivity implements View.OnClickListener //imposto l'interfaccia per l'evento on click
 {
-    public DBgestione dBgestione=null;
+
 
     public EditText getEditTextUtente() {
         editTextUtente=(EditText) findViewById(R.id.txtUtente);
@@ -35,13 +38,16 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
 
     private EditText editTextUtente;
     private EditText editTextPassword;
+
     public String nomeUtente;
     public String password;
-    public String macAddr;
+    public Integer idDispositivo;
     public String marca;
     public String modello;
     public String versioneAndroid;
     public Integer spazioLibero;
+
+    public DBgestione dBgestione=null;
 
     ProgressBar progressBarAccOffline;
 
@@ -78,8 +84,8 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
                     if (!DatabaseCheck(this, DbString.nomeDB))
                     {
 
-                        //allora richiedo il wifi attivo per recuperare il mac-addr e accedere al db remoto
-                        if (WifiCheck())
+                        //richiedo una connesione dati per accedere al db remoto
+                        if (ConnectionCheck())
                         {
                             //Avvio task asincrono per controllare che l'utente esista e che la password sia corretta
                             String[] arrayString={getEditTextUtente().getText().toString(),getEditTextPassword().getText().toString()};
@@ -156,7 +162,7 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
 
 
         //avvia task asincrono per associare il nuovo dispositivo nel db remoto
-        NuovoUtente nuovoUtente=new NuovoUtente(nomeUtente,"",password,macAddr,marca,modello,versioneAndroid,spazioLibero);
+        NuovoUtente nuovoUtente=new NuovoUtente(nomeUtente,null,password,marca,modello,versioneAndroid,spazioLibero);
         AssociaNuovoDispositivoAsync associaNuovoDispositivo=new AssociaNuovoDispositivoAsync(this,this);
         associaNuovoDispositivo.execute(nuovoUtente);
 
@@ -168,10 +174,10 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
     {
         // mando nome utente
         Intent intent = new Intent(this, SearchView.class);
-        this.macAddr=this.dBgestione.getMacAddr(nomeUtente);
+        this.idDispositivo=this.dBgestione.getIdDispositivo(nomeUtente);
         Bundle bundle = new Bundle();
         bundle.putString("nomeUtente",nomeUtente);
-        bundle.putString("macAddr",macAddr);
+        bundle.putInt("idDispositivo",idDispositivo);
         intent.putExtras(bundle);
         startActivity(intent);
         //rimuovo dallo stack l'activity corrente
@@ -179,25 +185,25 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
         return;
     }
 
-    //Controllo se il wifi è attivo cosi posso recuperare il mac-address
-    private boolean WifiCheck()
+    //Controllo se c'è una connessione attiva
+    private boolean ConnectionCheck()
     {
         ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo retiAttive = connectivityManager.getActiveNetworkInfo();
 
-        //se ci sono reti attive faccio il check sul tipo di connessione
-        if (retiAttive != null && retiAttive.getType() == ConnectivityManager.TYPE_WIFI)
+        //se ci sono reti attive
+        if (retiAttive != null)
         {
-            if(retiAttive.isConnected()) {
-                final WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                this.macAddr = wifiManager.getConnectionInfo().getMacAddress();
-                Log.i(retiAttive.getTypeName(), "Mac-Address: " + macAddr);
+            //controllo se c'è connessione
+            if (retiAttive.isConnected())
+            {
                 return true;
             }
+
         }
-            Log.i("WifiCheck: ","Nessuna connessione rilevata");
-            Toast.makeText(this, "Impossibile procedere!\n Alla registrazione o al primo accesso su un nuovo dispositivo è richiesta l'attivazione del wifi.", Toast.LENGTH_LONG).show();
-            return false;
+        Log.i("ConnectionCheck: ", "Nessuna connessione rilevata!");
+        Toast.makeText(this, "Impossibile procedere!\n Alla registrazione o al primo accesso su un nuovo dispositivo è richiesta una connessione.", Toast.LENGTH_LONG).show();
+        return false;
     }
 
     //Controllo  c'è connessione

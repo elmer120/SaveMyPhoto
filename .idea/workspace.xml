@@ -18,38 +18,65 @@
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/AccediActivity.java" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Activity/AccediActivity.java" />
     <bookmark url="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-23/android.jar!/android/app/Activity.class" />
+    <bookmark url="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Page1Fragment.java" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fb847eb-0d65-475a-b4ba-30dee5135df3" name="V 0.6.4 " comment="V 0.7.5&#10; - Add AsyncMethods to Login and Registration">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbSyncListMedia.java" />
+    <list default="true" id="3fb847eb-0d65-475a-b4ba-30dee5135df3" name="V 0.6.4 " comment="V 0.7.5&#10;- Collect more information about media and store in local db">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/AccediActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Activity/AccediActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ChooseAccessActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Activity/ChooseAccessActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBddl.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbLocale/DBddl.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBgestione.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbLocale/DBgestione.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbString.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbLocale/DbString.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/RegistrazioneActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Activity/RegistrazioneActivity.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/SearchView.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Activity/SearchView.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/IBNExtendedSoapSerializationEnvelope.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/VJPExtendedSoapSerializationEnvelope.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/IBNHelper.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/VJPHelper.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/IBNMarshalGuid.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/VJPMarshalGuid.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/IBNWSsaveMyphotoSoap.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/VJPWSsaveMyPhotoSoap.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/IBNWSsaveMyphotoSoap12.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/VJPWSsaveMyPhotoSoap12.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/http/HttpMultipart.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Http/HttpMultipart.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/http/testService.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Http/testService.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/old/FileScanner.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/AAold/FileScanner.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/old/ListFileMedia.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/AAold/ListFileMedia.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-23.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-23.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/Elmer.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/Elmer.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/android/support/v7/appcompat/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/lalosoft/easypermission/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/com/lalosoft/easypermission/R.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/generated/source/r/debug/it/pedrazzi/marco/savemyphoto/R.java" afterPath="$PROJECT_DIR$/app/build/generated/source/r/debug/it/pedrazzi/marco/savemyphoto/R.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v21.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-v21.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w820dp-v13.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values-w820dp-v13.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/multi/values.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/layout.json" afterPath="$PROJECT_DIR$/app/build/intermediates/blame/res/debug/single/layout.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugAndroidTestResources/compile-file-map.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/compile-file-map.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/mergeDebugResources/merger.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/manifests/full/debug/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-v21/values-v21.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-v21/values-v21.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-w820dp-v13/values-w820dp-v13.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values-w820dp-v13/values-w820dp-v13.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/values/values.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/AccediActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/AccediActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/symbols/debug/R.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" afterPath="$PROJECT_DIR$/app/build/outputs/logs/manifest-merger-debug-report.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ContentProviderScanner.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ContentProviderScanner.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBddl.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBddl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBgestione.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBgestione.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbString.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbString.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbSyncListMedia.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbSyncListMedia.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/FileMedia.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/FileMedia.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ImageAdapter.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ImageAdapter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Page1Fragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Page1Fragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/RegistrazioneActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/RegistrazioneActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/SearchView.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/SearchView.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/AssociaNuovoDispositivoAsync.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/AssociaNuovoDispositivoAsync.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/CredenzialiCheckAsync.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/CredenzialiCheckAsync.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/NuovoUtente.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/NuovoUtente.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/RegistrazioneUtenteAsync.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/RegistrazioneUtenteAsync.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/http/HttpMultipart.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/http/HttpMultipart.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/old/ListFileMedia.java" afterPath="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/old/ListFileMedia.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_accedi.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_accedi.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_choose_access.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_choose_access.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-v21/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-v21/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-w820dp/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-w820dp/strings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/captures/it.pedrazzi.marco.savemyphoto_2016.12.03_20.43.txt" afterPath="$PROJECT_DIR$/captures/it.pedrazzi.marco.savemyphoto_2016.12.03_20.43.txt" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -80,81 +107,69 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="Page1Fragment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Page1Fragment.java">
+      <file leaf-file-name="HttpMultipart.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Http/HttpMultipart.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="90" column="68" selection-start-line="90" selection-start-column="68" selection-end-line="90" selection-end-column="68" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ImageAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ImageAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DBgestione.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBgestione.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="129" column="43" selection-start-line="129" selection-start-column="43" selection-end-line="129" selection-end-column="43" />
+            <state relative-caret-position="284">
+              <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
               <folding>
-                <element signature="method#RegistrazioneDbLocale#0;class#DBgestione#0" expanded="false" />
-                <element signature="method#UtenteCheckDbLocale#0;class#DBgestione#0" expanded="false" />
-                <element signature="method#getMacAddr#0;class#DBgestione#0" expanded="false" />
-                <element signature="method#delete#0;class#DBgestione#0" expanded="false" />
+                <element signature="method#LetturaRispostaServer#0;class#HttpMultipart#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="strings.xml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <file leaf-file-name="FileMedia.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/FileMedia.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+            <state relative-caret-position="198">
+              <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DbSyncListMedia.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbSyncListMedia.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContentProviderScanner.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ContentProviderScanner.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1645">
-              <caret line="51" column="31" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
-              <folding>
-                <element signature="method#OrderList#0;class#ContentProviderScanner#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="DbString.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbString.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbLocale/DbString.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
               <caret line="9" column="65" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="VJPWSsaveMyPhotoSoap12.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/VJPWSsaveMyPhotoSoap12.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+              <folding>
+                <element signature="method#AssociaNuovoDispositivo#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+                <element signature="method#RegistrazioneNuovoUtente#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+                <element signature="method#AggiungiMedia#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+                <element signature="method#AggiornaMedia#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+                <element signature="method#ResetSistema#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+                <element signature="method#HelloWorld#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+                <element signature="method#HelloWorldP#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+                <element signature="method#HelloWorldTest#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+                <element signature="method#HelloWorldTestTest#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+                <element signature="method#execute#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+                <element signature="method#convertToException#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Page1Fragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Page1Fragment.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="392">
+              <caret line="226" column="32" selection-start-line="226" selection-start-column="32" selection-end-line="226" selection-end-column="32" />
+              <folding>
+                <element signature="e#8015#8340#0" expanded="true" />
+                <element signature="e#8339#8340#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1624,7 +1639,7 @@
     <option name="modificationStamps">
       <map>
         <entry key="$PROJECT_DIR$" value="4445415568868" />
-        <entry key="C:\Users\Elmer\StudioProjects\SaveMyPhoto" value="4475171228094" />
+        <entry key="C:\Users\Elmer\StudioProjects\SaveMyPhoto" value="4476101253886" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -1928,22 +1943,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/IWsdl2CodeEvents.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WS_Enums.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WSsaveMyphoto.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/QBKHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/QBKMarshalGuid.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/QBKWSsaveMyphotoSoap.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/QBKWSsaveMyphotoSoap12.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/QBKExtendedSoapSerializationEnvelope.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/FPBWSsaveMyphotoSoap.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/FPBMarshalGuid.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/FPBHelper.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/FPBExtendedSoapSerializationEnvelope.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/FPBWSsaveMyphotoSoap12.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/RegistrazioneUtentAsync.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/RegistrazioneUtenteDati.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/NuovoUtente.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ChoiceAccess.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_choice_access.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ChioceAccessActivity.java" />
@@ -1960,32 +1962,45 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_choose_access.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/AssociaNuovoDispositivo.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_registrazione.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/CredenzialiCheckAsync.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ChooseAccessActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/AssociaNuovoDispositivoAsync.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/AccediActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/SearchView.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_accedi.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/http/HttpMultipart.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/FileMedia.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/old/ListFileMedia.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/RegistrazioneActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/RegistrazioneUtenteAsync.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBddl.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbSyncListMedia.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Page1Fragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/LoadPhotoBackgroud.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ContentProviderScanner.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbString.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBgestione.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/http/HttpMultipart.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_accedi.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/OAWExtendedSoapSerializationEnvelope.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/OAWWSsaveMyPhotoSoap12.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBgestione.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/NuovoUtente.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/RegistrazioneActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/AccediActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbString.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Activity/AccediActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Activity/RegistrazioneActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbLocale/DBddl.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbLocale/DBgestione.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Activity/SearchView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ImageAdapter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Page1Fragment.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/AssociaNuovoDispositivoAsync.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/CredenzialiCheckAsync.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/RegistrazioneUtenteAsync.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/VJPWSsaveMyPhotoSoap12.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbLocale/DbString.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/FileMedia.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Http/HttpMultipart.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-9" />
     <option name="y" value="-9" />
-    <option name="width" value="1938" />
+    <option name="width" value="1924" />
     <option name="height" value="1048" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -2035,6 +2050,61 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SaveMyPhoto" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SaveMyPhoto" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SaveMyPhoto" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SaveMyPhoto" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="savemyphoto" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -2059,83 +2129,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SaveMyPhoto" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SaveMyPhoto" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SaveMyPhoto" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="values" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="strings.xml" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SaveMyPhoto" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SaveMyPhoto" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="PackagesPane">
         <subPane />
       </pane>
@@ -2144,7 +2137,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="settings.editor.selected.configurable" value="preferences.customizations" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="device.picker.selection" value="SH35YW901721" />
@@ -2157,6 +2150,8 @@
     <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
     <property name="VectorAssetImportPath" value="C:\Users\Elmer\StudioProjects" />
     <property name="full.screen.before.presentation.mode" value="false" />
+    <property name="NetworkMonitor.position" value="0" />
+    <property name="MemoryMonitor.position" value="2" />
   </component>
   <component name="RecentsManager">
     <key name="android.template.packageName">
@@ -2166,6 +2161,7 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\java\it\pedrazzi\marco\savemyphoto\WebService\Autogenerate" />
       <recent name="C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\java\it\pedrazzi\marco\savemyphoto\WebService" />
       <recent name="C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\java\it\pedrazzi\marco\savemyphoto\WS" />
       <recent name="C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\java\it\pedrazzi\marco\savemyphoto" />
@@ -2645,7 +2641,14 @@
       <option name="project" value="LOCAL" />
       <updated>1493139032648</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="V 0.7.5&#10;- Collect more information about media and store in local db">
+      <created>1493395164662</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1493395164662</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TodoView">
@@ -2658,28 +2661,28 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-9" y="-9" width="1924" height="1048" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32657927" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2169249" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28843862" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25054112" sideWeight="0.504084" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32657927" sideWeight="0.51399356" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20619786" sideWeight="0.4914071" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.50297976" sideWeight="0.4914071" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32657927" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39451727" sideWeight="0.495671" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32657927" sideWeight="0.48600647" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32657927" sideWeight="0.507535" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24703982" sideWeight="0.49591598" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.164859" sideWeight="0.49591598" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2497309" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32954547" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34922528" sideWeight="0.49570355" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37425506" sideWeight="0.49570355" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25054112" sideWeight="0.504084" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2775,46 +2778,47 @@
     <MESSAGE value="V 0.7.2&#10; - Better Organization of activity login&#10; - Add Registration in localDb and in RemoteDb and Test succefully" />
     <MESSAGE value="V 0.7.4&#10; - Add Login in localDb and in RemoteDb and Test succefully!" />
     <MESSAGE value="V 0.7.5&#10; - Add AsyncMethods to Login and Registration" />
-    <option name="LAST_COMMIT_MESSAGE" value="V 0.7.5&#10; - Add AsyncMethods to Login and Registration" />
+    <MESSAGE value="V 0.7.5&#10;- Collect more information about media and store in local db" />
+    <option name="LAST_COMMIT_MESSAGE" value="V 0.7.5&#10;- Collect more information about media and store in local db" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBddl.java</url>
+          <url>file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbLocale/DBddl.java</url>
           <line>68</line>
           <properties />
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/CredenzialiCheckAsync.java</url>
-          <line>62</line>
+          <line>63</line>
           <properties />
           <option name="timeStamp" value="120" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/RegistrazioneUtenteAsync.java</url>
-          <line>40</line>
-          <properties />
-          <option name="timeStamp" value="121" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/http/HttpMultipart.java</url>
-          <line>286</line>
-          <properties />
-          <option name="timeStamp" value="135" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBgestione.java</url>
-          <line>114</line>
+          <url>file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbLocale/DBgestione.java</url>
+          <line>116</line>
           <properties />
           <option name="timeStamp" value="151" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Http/HttpMultipart.java</url>
+          <line>283</line>
+          <properties />
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Http/HttpMultipart.java</url>
+          <line>137</line>
+          <properties />
+          <option name="timeStamp" value="159" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="152" />
+      <option name="time" value="160" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="app">
@@ -2824,77 +2828,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/IBNHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="49" selection-start-line="0" selection-start-column="49" selection-end-line="0" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/NuovoUtente.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/IBNWSsaveMyphotoSoap12.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="80" column="30" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/IBNWSsaveMyphotoSoap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2992">
-          <caret line="84" column="5" selection-start-line="84" selection-start-column="5" selection-end-line="84" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/IBNExtendedSoapSerializationEnvelope.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2042">
-          <caret line="66" column="41" selection-start-line="66" selection-start-column="41" selection-end-line="66" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-23/android.jar!/android/app/Instrumentation.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="94" column="95" selection-start-line="94" selection-start-column="95" selection-end-line="94" selection-end-column="95" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.android/build-cache/67d02e31b40205caf1260b1347769f5c4b51985f/output/jars/classes.jar!/android/support/v7/app/AppCompatDelegateImplV9.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="44" column="85" selection-start-line="44" selection-start-column="85" selection-end-line="44" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="49" column="17" selection-start-line="49" selection-start-column="17" selection-end-line="49" selection-end-column="17" />
-          <folding>
-            <element signature="e#1208#1226#0" expanded="false" />
-            <element signature="e#1614#1644#0" expanded="false" />
-            <element signature="e#1816#1836#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-23/android.jar!/android/widget/Toast.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="38" column="125" selection-start-line="38" selection-start-column="125" selection-end-line="38" selection-end-column="125" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.android/build-cache/67d02e31b40205caf1260b1347769f5c4b51985f/output/jars/classes.jar!/android/support/v7/app/AppCompatActivity.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -2914,16 +2847,6 @@
         <state relative-caret-position="154">
           <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registrazione.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="1694">
-          <caret line="77" column="16" selection-start-line="77" selection-start-column="16" selection-end-line="77" selection-end-column="16" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_search_view.xml">
@@ -2953,38 +2876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ChooseAccessActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-572">
-          <caret line="25" column="13" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/CheckableLayout.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_accedi.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="1232">
-          <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/http/HttpMultipart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="133" column="37" selection-start-line="133" selection-start-column="37" selection-end-line="133" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/AppData/Local/Android/sdk/platforms/android-23/android.jar!/android/content/ContextWrapper.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="118">
@@ -2992,25 +2883,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/SearchView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="64" column="39" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/old/ListFileMedia.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/AAold/ListFileMedia.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="316">
           <caret line="194" column="0" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Album.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -3018,16 +2894,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="242">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/FileMedia.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-396">
-          <caret line="42" column="17" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
-          <folding>
-            <element signature="method#setSelezionata#0;class#FileMedia#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3094,108 +2960,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/RegistrazioneActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="159" column="37" selection-start-line="159" selection-start-column="37" selection-end-line="159" selection-end-column="37" />
-          <folding>
-            <element signature="method#WifiCheck#0;class#RegistrazioneActivity#0" expanded="false" />
-            <element signature="method#GetSpazioLibero#0;class#RegistrazioneActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/AssociaNuovoDispositivoAsync.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1804">
-          <caret line="91" column="162" selection-start-line="91" selection-start-column="162" selection-end-line="91" selection-end-column="162" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/CredenzialiCheckAsync.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="65" column="12" selection-start-line="65" selection-start-column="12" selection-end-line="65" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBddl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1298">
-          <caret line="62" column="25" selection-start-line="62" selection-start-column="25" selection-end-line="62" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/RegistrazioneUtenteAsync.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Page1Fragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="90" column="68" selection-start-line="90" selection-start-column="68" selection-end-line="90" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbString.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="9" column="65" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ContentProviderScanner.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1645">
-          <caret line="51" column="31" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
-          <folding>
-            <element signature="method#OrderList#0;class#ContentProviderScanner#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/http/testService.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Http/testService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/AccediActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="726">
-          <caret line="85" column="53" selection-start-line="85" selection-start-column="53" selection-end-line="85" selection-end-column="53" />
-          <folding>
-            <element signature="method#ConnessioneCheck#0;class#AccediActivity#0" expanded="false" />
-            <element signature="method#DatabaseCheck#0;class#AccediActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/LoadPhotoBackgroud.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="76" column="75" selection-start-line="76" selection-start-column="75" selection-end-line="76" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ImageAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3203,30 +2971,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="343">
           <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbSyncListMedia.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DBgestione.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="129" column="43" selection-start-line="129" selection-start-column="43" selection-end-line="129" selection-end-column="43" />
-          <folding>
-            <element signature="method#RegistrazioneDbLocale#0;class#DBgestione#0" expanded="false" />
-            <element signature="method#UtenteCheckDbLocale#0;class#DBgestione#0" expanded="false" />
-            <element signature="method#getMacAddr#0;class#DBgestione#0" expanded="false" />
-            <element signature="method#delete#0;class#DBgestione#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -3234,7 +2978,221 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
           <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Album.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/CheckableLayout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_registrazione.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1694">
+          <caret line="77" column="16" selection-start-line="77" selection-start-column="16" selection-end-line="77" selection-end-column="16" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_accedi.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1298">
+          <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/OAWHelper.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/OAWMarshalGuid.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/OAWWSsaveMyPhotoSoap.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/OAWWSsaveMyPhotoSoap12.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbSyncListMedia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="604">
+          <caret line="32" column="26" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/NuovoUtente.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="70" selection-start-line="13" selection-start-column="70" selection-end-line="13" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Activity/ChooseAccessActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-10">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbLocale/DBddl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="46" column="58" selection-start-line="46" selection-start-column="58" selection-end-line="46" selection-end-column="58" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbLocale/DBgestione.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="105" column="17" selection-start-line="105" selection-start-column="17" selection-end-line="105" selection-end-column="17" />
+          <folding>
+            <element signature="method#UtenteCheckDbLocale#0;class#DBgestione#0" expanded="false" />
+            <element signature="method#SyncListMedia#0;class#DBgestione#0" expanded="false" />
+            <element signature="method#delete#0;class#DBgestione#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Activity/RegistrazioneActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="183" column="48" selection-start-line="183" selection-start-column="48" selection-end-line="183" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Activity/AccediActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="388">
+          <caret line="179" column="22" selection-start-line="179" selection-start-column="22" selection-end-line="179" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ImageAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="61" column="23" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/LoadPhotoBackgroud.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="76" column="75" selection-start-line="76" selection-start-column="75" selection-end-line="76" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="572">
+          <caret line="26" column="53" selection-start-line="26" selection-start-column="53" selection-end-line="26" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/OAWExtendedSoapSerializationEnvelope.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/VJPExtendedSoapSerializationEnvelope.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/AssociaNuovoDispositivoAsync.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="704">
+          <caret line="42" column="26" selection-start-line="42" selection-start-column="26" selection-end-line="42" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/CredenzialiCheckAsync.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="43" column="14" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/RegistrazioneUtenteAsync.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="682">
+          <caret line="41" column="13" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Activity/SearchView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3520">
+          <caret line="185" column="0" selection-start-line="185" selection-start-column="0" selection-end-line="185" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/ContentProviderScanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="120" column="0" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/DbLocale/DbString.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="65" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/FileMedia.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/WebService/Autogenerate/VJPWSsaveMyPhotoSoap12.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding>
+            <element signature="method#AssociaNuovoDispositivo#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+            <element signature="method#RegistrazioneNuovoUtente#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+            <element signature="method#AggiungiMedia#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+            <element signature="method#AggiornaMedia#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+            <element signature="method#ResetSistema#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+            <element signature="method#HelloWorld#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+            <element signature="method#HelloWorldP#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+            <element signature="method#HelloWorldTest#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+            <element signature="method#HelloWorldTestTest#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+            <element signature="method#execute#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+            <element signature="method#convertToException#0;class#VJPWSsaveMyPhotoSoap12#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Http/HttpMultipart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="168" column="0" selection-start-line="168" selection-start-column="0" selection-end-line="168" selection-end-column="0" />
+          <folding>
+            <element signature="method#LetturaRispostaServer#0;class#HttpMultipart#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/it/pedrazzi/marco/savemyphoto/Page1Fragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="392">
+          <caret line="226" column="32" selection-start-line="226" selection-start-column="32" selection-end-line="226" selection-end-column="32" />
+          <folding>
+            <element signature="e#8015#8340#0" expanded="true" />
+            <element signature="e#8339#8340#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -1,4 +1,4 @@
-package it.pedrazzi.marco.savemyphoto.http;
+package it.pedrazzi.marco.savemyphoto.Http;
 
 import android.app.IntentService;
 import android.content.Intent;

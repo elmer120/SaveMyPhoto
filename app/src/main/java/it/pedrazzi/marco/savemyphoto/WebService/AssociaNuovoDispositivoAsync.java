@@ -7,15 +7,16 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import it.pedrazzi.marco.savemyphoto.AccediActivity;
-import it.pedrazzi.marco.savemyphoto.DBgestione;
+import it.pedrazzi.marco.savemyphoto.Activity.AccediActivity;
+import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
 import it.pedrazzi.marco.savemyphoto.R;
+import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.VJPWSsaveMyPhotoSoap12;
 
 /**
  * Created by Elmer on 24/04/2017.
  */
 
-public class AssociaNuovoDispositivoAsync extends AsyncTask <NuovoUtente,Void,Boolean>{
+public class AssociaNuovoDispositivoAsync extends AsyncTask <NuovoUtente,Void,Integer>{
 
     AccediActivity mAccediActivity;
     Context ctx;
@@ -38,39 +39,41 @@ public class AssociaNuovoDispositivoAsync extends AsyncTask <NuovoUtente,Void,Bo
     }
 
     @Override
-    protected Boolean doInBackground(NuovoUtente... nuovoUtentes) {
-        IBNWSsaveMyphotoSoap12 service=new IBNWSsaveMyphotoSoap12();
+    protected Integer doInBackground(NuovoUtente... nuovoUtentes) {
+        VJPWSsaveMyPhotoSoap12 service=new VJPWSsaveMyPhotoSoap12();
         service.enableLogging=true;
-        try {
+        try
+        {
             //ritorna la risp del WS
-            boolean risposta= service.AssociaNuovoDispositivo(
-                    nuovoUtentes[0].macAddr,
-                    nuovoUtentes[0].marca,
-                    nuovoUtentes[0].modello,
-                    nuovoUtentes[0].versioneAndroid,
-                    nuovoUtentes[0].spazioLibero,
-                    nuovoUtentes[0].nomeUtente
-                    );
+            Integer risposta= service.AssociaNuovoDispositivo(
+                                                                nuovoUtentes[0].marca,
+                                                                nuovoUtentes[0].modello,
+                                                                nuovoUtentes[0].versioneAndroid,
+                                                                nuovoUtentes[0].spazioLibero,
+                                                                nuovoUtentes[0].nomeUtente
+                                                                );
             Log.i("Ws Reg Utente", ""+risposta);
             return risposta;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
-        return false;
+        return -1;
     }
 
     @Override
-    protected void onPostExecute(Boolean aBoolean)
+    protected void onPostExecute(Integer risposta)
     {
-        super.onPostExecute(aBoolean);
+        super.onPostExecute(risposta);
         //se l'inserimento del nuovo dispositivo sul db remoto è andata a buon fine
-        if (aBoolean)
+        if (risposta!=-1)
         {
             //registro anche in locale
             DBgestione dBgestione = new DBgestione(ctx);
             Boolean regLocDb=dBgestione.RegistrazioneDbLocale(  mAccediActivity.nomeUtente,"",
                                                                 mAccediActivity.password,
-                                                                mAccediActivity.macAddr,
+                                                                risposta,
                                                                 mAccediActivity.marca,
                                                                 mAccediActivity.modello,
                                                                 mAccediActivity.versioneAndroid,

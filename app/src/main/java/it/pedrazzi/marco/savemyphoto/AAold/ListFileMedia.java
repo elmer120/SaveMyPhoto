@@ -1,4 +1,4 @@
-package it.pedrazzi.marco.savemyphoto.old;
+package it.pedrazzi.marco.savemyphoto.AAold;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -187,8 +187,8 @@ public class ListFileMedia extends ArrayList<FileMedia> implements Parcelable{
         int size = in.readInt();
 
         for (int i = 0; i < size; i++) {
-            FileMedia r = new FileMedia(in.readInt(),in.readInt(),in.readInt(),in.readString(),in.readString(), in.readString(), in.readString(),in.readString(),
-                    in.readString(),in.readString(),in.readString(),in.readString(),in.readString());
+            FileMedia r = new FileMedia(in.readInt(),in.readInt(),in.readInt(),in.readString(),in.readString(), in.readString(), in.readString(),in.readInt(),
+                    in.readInt(),in.readInt(),in.readString(),in.readInt(),in.readInt());
             this.add(r);
         }
     }
