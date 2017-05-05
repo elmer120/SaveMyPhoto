@@ -10,7 +10,7 @@ import android.widget.Toast;
 import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
 import it.pedrazzi.marco.savemyphoto.R;
 import it.pedrazzi.marco.savemyphoto.Activity.RegistrazioneActivity;
-import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.VJPWSsaveMyPhotoSoap12;
+import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.TSHWSsaveMyPhotoSoap12;
 
 /**
  * Created by Elmer on 19/04/2017.
@@ -39,7 +39,7 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Intege
 
     @Override
     protected Integer doInBackground(NuovoUtente... nuovoUtentes) {
-        VJPWSsaveMyPhotoSoap12 service=new VJPWSsaveMyPhotoSoap12();
+        TSHWSsaveMyPhotoSoap12 service=new TSHWSsaveMyPhotoSoap12();
         service.enableLogging=true;
         try {
             //ritorna la risp del WS

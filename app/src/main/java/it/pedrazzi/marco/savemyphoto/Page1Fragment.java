@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //headers gridview
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;

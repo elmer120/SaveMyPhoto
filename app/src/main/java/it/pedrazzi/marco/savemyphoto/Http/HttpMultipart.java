@@ -3,7 +3,6 @@ package it.pedrazzi.marco.savemyphoto.Http;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.ExifInterface;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
@@ -15,9 +14,10 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 
 import it.pedrazzi.marco.savemyphoto.FileMedia;
-import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.VJPWSsaveMyPhotoSoap12;
+import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.TSHWSsaveMyPhotoSoap12;
 
 
 /**
@@ -40,7 +40,7 @@ public class HttpMultipart {
     private String campoDue = "idDispositivo";
     private String campoTre = "album";
     //public String urlServer="http://muletto.elmer.it"; //server casalingo
-    //public String urlServer="http://10.0.0.85:51262/WFupload.aspx"; //server locale
+    //public String urlServer="http://192.168.1.20:51262/WFupload.aspx"; //server locale
     //public String urlServer="http://posttestserver.com/post.php?dir=example"; //server dubug http
     public String urlServer="http://savemyphoto.gear.host/WFupload.aspx"; //server hosting di test
     public int qualitaJpeg=80;
@@ -281,13 +281,14 @@ private boolean AggiungiMediaDb(ArrayList<FileMedia> listmedia,String nomeUtente
 {
     for (FileMedia media:listmedia)
     {
-        VJPWSsaveMyPhotoSoap12 service=new VJPWSsaveMyPhotoSoap12();
+        TSHWSsaveMyPhotoSoap12 service=new TSHWSsaveMyPhotoSoap12();
         service.enableLogging=true;
         boolean risultato= false;
         try {
             risultato = service.AggiungiMedia(
                                                         media.getNome(),
                                                         media.getBucket(),
+                                                        media.getDataAcquisizione(),
                                                         media.getDimensione(),
                                                         nomeUtente,
                                                         media.getAltezza(),

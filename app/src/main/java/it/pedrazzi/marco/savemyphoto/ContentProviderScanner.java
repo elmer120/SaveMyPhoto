@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 
 /**
  * Created by elmer on 29/12/16.
@@ -122,16 +123,11 @@ public class ContentProviderScanner {
 
 
                         Long timestamp = cursorImage.getLong(dateColumnIndex);
-
-
-                        Calendar calendario = Calendar.getInstance();
-                        calendario.setTimeInMillis(timestamp);
-                        int giorno=calendario.get(Calendar.DAY_OF_MONTH);
-                        int mese=calendario.get(Calendar.MONTH);
-                        int anno=calendario.get(Calendar.YEAR);
+                        Date dataAquisizione=new Date();
+                        dataAquisizione.setTime(timestamp);
 
                         //aggiungo il media alla lista
-                        fileMedia = new FileMedia(giorno,mese,anno,path,nome,bucket, mimeType,dimensione,altezza,larghezza,orientamento,latitudine,longitudine);
+                        fileMedia = new FileMedia(dataAquisizione,path,nome,bucket, mimeType,dimensione,altezza,larghezza,orientamento,latitudine,longitudine);
 
 
                         this.listMedia.add(fileMedia);
@@ -202,17 +198,12 @@ public class ContentProviderScanner {
                             Integer latitudine= (latitudeColumnIndex!=-1) ? cursorVideo.getInt(latitudeColumnIndex):ex.getAttributeInt(ExifInterface.TAG_GPS_LATITUDE,0);
                             Integer longitudine= (longitudeColumnIndex!=-1) ? cursorVideo.getInt(longitudeColumnIndex): ex.getAttributeInt(ExifInterface.TAG_GPS_LONGITUDE,0);
 
-
                             Long timestamp = cursorVideo.getLong(dateColumnIndex);
-
-                            Calendar calendario = Calendar.getInstance();
-                            calendario.setTimeInMillis(timestamp);
-                            int giorno=calendario.get(Calendar.DAY_OF_MONTH);
-                            int mese=calendario.get(Calendar.MONTH);
-                            int anno=calendario.get(Calendar.YEAR);
+                            Date dataAquisizione=new Date();
+                            dataAquisizione.setTime(timestamp);
 
                             //aggiungo il media alla lista
-                            fileMedia = new FileMedia(giorno,mese,anno,path,nome,bucket, mimeType,dimensione,altezza,larghezza,"",latitudine,longitudine);
+                            fileMedia = new FileMedia(dataAquisizione,path,nome,bucket, mimeType,dimensione,altezza,larghezza,"",latitudine,longitudine);
 
                             this.listMedia.add(fileMedia);
 

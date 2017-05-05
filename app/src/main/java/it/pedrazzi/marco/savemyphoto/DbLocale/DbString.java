@@ -7,7 +7,7 @@ package it.pedrazzi.marco.savemyphoto.DbLocale;
 
 public final class DbString {
 
-        public static final String nomeDB="SaveMyPhotoTestProva27";
+        public static final String nomeDB="SaveMyPhotoTestProva33";
 
         //TABELLE
 

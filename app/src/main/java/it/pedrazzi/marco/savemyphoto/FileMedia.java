@@ -12,7 +12,7 @@ import java.util.Date;
 /**
  * Created by elmer on 29/11/16.
  */
-public class FileMedia implements Comparable,Parcelable{
+public class FileMedia implements Parcelable{
 
 
     public FileMedia() {
@@ -31,20 +31,6 @@ public class FileMedia implements Comparable,Parcelable{
 
     public String getMimeType() { return mimeType; }
 
-    public int getGiorno() {return giorno;}
-
-    public void setGiorno(int giorno) {
-        this.giorno = giorno;
-    }
-
-    public int getMese() {
-        return mese;
-    }
-
-    public int getAnno() {
-        return anno;
-    }
-
     public Integer getDimensione() {return dimensione;}
 
     public void setDimensione(Integer dimensione) {this.dimensione = dimensione;}
@@ -54,6 +40,10 @@ public class FileMedia implements Comparable,Parcelable{
     }
 
     public void setSelezionata() {this.selezionata=selezionata;}
+
+    public Date getDataAcquisizione() {
+        return dataAcquisizione;
+    }
 
     public Integer getAltezza() {
         return altezza;
@@ -75,13 +65,11 @@ public class FileMedia implements Comparable,Parcelable{
         return longitudine;
     }
 
+    private Date dataAcquisizione;
     private String nome;
     private String path;
     private String bucket;
     private String mimeType;
-    private int giorno;
-    private int mese;
-    private int anno;
     private Integer altezza;
     private Integer larghezza;
     private String orientamento;
@@ -92,16 +80,14 @@ public class FileMedia implements Comparable,Parcelable{
     private boolean selezionata=false;
 
 
-    public FileMedia(int giorno,int mese,int anno, String path,String nome,String bucket,String mimeType,
+    public FileMedia(Date dataAcquisizione,String path,String nome,String bucket,String mimeType,
                      Integer dimensione,Integer altezza,Integer larghezza,String orientamento,Integer latitudine,Integer longitudine){
         super();
 
         this.path=path;
         this.bucket=bucket;
         this.mimeType=mimeType;
-        this.giorno=giorno;
-        this.mese=mese;
-        this.anno=anno;
+        this.dataAcquisizione=dataAcquisizione;
         this.nome=nome;
         this.dimensione=dimensione;
         this.altezza=altezza;
@@ -112,21 +98,23 @@ public class FileMedia implements Comparable,Parcelable{
 
     }
 
-    public int compareTo(Object o) {
+    //metodo per comparare gli oggetti
+    public int compareTo(Object o)
+    {
         if (o!=null){
             FileMedia objParametro = (FileMedia)o;
 
-            if (this.anno>objParametro.anno){
+            if (this.dataAcquisizione.getYear()>objParametro.dataAcquisizione.getYear()){
                 return -1;
             }else{
-                if (this.anno==objParametro.anno){ //se anno è uguale
+                if (this.dataAcquisizione.getYear()==objParametro.dataAcquisizione.getYear()){ //se anno è uguale
 
-                    if (this.mese>objParametro.mese)
+                    if (this.dataAcquisizione.getMonth()>this.dataAcquisizione.getMonth())
                     {
                         return -1;
                     }
                     else {
-                            if(this.mese==objParametro.mese) //se mese e anno sono uguali
+                            if(this.dataAcquisizione.getMonth()==objParametro.dataAcquisizione.getMonth()) //se mese e anno sono uguali
                             {
                                 return 0;
                             }
@@ -150,9 +138,7 @@ public class FileMedia implements Comparable,Parcelable{
         dest.writeString(this.nome);
         dest.writeString(this.bucket);
         dest.writeString(this.mimeType);
-        dest.writeInt(this.giorno);
-        dest.writeInt(this.mese);
-        dest.writeInt(this.anno);
+
     }
 
     @SuppressWarnings("unused")
@@ -167,9 +153,7 @@ public class FileMedia implements Comparable,Parcelable{
         this.nome = in.readString();
         this.bucket = in.readString();
         this.mimeType = in.readString();
-        this.giorno = in.readInt();
-        this.mese = in.readInt();
-        this.anno = in.readInt();
+
     }
 
     public static final Creator<FileMedia> CREATOR = new Creator<FileMedia>() {

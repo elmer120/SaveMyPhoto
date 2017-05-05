@@ -118,7 +118,7 @@ public class DBgestione {
         {
             cv.put(DbString.tbMedia.Nome, media.getNome());
             cv.put(DbString.tbMedia.Album, media.getBucket());
-            cv.put(DbString.tbMedia.DataAcquisizione, media.getGiorno() + media.getMese() + media.getAnno());
+            cv.put(DbString.tbMedia.DataAcquisizione, media.getDataAcquisizione().toString());
             cv.put(DbString.tbMedia.Dimensione, media.getDimensione());
             cv.put(DbString.tbMedia.Altezza, media.getAltezza());
             cv.put(DbString.tbMedia.Larghezza, media.getLarghezza());

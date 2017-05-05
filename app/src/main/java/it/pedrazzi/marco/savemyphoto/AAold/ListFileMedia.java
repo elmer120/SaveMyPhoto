@@ -175,10 +175,6 @@ public class ListFileMedia extends ArrayList<FileMedia> implements Parcelable{
             dest.writeString(r.getBucket());
             dest.writeString(r.getMimeType());
 
-            dest.writeInt(r.getGiorno());
-            dest.writeInt(r.getMese());
-            dest.writeInt(r.getAnno());
-
         }
     }
     private void readFromParcel(Parcel in) {
@@ -187,7 +183,7 @@ public class ListFileMedia extends ArrayList<FileMedia> implements Parcelable{
         int size = in.readInt();
 
         for (int i = 0; i < size; i++) {
-            FileMedia r = new FileMedia(in.readInt(),in.readInt(),in.readInt(),in.readString(),in.readString(), in.readString(), in.readString(),in.readInt(),
+            FileMedia r = new FileMedia(null,in.readString(),in.readString(), in.readString(), in.readString(),in.readInt(),
                     in.readInt(),in.readInt(),in.readString(),in.readInt(),in.readInt());
             this.add(r);
         }
