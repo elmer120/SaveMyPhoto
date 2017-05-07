@@ -36,7 +36,7 @@ public class TSHWSsaveMyPhotoSoap12
     }
 
     String url="http://savemyphoto.gear.host/WSsaveMyphoto.asmx";
-
+    //String url="http://192.168.1.20:51262/WSsaveMyphoto.asmx";
     int timeOut=60000;
     public List< HeaderProperty> httpHeaders;
     public boolean enableLogging;
