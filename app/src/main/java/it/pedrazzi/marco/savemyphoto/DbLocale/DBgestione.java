@@ -8,7 +8,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import it.pedrazzi.marco.savemyphoto.FileMedia;
+import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
 
 /**
  * Created by Elmer on 14/04/2017.
@@ -106,7 +106,8 @@ public class DBgestione {
         return -1;
     }
 
-    public boolean SyncListMedia(ArrayList<FileMedia> listMedia, String macAddr)
+    //aggiunge i media sincronizzati al db locale
+    public boolean SyncListMedia(ArrayList<FileMedia> listMedia)
     {
         //scrittura lettura su db
         SQLiteDatabase db = dbddl.getWritableDatabase();
@@ -127,22 +128,44 @@ public class DBgestione {
             cv.put(DbString.tbMedia.GpsLat, media.getLatitudine());
             cv.put(DbString.tbMedia.GpsLong,media.getLongitudine());
             cv.put(DbString.tbMedia.Server,0);
-            cv.put(DbString.tbMedia.FKDispositivo, macAddr);
+            cv.put(DbString.tbMedia.FKDispositivo,0);
 
             //TODO se il record esiste già?
 
             long idMedia = db.insert(DbString.tbMedia.tbNome, null, cv);
             if (idMedia != -1)
             {
-                Log.i("DbLocale", "Nuovo media inserito nel db locale!");
+                Log.i(this.getClass().getSimpleName(), "Nuovo media inserito correttamente!");
+
             }
             else
             {
-                Log.i("DbLocale", "Errore nel inserimento del media nel db locale!");
+                Log.i(this.getClass().getSimpleName(), "Errore nel inserimento del media!");
                 return false;
             }
         }
         return true;
+    }
+
+    public boolean CheckMedia(String nomeMedia)
+    {
+        //lettura su db
+        SQLiteDatabase db=dbddl.getReadableDatabase();
+        Cursor cursor=null;
+
+        //
+        cursor = db.rawQuery("SELECT id FROM " + DbString.tbMedia.tbNome + " WHERE "+DbString.tbMedia.Nome+ "= ?", new String[]{nomeMedia});
+        //se il media esiste
+        if (cursor.getCount() > 0)
+        {
+            cursor.close();
+            return true;
+        }
+        else
+        {
+            cursor.close();
+            return false;
+        }
     }
 
     //svuota il db

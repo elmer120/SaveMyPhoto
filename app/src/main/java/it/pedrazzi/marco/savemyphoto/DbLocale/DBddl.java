@@ -48,16 +48,17 @@ public class DBddl extends SQLiteOpenHelper {
                 " ("+DbString.tbMedia.ID+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
                 DbString.tbMedia.Nome+" NVARCHAR(30) NOT NULL,"+
                 DbString.tbMedia.Album+" NVARCHAR(30)NULL," +
-                DbString.tbMedia.DataAcquisizione+" INT NOT NULL," +
+                DbString.tbMedia.DataAcquisizione+" DATATIME NOT NULL," +
                 DbString.tbMedia.Dimensione+" INT NULL," +
                 DbString.tbMedia.Altezza+" INT NULL," +
                 DbString.tbMedia.Larghezza+" INT NULL," +
                 DbString.tbMedia.Formato+" NVARCHAR(15) NOT NULL," +
-                DbString.tbMedia.Orientamento+" CHAR(1) NULL," +
+                DbString.tbMedia.Orientamento+" INT NULL," +
                 DbString.tbMedia.GpsLat+" REAL NULL," +
                 DbString.tbMedia.GpsLong+" REAL NULL," +
                 DbString.tbMedia.Server+" INT NOT NULL," +
-                DbString.tbMedia.FKDispositivo+" INTEGER NOT NULL)";
+                DbString.tbMedia.FKDispositivo+" INT NOT NULL)";
+
         String qF="CREATE TABLE "+DbString.tbFoto.tbNome+
                 " ("+DbString.tbFoto.ID+" INTEGER NOT NULL," +
                 DbString.tbFoto.Flash+" INT)";

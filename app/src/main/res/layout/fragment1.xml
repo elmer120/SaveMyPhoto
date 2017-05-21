@@ -8,27 +8,27 @@
     >
 
     <!--gridView con intestazione, da libreria esterna-->
-    <com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView
+    <android.widget.GridView
         android:id="@+id/gridviewWithHeaders"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="3"
-        android:verticalSpacing="1dp"
-        android:horizontalSpacing="1dp"
-        android:stretchMode="columnWidth"
+        android:background="@color/black"
         android:gravity="fill"
-        android:layout_below="@+id/TxtRicercaFoto"
+        android:horizontalSpacing="1dp"
+        android:verticalSpacing="1dp"
         android:longClickable="true"
+        android:numColumns="3"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
         android:scrollbarThumbVertical="@drawable/ic_menu_send"
         android:smoothScrollbar="true"
+        android:stackFromBottom="false"
+        android:stretchMode="columnWidth"
         android:textFilterEnabled="false"
         android:touchscreenBlocksFocus="false"
+
         android:transitionGroup="true"
 
-        android:stackFromBottom="false"
-        android:background="@color/black">
-    </com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView>
+        ></android.widget.GridView>
 
 
     <EditText

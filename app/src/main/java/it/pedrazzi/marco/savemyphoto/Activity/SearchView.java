@@ -2,6 +2,8 @@ package it.pedrazzi.marco.savemyphoto.Activity;
 import android.Manifest;
 import android.app.ActionBar;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -17,13 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import it.pedrazzi.marco.savemyphoto.FileMedia;
-import it.pedrazzi.marco.savemyphoto.Page1Fragment;
-import it.pedrazzi.marco.savemyphoto.Page2Fragment;
-import it.pedrazzi.marco.savemyphoto.Page3Fragment;
-import it.pedrazzi.marco.savemyphoto.PagerAdapter;
+import it.pedrazzi.marco.savemyphoto.ConnectionCheckReceiver;
+import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
+import it.pedrazzi.marco.savemyphoto.Fragments.Page1Fragment;
+import it.pedrazzi.marco.savemyphoto.Fragments.Page2Fragment;
+import it.pedrazzi.marco.savemyphoto.Fragments.Page3Fragment;
+import it.pedrazzi.marco.savemyphoto.Fragments.PagerAdapter;
 import it.pedrazzi.marco.savemyphoto.R;
-import it.pedrazzi.marco.savemyphoto.Http.HttpMultipart;
 import it.pedrazzi.marco.savemyphoto.Http.testService;
 
 @RegisterPermission(permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
@@ -34,6 +36,8 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
     private ArrayList<FileMedia> listCamera;
     private ArrayList<FileMedia> listWhatApp;
     private StickyGridHeadersGridView gridHeadersGridView;
+    private IntentFilter filter;
+    private ConnectionCheckReceiver connectionCheckReceiver;
 
     String nomeUtente;
     Integer idDispositivo;
@@ -138,8 +142,14 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
 
     @Override //invocato all'avvio 2° -//invocato alla ripresa dalla sospensione 2°
     protected void onStart() {
-        Toast.makeText(this,"ON START",Toast.LENGTH_SHORT).show();
         super.onStart();
+        Toast.makeText(this,"ON START",Toast.LENGTH_SHORT).show();
+
+
+        //istanzio il broadcast receiver
+         filter=new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+         connectionCheckReceiver=new ConnectionCheckReceiver();
+
       //  if (this.listMedia==null || this.listMedia.isEmpty()) {
       //      ContentProviderScanner contentProviderScanner = new ContentProviderScanner(this);
        //     this.listMedia = contentProviderScanner.getListMedia(Album.All,true);
@@ -155,12 +165,21 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
     @Override //invocato all'avvio 3° -//invocato alla ripresa dalla sospensione 3°
     protected void onResume() {
         super.onResume();
+
+
+       //Quando è ritorna attiva registro il broadcast receiver
+        registerReceiver(connectionCheckReceiver, filter);
+
         Toast.makeText(this,"ON RESUME",Toast.LENGTH_SHORT).show();
     }
 
     @Override //invocato alla sospensione 1°//invocato alla chiusura 1°
     protected void onPause() {
         super.onPause();
+        //quando l'app è sospesa disattivo il broadcast receiver
+        unregisterReceiver(connectionCheckReceiver);
+
+
         Toast.makeText(this,"ON PAUSE",Toast.LENGTH_SHORT).show();
     }
 

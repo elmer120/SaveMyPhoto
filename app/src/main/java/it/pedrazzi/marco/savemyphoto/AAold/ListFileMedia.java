@@ -1,14 +1,11 @@
 package it.pedrazzi.marco.savemyphoto.AAold;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import java.util.ArrayList;
 
-import it.pedrazzi.marco.savemyphoto.FileMedia;
+import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
 
 
-public class ListFileMedia extends ArrayList<FileMedia> implements Parcelable{
+public class ListFileMedia extends ArrayList<FileMedia> {
 
     int countIntestazioni=0;
 
@@ -150,69 +147,4 @@ public class ListFileMedia extends ArrayList<FileMedia> implements Parcelable{
 
     public ListFileMedia(){};
 
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.countIntestazioni);
-        dest.writeList(this.indexIntestazioni);
-        dest.writeList(this.nElementiPerIntestazione);
-        //dest.writeSerializable(this.primaryStorage);
-        //dest.writeSerializable(this.secondaryStorage);
-        int size = this.size();
-
-
-        dest.writeInt(size);
-
-        for (int i = 0; i < size; i++) {
-            FileMedia r = this.get(i);
-
-            dest.writeString(r.getPath());
-            dest.writeString(r.getBucket());
-            dest.writeString(r.getMimeType());
-
-        }
-    }
-    private void readFromParcel(Parcel in) {
-        this.clear();
-        // First we have to read the list size
-        int size = in.readInt();
-
-        for (int i = 0; i < size; i++) {
-            FileMedia r = new FileMedia(null,in.readString(),in.readString(), in.readString(), in.readString(),in.readInt(),
-                    in.readInt(),in.readInt(),in.readString(),in.readInt(),in.readInt());
-            this.add(r);
-        }
-    }
-
-
-
-    @SuppressWarnings("unused")
-    protected ListFileMedia(Parcel in) {
-        this();
-        readFromParcel(in);
-        this.countIntestazioni = in.readInt();
-        this.indexIntestazioni = new ArrayList<Integer>();
-        in.readList(this.indexIntestazioni, Integer.class.getClassLoader());
-        this.nElementiPerIntestazione = new ArrayList<Integer>();
-        in.readList(this.nElementiPerIntestazione, Integer.class.getClassLoader());
-        //this.primaryStorage = (File) in.readSerializable();
-        //this.secondaryStorage = (File) in.readSerializable();
-    }
-
-    public static final Creator<ListFileMedia> CREATOR = new Creator<ListFileMedia>() {
-        @Override
-        public ListFileMedia createFromParcel(Parcel source) {
-            return new ListFileMedia(source);
-        }
-
-        @Override
-        public ListFileMedia[] newArray(int size) {
-            return new ListFileMedia[size];
-        }
-    };
 }
