@@ -16,8 +16,11 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
+import it.pedrazzi.marco.savemyphoto.Http.Http;
+import it.pedrazzi.marco.savemyphoto.Http.HttpDownloadAsync;
 import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
 import it.pedrazzi.marco.savemyphoto.R;
 
@@ -75,7 +78,8 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
         String log="";
 
         try {
-            switch (mimeType) {
+            switch (mimeType)
+            {
                 case "video/mp4":
                     anteprima = ThumbnailUtils.createVideoThumbnail(percorsoFile, MediaStore.Video.Thumbnails.MICRO_KIND); //96x96 dp
                     log+="Video";
@@ -113,6 +117,13 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
                         anteprima = BitmapFactory.decodeFile(percorsoFile, opzioniBitmap);
                         log+="NoDatiExif";
                     }
+                    break;
+                case "image/web":
+
+                    Http http =new Http();
+                    // richiesta get
+                    InputStream inputStream=http.Ricevi(media.getPath());
+                    anteprima= BitmapFactory.decodeStream(inputStream,null,opzioniBitmap);
                     break;
             }
 

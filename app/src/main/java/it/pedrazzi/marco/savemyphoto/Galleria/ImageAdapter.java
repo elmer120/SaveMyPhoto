@@ -65,7 +65,7 @@ public class ImageAdapter extends BaseAdapter  {
     {
         FileMedia media=listMedia.get(position);
         ImageViewOverlay imageViewOverlay;
-        
+
         //controllo se esiste già la view e posso riutilizzarla
         if (convertView != null)
         {

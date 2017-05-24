@@ -209,11 +209,10 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
         {
             case R.id.Elimina:
 
-                GetMediaOnServer getMediaOnServer=new GetMediaOnServer(this.nomeUtente,this.idDispositivo);
+                GetMediaOnServer getMediaOnServer=new GetMediaOnServer(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
                 getMediaOnServer.execute();
 
-                //HttpDownloadAsync httpDownloadAsync =new HttpDownloadAsync(this.getContext(),this.nomeUtente,this.idDispositivo);
-                //httpDownloadAsync.execute();
+
 
                 Log.i("ActionMode","Click su elimina");
                 actionMode.finish();

@@ -50,6 +50,7 @@ public class Http {
     {
         this.dBgestione=dBgestione;
     }
+    public Http(){}
 
     public boolean Invia(String nomeUtente, Integer idDispositivo, ArrayList<FileMedia> listMedia)
     {
@@ -188,7 +189,7 @@ public class Http {
         return false;
     }
 
-    public boolean Ricevi(String percorsoServer)
+    public InputStream Ricevi(String linkFoto)
     {
         //Creo l'oggetto url
         URL url = null;
@@ -197,7 +198,7 @@ public class Http {
 
         try
         {
-            url = new URL("http://savemyphoto.gear.host/"+percorsoServer);
+            url = new URL("http://savemyphoto.gear.host/"+linkFoto);
             //istanzio il client
             client = (HttpURLConnection) url.openConnection();
             //imposto il metodo http da utilizzare
@@ -242,21 +243,30 @@ public class Http {
 
 
         //Leggo la risposta dal server
-        switch (LetturaRispostaServer(client))
+        switch (LetturaRispostaServerDownload(client))
         {
 
             case 200:
             {
                 Log.i(this.getClass().getSimpleName(), "Upload ok! Risposta server: 200 OK!");
-                client.disconnect();
-                return true;
+                try
+                {
+                    return client.getInputStream();
+                }
+                catch (IOException e)
+                {
+                    e.printStackTrace();
+                    client.disconnect();
+                }
+
+
             }
         }
 
         //DISCONNESSIONE
         client.disconnect();
 
-        return false;
+        return null;
 
     }
 
@@ -330,12 +340,11 @@ public class Http {
         //Leggo la RISPOSTA dallo stream
 
         int httpCodiceRisposta=0;
-        InputStream inputStream = null;
 
         try
         {
             httpCodiceRisposta=client.getResponseCode();
-            inputStream = client.getInputStream();
+
 
         }
         catch (IOException e)
@@ -344,9 +353,6 @@ public class Http {
             Log.i(this.getClass().getSimpleName(),"Errore! Risposta server: "+httpCodiceRisposta);
             return -1;
         }
-
-
-        Bitmap bm = BitmapFactory.decodeStream(inputStream);
 
         return httpCodiceRisposta;
     }
