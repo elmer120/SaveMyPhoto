@@ -31,10 +31,7 @@ import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
         public HttpDownloadAsync(Context ctx)
         {
             this.ctx=ctx;
-            //this.nomeUtente=nomeUtente;
             this.dBgestione=new DBgestione(ctx);
-            //this.idDispositivo=idDispositivo;
-            //this.listMedia=listMedia;
         }
 
 

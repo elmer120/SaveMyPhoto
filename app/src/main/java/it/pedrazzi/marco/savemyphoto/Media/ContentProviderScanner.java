@@ -124,8 +124,8 @@ public class ContentProviderScanner {
                         Integer altezza    = (heightColumnIndex!=-1)? cursorImage.getInt(heightColumnIndex):null;
                         Integer larghezza  = (widthColumnIndex!=-1) ? cursorImage.getInt(widthColumnIndex):ex.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH,0);
                         String orientamento= (orientationColumnIndex!=-1) ? cursorImage.getString(orientationColumnIndex):ex.getAttribute(ExifInterface.TAG_ORIENTATION);
-                        Integer latitudine= (latitudeColumnIndex!=-1) ? cursorImage.getInt(latitudeColumnIndex):ex.getAttributeInt(ExifInterface.TAG_GPS_LATITUDE,0);
-                        Integer longitudine= (longitudeColumnIndex!=-1) ? cursorImage.getInt(longitudeColumnIndex): ex.getAttributeInt(ExifInterface.TAG_GPS_LONGITUDE,0);
+                        Double latitudine= (latitudeColumnIndex!=-1) ? cursorImage.getDouble(latitudeColumnIndex):ex.getAttributeDouble(ExifInterface.TAG_GPS_LATITUDE,0);
+                        Double longitudine= (longitudeColumnIndex!=-1) ? cursorImage.getDouble(longitudeColumnIndex): ex.getAttributeDouble(ExifInterface.TAG_GPS_LONGITUDE,0);
 
 
                         Long timestamp = cursorImage.getLong(dateColumnIndex);
@@ -213,8 +213,8 @@ public class ContentProviderScanner {
                             Integer dimensione = (sizeColumnIndex!=-1) ?  cursorVideo.getInt(sizeColumnIndex):ex.getAttributeInt(ExifInterface.TAG_IMAGE_LENGTH,0);
                             Integer altezza    = (heightColumnIndex!=-1)? cursorVideo.getInt(heightColumnIndex):null;
                             Integer larghezza  = (widthColumnIndex!=-1) ? cursorVideo.getInt(widthColumnIndex):ex.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH,0);
-                            Integer latitudine= (latitudeColumnIndex!=-1) ? cursorVideo.getInt(latitudeColumnIndex):ex.getAttributeInt(ExifInterface.TAG_GPS_LATITUDE,0);
-                            Integer longitudine= (longitudeColumnIndex!=-1) ? cursorVideo.getInt(longitudeColumnIndex): ex.getAttributeInt(ExifInterface.TAG_GPS_LONGITUDE,0);
+                            Double latitudine= (latitudeColumnIndex!=-1) ? cursorVideo.getDouble(latitudeColumnIndex):ex.getAttributeDouble(ExifInterface.TAG_GPS_LATITUDE,0);
+                            Double longitudine= (longitudeColumnIndex!=-1) ? cursorVideo.getDouble(longitudeColumnIndex): ex.getAttributeDouble(ExifInterface.TAG_GPS_LONGITUDE,0);
 
                             Long timestamp = cursorVideo.getLong(dateColumnIndex);
                             Date dataAquisizione=new Date();

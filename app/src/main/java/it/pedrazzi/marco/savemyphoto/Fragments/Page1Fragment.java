@@ -24,15 +24,12 @@ import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //head
 
 import java.util.ArrayList;
 
-import it.pedrazzi.marco.savemyphoto.Http.HttpDownloadAsync;
 import it.pedrazzi.marco.savemyphoto.Media.Album;
 import it.pedrazzi.marco.savemyphoto.Media.ContentProviderScanner;
 import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
 import it.pedrazzi.marco.savemyphoto.Galleria.ImageAdapter;
 import it.pedrazzi.marco.savemyphoto.Http.HttpUploadAsync;
 import it.pedrazzi.marco.savemyphoto.R;
-import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.RRCArrayOfString;
-import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.RRCWSsaveMyPhotoSoap;
 import it.pedrazzi.marco.savemyphoto.WebService.GetMediaOnServer;
 
 public class Page1Fragment extends Fragment implements StickyGridHeadersGridView.OnItemClickListener, StickyGridHeadersGridView.OnItemLongClickListener,StickyGridHeadersGridView.MultiChoiceModeListener{
@@ -44,6 +41,7 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     ImageAdapter ImageAdapter;
     public static String nomeUtente;
     private int idDispositivo;
+    boolean pulsanteBackup=false;
 
 
 
@@ -135,13 +133,15 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
 
         Toast.makeText(         this.getContext(),
                                 "Nome: "+media.getNome()+
+                                "\n DataAcqu: "+media.getDataAcquisizione()+
                                 "\n MimeType: "+media.getMimeType()+
                                 "\n Dimensione: "+media.getDimensione()+
                                 "\n H: "+media.getAltezza()+
                                 "\n L: "+media.getLarghezza()+
                                 "\n Path: " + media.getPath()+
                                 "\n Orientamento: "+media.getOrientamento()+
-                                "\n Selezionata: " + media.getSelezionata()+
+                                "\n Latitudine: " + media.getLatitudine()+
+                                "\n Longitudine: " + media.getLongitudine()+
                                 "\n Su server: " + media.getSuServer()+
                                 "\n Su dispositivo: " + media.getSuDispositivo(),
                                 Toast.LENGTH_SHORT).show();
@@ -165,14 +165,9 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     @Override
     public void onItemCheckedStateChanged(ActionMode actionMode, int i, long l, boolean state) {
         FileMedia media=this.listMedia.get(i);
-        if(state)
-        {
-            media.setSelezionata(true);
-        }
-        else
-        {
-            media.setSelezionata(false);
-        }
+
+        //seleziono o no il media
+        media.setSelezionata(state);
 
 
         //Imposto titolo dinamicamente
@@ -181,7 +176,7 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
         if(countSelezione==1){titolo=" Selezionata";} else {titolo=" Selezionate";}
         actionMode.setTitle(countSelezione+titolo);
 
-        //notifico all'adapter il cambio della base dati
+        //notifico all'adapter il cambio della base dati cosi evidenzia l'immagine
         ImageAdapter.notifyDataSetChanged();
         Log.i("Evento","onItemCheckedStateChanged");
     }
@@ -198,21 +193,36 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
 
     @Override
     public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        //mostro o no il tasto di backup
+        MenuItem item=menu.findItem(R.id.backup);
+        item.setVisible(pulsanteBackup);
         Log.i("Evento","onPrepareActionMode");
         return false;
     }
 
     @Override
     public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+
+        //se almeno un media non è sul server invalido il l'action mode, che cosi passa ad onPrepareActionMode
+        for (FileMedia media:listMedia)
+        {
+            //se media è selezionato e solo sul dispositivo
+            if (media.getSelezionata())
+            {
+                if(!media.getSuServer())
+                {
+                    actionMode.invalidate();
+                    pulsanteBackup=true;
+                }
+            }
+        }
+
         //ricerco la voce del menu selezionata
         switch (menuItem.getItemId())
         {
             case R.id.Elimina:
-
                 GetMediaOnServer getMediaOnServer=new GetMediaOnServer(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
                 getMediaOnServer.execute();
-
-
 
                 Log.i("ActionMode","Click su elimina");
                 actionMode.finish();
@@ -224,7 +234,7 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
                 //recupero la lista di elementi selezionati e li invio
 
                 final ArrayList<FileMedia> elementiSelezionati=new ArrayList<FileMedia>();
-                Integer elementiGiaSuServer=0;
+
                 for (FileMedia media:listMedia)
                 {
                     //se l'elemento è selezionato
@@ -237,19 +247,10 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
                             elementiSelezionati.add(media);
 
                         }
-                        else //se è già su server
-                        {
-                            elementiGiaSuServer++;
-                        }
                     }
 
                 }
-                //informo l'utente della quantita di elementi già su server
-                if(elementiGiaSuServer>0)
-                {
-                    //TODO toast non funziona
-                    Toast.makeText(this.getContext(),"Impossibile eseguire l'upload di "+elementiGiaSuServer.toString()+"media \n risultano già presenti su cloud!",Toast.LENGTH_SHORT);
-                }
+
                 //invio
                 HttpUploadAsync httpMultipartAsync=new HttpUploadAsync(this.getContext(),this.nomeUtente,this.idDispositivo);
                 httpMultipartAsync.execute(elementiSelezionati);

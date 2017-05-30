@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
 import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
-import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.RRCWSsaveMyPhotoSoap;
+import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.RVKWSsaveMyPhotoSoap;
 
 
 /**
@@ -405,7 +405,7 @@ public class Http {
     {
     for (FileMedia media:listmedia)
     {
-        RRCWSsaveMyPhotoSoap service=new RRCWSsaveMyPhotoSoap();
+        RVKWSsaveMyPhotoSoap service=new RVKWSsaveMyPhotoSoap();
         service.enableLogging=true;
         boolean risultato= false;
         try {

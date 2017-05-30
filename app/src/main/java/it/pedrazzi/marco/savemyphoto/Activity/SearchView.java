@@ -108,8 +108,7 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
             }
         };
         // Aggiungo 3 tab, specifico il testo, e il Listener
-        //TODO usare strings.xml
-        String[] nomiTab={"Foto","WhatsApp","Altro"};
+        String[] nomiTab=getResources().getStringArray(R.array.tab);
         for (int i = 0; i < nomiTab.length; i++) {
             actionBar.addTab(
                     actionBar.newTab()

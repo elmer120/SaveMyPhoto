@@ -2564,10 +2564,6 @@ containing a value of this type.
         public static final int AlertDialog_AppCompat_Light=0x7f08009a;
         public static final int Animation_AppCompat_Dialog=0x7f08009b;
         public static final int Animation_AppCompat_DropDownUp=0x7f08009c;
-        /**  actionBar sovrapposta
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="windowActionBarOverlay">true</item>
-         */
         public static final int AppTheme=0x7f08009d;
         public static final int AppTheme_AppBarOverlay=0x7f08009e;
         public static final int AppTheme_NoActionBar=0x7f08003a;

@@ -3,36 +3,41 @@ package it.pedrazzi.marco.savemyphoto.Galleria;
 import android.graphics.Bitmap;
 import android.util.LruCache;
 
-public class MemoryCachePhoto {//TODO Rivedere e Commentare!!!
+public class MemoryCachePhoto
+{
 
-    // Set how much memory is reserved for the cache of the images
-    private final static double PERC = 0.2;
+    private final static double PERC = 0.2; //Impostare quanta memoria viene riservata alla cache dei media
     private LruCache<Long, Bitmap> mMemoryCache;
 
-    public MemoryCachePhoto() {
-        // Get max available VM memory, exceeding this amount will throw an
-        // OutOfMemory exception. Stored in kilobytes as LruCache takes an
-        // int in its constructor.
+    public MemoryCachePhoto()
+    {
+        // Ottiene la massima disponibilità di memoria dalla virtual machine,
+        // se viene superata viene lanciata un eccezione che viene gestita dalla classe Lrucache
         final int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
 
         final int cacheSize = (int) (maxMemory * PERC);
 
-        mMemoryCache = new LruCache<Long, Bitmap>(cacheSize) {
+        mMemoryCache = new LruCache<Long, Bitmap>(cacheSize)
+        {
             @Override
-            protected int sizeOf(Long key, Bitmap bitmap) {
-                // The cache size will be measured in kilobytes rather than
-                // number of items.
+            protected int sizeOf(Long key, Bitmap bitmap)
+            {
                 return bitmap.getByteCount() / 1024;
             }
         };
     }
 
-    public Bitmap get(long lng) {
+    //ritorna la bitmap dalla cache
+    public Bitmap get(long lng)
+    {
         return mMemoryCache.get(lng);
     }
 
-    public void put(Long lng, Bitmap bitmap) {
-        if (get(lng) == null) {
+    //mette un bitmap nella cache
+    public void put(Long lng, Bitmap bitmap)
+    {
+        if (get(lng) == null)
+        {
             mMemoryCache.put(lng, bitmap);
         }
     }

@@ -53,11 +53,11 @@ public class FileMedia implements Parcelable{
         return orientamento;
     }
 
-    public Integer getLatitudine() {
+    public Double getLatitudine() {
         return latitudine;
     }
 
-    public Integer getLongitudine() {
+    public Double getLongitudine() {
         return longitudine;
     }
 
@@ -85,8 +85,8 @@ public class FileMedia implements Parcelable{
     private Integer altezza;
     private Integer larghezza;
     private String orientamento;
-    private Integer latitudine;
-    private Integer longitudine;
+    private Double latitudine;
+    private Double longitudine;
     private Integer dimensione;
     private Boolean suServer;
     private Boolean suDispositivo;
@@ -94,9 +94,9 @@ public class FileMedia implements Parcelable{
     private boolean selezionata=false;
 
 
-    public FileMedia(Date dataAcquisizione,String path,String nome,String bucket,String mimeType,
-                     Integer dimensione,Integer altezza,Integer larghezza,String orientamento,
-                     Integer latitudine,Integer longitudine,Boolean suServer,Boolean suDispositivo){
+    public FileMedia(Date dataAcquisizione, String path, String nome, String bucket, String mimeType,
+                     Integer dimensione, Integer altezza, Integer larghezza, String orientamento,
+                     Double latitudine, Double longitudine, Boolean suServer, Boolean suDispositivo){
         super();
 
         this.path=path;

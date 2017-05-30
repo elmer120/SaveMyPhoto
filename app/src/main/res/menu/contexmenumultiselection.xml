@@ -13,7 +13,8 @@
                 android:icon="@drawable/ic_menu_file_delete"/>
             <item android:id="@+id/backup"
                 android:title="Backup su Server"
-                android:icon="@drawable/ic_menu_file_upload"/>
+                android:icon="@drawable/ic_menu_file_upload"
+                android:visible="false"/>
         </menu>
     </item>
 

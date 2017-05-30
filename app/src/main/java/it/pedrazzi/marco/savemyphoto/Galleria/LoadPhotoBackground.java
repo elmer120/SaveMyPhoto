@@ -71,10 +71,11 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
         FileMedia media=params[0];
         String mimeType = media.getMimeType();
         String percorsoFile = media.getPath();
-        Bitmap anteprima = Bitmap.createBitmap(200, 200, Bitmap.Config.ALPHA_8);
+        Bitmap anteprima = Bitmap.createBitmap(200, 200, Bitmap.Config.RGB_565);
         BitmapFactory.Options opzioniBitmap = null;
         opzioniBitmap = new BitmapFactory.Options();
-        opzioniBitmap.inPreferredConfig = Bitmap.Config.RGB_565; //TODO verificare codifica foto
+        //codifica più leggera ogni pixel 2 byte
+        opzioniBitmap.inPreferredConfig = Bitmap.Config.RGB_565;
         String log="";
 
         try {
@@ -123,15 +124,22 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
                     Http http =new Http();
                     // richiesta get
                     InputStream inputStream=http.Ricevi(media.getPath());
-                    anteprima= BitmapFactory.decodeStream(inputStream,null,opzioniBitmap);
-                    break;
+                    Log.i(this.getClass().getSimpleName(),""+inputStream.available());
+
+                    if(inputStream!=null) {
+                        anteprima = BitmapFactory.decodeStream(inputStream, null, opzioniBitmap);
+                    }
+                        break;
             }
 
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             e.printStackTrace();
+
+
         }
 
-        Log.d("Immagine scalata: ", "H: " + anteprima.getHeight() + " W: " + anteprima.getWidth()+" "+log);
+        //Log.d("Immagine scalata: ", "H: " + anteprima.getHeight() + " W: " + anteprima.getWidth()+" "+log);
 
 
         //se il media è su server aggiungo l'icona
