@@ -25,6 +25,10 @@ public class ImageAdapter extends BaseAdapter  {
 
     private Context ctx;
 
+    public MemoryCachePhoto getCachePhoto() {
+        return cachePhoto;
+    }
+
     private MemoryCachePhoto cachePhoto=new MemoryCachePhoto(); //istanzio classe cache per velocizzare caricamento foto
 
     private ArrayList<FileMedia> listMedia; //recupero img da caricare
@@ -58,6 +62,21 @@ public class ImageAdapter extends BaseAdapter  {
     public void registerDataSetObserver(DataSetObserver observer)
     {
         super.registerDataSetObserver(observer);
+    }
+
+    @Override
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+        super.unregisterDataSetObserver(observer);
+    }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
+
+    @Override
+    public void notifyDataSetInvalidated() {
+        super.notifyDataSetInvalidated();
     }
 
     // crea un imageview per ogni view della gridview

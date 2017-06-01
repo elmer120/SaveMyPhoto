@@ -30,7 +30,7 @@
         android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
 
         <!-- service per sincronizzare i media -->
-        <service android:name="it.pedrazzi.marco.savemyphoto.Http.testService" />
+
 
         <!-- Scelta accesso -->
         <activity

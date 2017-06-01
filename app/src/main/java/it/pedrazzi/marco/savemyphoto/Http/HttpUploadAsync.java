@@ -42,11 +42,11 @@ public class HttpUploadAsync extends AsyncTask<ArrayList<FileMedia>,Void,Boolean
         super.onPostExecute(aBoolean);
         if(aBoolean)
         {
-            Toast.makeText(this.ctx,"Upload media terminato con successo!",Toast.LENGTH_SHORT);
+            Toast.makeText(this.ctx,"Upload media terminato con successo!",Toast.LENGTH_SHORT).show();
         }
         else
         {
-            Toast.makeText(this.ctx,"Upload media fallito!",Toast.LENGTH_SHORT);
+            Toast.makeText(this.ctx,"Upload media fallito!",Toast.LENGTH_SHORT).show();
         }
     }
 

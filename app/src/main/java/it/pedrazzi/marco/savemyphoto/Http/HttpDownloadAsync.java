@@ -53,11 +53,11 @@ import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
             super.onPostExecute(inputStream);
             if(inputStream!=null)
             {
-                Toast.makeText(this.ctx,"Download media terminato con successo!",Toast.LENGTH_SHORT);
+                Toast.makeText(this.ctx,"Download media terminato con successo!",Toast.LENGTH_SHORT).show();
             }
             else
             {
-                Toast.makeText(this.ctx,"Download media fallito!",Toast.LENGTH_SHORT);
+                Toast.makeText(this.ctx,"Download media fallito!",Toast.LENGTH_SHORT).show();
             }
         }
 

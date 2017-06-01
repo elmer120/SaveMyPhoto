@@ -20,10 +20,10 @@ public class ConnectionCheckReceiver extends BroadcastReceiver {
 
     //all'evento di sistema
     @Override
-    public void onReceive(Context context, Intent intent)
+    public void onReceive(Context ctx, Intent intent)
     {
 
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo retiAttive = connectivityManager.getActiveNetworkInfo();
 
         //se ci sono reti attive
@@ -44,11 +44,13 @@ public class ConnectionCheckReceiver extends BroadcastReceiver {
         else
         {
             Log.i("ConnectionCheck: ", "Nessuna connessione rilevata!");
+            Toast.makeText(ctx,"Attenzione connessione assente!",Toast.LENGTH_LONG).show();
+            Log.i("ctx",ctx.getPackageCodePath());
 
         }
 
 
-        //TODO il context deve essere quello del fragment
-        //Toast.makeText(context,"Connessione cambiata!",Toast.LENGTH_LONG);
+
+
     }
 }

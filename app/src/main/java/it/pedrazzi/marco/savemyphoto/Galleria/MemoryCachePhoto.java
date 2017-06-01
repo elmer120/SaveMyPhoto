@@ -29,6 +29,7 @@ public class MemoryCachePhoto
 
     //ritorna la bitmap dalla cache
     public Bitmap get(long lng)
+
     {
         return mMemoryCache.get(lng);
     }
@@ -40,6 +41,11 @@ public class MemoryCachePhoto
         {
             mMemoryCache.put(lng, bitmap);
         }
+    }
+
+    public void Clear()
+    {
+        mMemoryCache.evictAll();
     }
 
 }

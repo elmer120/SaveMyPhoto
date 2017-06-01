@@ -1639,6 +1639,13 @@
         <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
     </style><style name="FullscreenActionBarStyle" parent="android:Widget.Holo.ActionBar">
         <item name="android:background">@color/black_overlay</item>
+    </style><style name="MyAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        
+        <item name="colorAccent">#FFC107</item>
+        
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        
+        <item name="android:background">#4CAF50</item>
     </style></file><file path="C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\res\values-v21\strings.xml" qualifiers="v21"><string name="mantieniAccesso">Mantieni accesso</string><string name="upload">Upload to Server</string></file><file path="C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\res\values-v21\styles.xml" qualifiers="v21"><style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
