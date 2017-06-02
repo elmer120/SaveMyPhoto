@@ -2,12 +2,14 @@ package it.pedrazzi.marco.savemyphoto.Http;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
 import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
+import it.pedrazzi.marco.savemyphoto.R;
 
 
 //classe asincrona per invia i media al server
@@ -19,12 +21,27 @@ public class HttpUploadAsync extends AsyncTask<ArrayList<FileMedia>,Void,Boolean
     private Http http;
     private int idDispositivo;
 
+
     public HttpUploadAsync(Context ctx, String nomeUtente, int idDispositivo)
     {
         this.ctx=ctx;
         this.nomeUtente=nomeUtente;
         this.dBgestione=new DBgestione(ctx);
         this.idDispositivo=idDispositivo;
+    }
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+
+       //TODO notifica non funziona
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this.ctx)
+                        .setSmallIcon(R.drawable.ic_menu_file_upload)
+                        .setContentTitle("Upload in corso!")
+                        .setContentText("Hello World!");
+        mBuilder.setShowWhen(true);
+
     }
 
     @Override
@@ -42,6 +59,7 @@ public class HttpUploadAsync extends AsyncTask<ArrayList<FileMedia>,Void,Boolean
         super.onPostExecute(aBoolean);
         if(aBoolean)
         {
+
             Toast.makeText(this.ctx,"Upload media terminato con successo!",Toast.LENGTH_SHORT).show();
         }
         else

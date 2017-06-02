@@ -65,7 +65,7 @@ public class Page2Fragment extends Fragment {
         super.onStart();
         this.gridView=(GridView)getView().findViewById(R.id.gridview2);
         this.gridView.setAdapter(new ImageAdapter(getContext(),listMedia,placeholder));
-        /*this.gridHeadersGridView=(StickyGridHeadersGridView)getView().findViewById(R.id.gridviewWithHeaders);
-        this.gridHeadersGridView.setAdapter(new ImageAdapter(getContext(), listMedia, placeholder));*/
+        /*this.gridView=(StickyGridHeadersGridView)getView().findViewById(R.id.gridviewWithHeaders);
+        this.gridView.setAdapter(new ImageAdapter(getContext(), listMedia, placeholder));*/
     }
 }

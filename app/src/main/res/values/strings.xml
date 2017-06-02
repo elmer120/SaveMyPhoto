@@ -29,8 +29,13 @@
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
 
-
+<!--menuActionMode-->
+    <string name="menuActionMode">Menu Action Mode</string>
+    <string name="eliminaCopiaDisp">Elimina copia dispositivo</string>
+    <string name="elimina">Elimina</string>
     <string name="upload">Upload to Server</string>
+
+
 
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_login">Accedi</string>

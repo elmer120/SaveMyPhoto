@@ -49,14 +49,14 @@ public class ImageViewOverlay extends android.support.v7.widget.AppCompatImageVi
         if (suServer)
         {
             //rendo il bitmap mutabile
-            this.iconaServer = iconaServer.copy(Bitmap.Config.ARGB_8888, true);
+            this.iconaServer = iconaServer.copy(Bitmap.Config.RGB_565, true);
             canvas.drawBitmap(iconaServer, this.getPaddingLeft()+this.iconaServer.getHeight(),(this.getHeight()-this.iconaServer.getHeight()), null);
 
         }
         if(suDipositivo)
         {
             //rendo il bitmap mutabile
-            this.iconaDispositivo = iconaDispositivo.copy(Bitmap.Config.ARGB_8888, true);
+            this.iconaDispositivo = iconaDispositivo.copy(Bitmap.Config.RGB_565, true);
             canvas.drawBitmap(iconaDispositivo, this.getPaddingLeft(),(this.getHeight()-this.iconaDispositivo.getHeight()), null);
 
         }

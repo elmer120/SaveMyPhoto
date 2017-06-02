@@ -8,15 +8,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-
 import android.widget.Toast;
 import com.lalosoft.easypermission.RegisterPermission; //permessi x android >V5
-import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //headers gridview
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 import it.pedrazzi.marco.savemyphoto.ConnectionCheckReceiver;
-import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
 import it.pedrazzi.marco.savemyphoto.Fragments.Page1Fragment;
 import it.pedrazzi.marco.savemyphoto.Fragments.Page2Fragment;
 import it.pedrazzi.marco.savemyphoto.Fragments.Page3Fragment;
@@ -27,10 +23,6 @@ import it.pedrazzi.marco.savemyphoto.R;
 
 public class SearchView extends FragmentActivity implements ActivityCompat.OnRequestPermissionsResultCallback,Page1Fragment.OnPageListener {
 
-
-    private ArrayList<FileMedia> listCamera;
-    private ArrayList<FileMedia> listWhatApp;
-    private StickyGridHeadersGridView gridHeadersGridView;
     private IntentFilter filter;
     private ConnectionCheckReceiver connectionCheckReceiver;
 
@@ -75,7 +67,7 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
         viewPager.setAdapter(this.mPagerAdapter);
 
         //SimpleOnPageChangeListener in ascolto al cambio pagina cambia anche la selezione dei tab
-        viewPager.setOnPageChangeListener(
+        viewPager.addOnPageChangeListener(
                 new ViewPager.SimpleOnPageChangeListener() {
                     @Override
                     public void onPageSelected(int position) {
@@ -112,16 +104,6 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
                             .setText(nomiTab[i])
                             .setTabListener(tabListener));
         }
-
-    }
-
-
-    //listener degli eventi dei fragment
-    @Override
-    public void onPage1(String s)
-    {
-
-        Toast.makeText(this, s + "", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -169,15 +151,22 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
         //Toast.makeText(this, "ON DESTROY", Toast.LENGTH_SHORT).show();
     }
 
-
     @Override //invocato alla ripresa dalla sospensione 1°
     protected void onRestart() {
         super.onRestart();
         //Toast.makeText(this, "ON RESTART", Toast.LENGTH_SHORT).show();
     }
 
+    //listener degli eventi dei fragment
+    @Override
+    public void onPage1(String s)
+    {
 
+        Toast.makeText(this, s + "", Toast.LENGTH_SHORT).show();
 
+    }
+
+//TODO ripristinare permessi>android 5
     /* Permessi runTime android 6 marshmallow da libreria esterna
     @Override
     public void onRequestPermissionGranted(String[] permission, int[] grantResults) {

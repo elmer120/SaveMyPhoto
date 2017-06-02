@@ -22,7 +22,7 @@ public class DBgestione {
         dbddl=new DBddl(ctx);
     }
 
-    //registra nuovo utente e dispositivo in locale
+    //registra nuovo utente e dispositivo in locale per consentire un successivo accesso offline
     public boolean RegistrazioneDbLocale(String nomeUtente,String mail,String password,Integer idDispostivo,String marca,String modello,String versioneAndroid,int spazioLibero) throws SQLiteException {
 
         //scrittura lettura su db
@@ -34,6 +34,7 @@ public class DBgestione {
         cv.put(DbString.tbUtenti.Mail, mail);
         cv.put(DbString.tbUtenti.Password, password);
         //TODO datanascita mancante!!!!
+        //TODO MD5?
         //cv.put(DbString.tbUtenti.DataNascita, );
 
         long idUtente = db.insert(DbString.tbUtenti.tbNome, null, cv);
@@ -79,6 +80,7 @@ public class DBgestione {
 
     public int getIdDispositivo(String nomeUtente)
     {
+        //TODO serve proprio tutto??
         //lettura su db
         SQLiteDatabase db=dbddl.getReadableDatabase();
         Cursor cursor=null;
@@ -127,7 +129,7 @@ public class DBgestione {
             cv.put(DbString.tbMedia.Orientamento, media.getOrientamento());
             cv.put(DbString.tbMedia.GpsLat, media.getLatitudine());
             cv.put(DbString.tbMedia.GpsLong,media.getLongitudine());
-            cv.put(DbString.tbMedia.Server,0);
+            cv.put(DbString.tbMedia.Server,1);
             cv.put(DbString.tbMedia.FKDispositivo,0);
 
             //TODO se il record esiste già?
@@ -149,6 +151,7 @@ public class DBgestione {
 
     public boolean CheckMedia(String nomeMedia)
     {
+        //TODO ottimizzare l'apertura in lettura in quanto rallenta di molto l'apertura della galleria
         //lettura su db
         SQLiteDatabase db=dbddl.getReadableDatabase();
         Cursor cursor=null;
@@ -169,6 +172,7 @@ public class DBgestione {
     }
 
     //svuota il db
+    //TODO si può cancellare
     public boolean delete(long id)
     {
         SQLiteDatabase db=dbddl.getWritableDatabase();

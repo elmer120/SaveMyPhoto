@@ -5,10 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
@@ -168,6 +170,7 @@ public class Http {
                     //aggiungo i record sul db remoto
                     if(AggiungiMediaDbRemoto(listMedia,nomeUtente,idDispositivo))
                     {
+                        //aggiungo il media nel db locale
                         if(this.dBgestione.SyncListMedia(listMedia))
                         {
                             //imposto che il media è sul server
@@ -189,7 +192,7 @@ public class Http {
         return false;
     }
 
-    public InputStream Ricevi(String linkFoto)
+    public byte[] Ricevi(String linkFoto)
     {
         //Creo l'oggetto url
         URL url = null;
@@ -251,7 +254,14 @@ public class Http {
                 Log.i(this.getClass().getSimpleName(), "Upload ok! Risposta server: 200 OK!");
                 try
                 {
-                    return client.getInputStream();
+                    InputStream inputStream=client.getInputStream();
+                    ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+                    int nRead;
+                    byte[] data = new byte[1024];
+                    while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
+                        buffer.write(data, 0, nRead);
+                    }
+                    return buffer.toByteArray();
                 }
                 catch (IOException e)
                 {
@@ -344,8 +354,6 @@ public class Http {
         try
         {
             httpCodiceRisposta=client.getResponseCode();
-
-
         }
         catch (IOException e)
         {
@@ -361,7 +369,6 @@ public class Http {
     {
         Log.i(this.getClass().getSimpleName(), "Attendo risposta dal server..");
         //Leggo la RISPOSTA dallo stream
-        byte[] rawlettura = new byte[2048];
         int i;
         String buffer="-";
         int httpCodiceRisposta=0;

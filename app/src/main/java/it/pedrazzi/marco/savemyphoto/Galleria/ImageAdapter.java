@@ -170,25 +170,4 @@ public class ImageAdapter extends BaseAdapter  {
         }
     }
 
-
-
-    /*  //TODO cancellare stycky grid view
-    @Override //quanti elementi per ogni intestazione "i" parametro è l'intestazione ennesima
-    public int getCountForHeader(int i) {
-        //return  listFileMedia.nElementiPerIntestazione.get(i);
-        return 0;
-    }
-
-    @Override //totale delle intestazioni
-    public int getNumHeaders() {
-        //return listFileMedia.countIntestazioni;
-        return 0;
-    }
-
-    @Override  //tipo di intestazione
-    public View getHeaderView(int i, View view, ViewGroup viewGroup) {
-
-        return view;
-    }
-*/
 }

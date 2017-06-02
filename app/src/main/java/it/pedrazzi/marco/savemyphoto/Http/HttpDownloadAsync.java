@@ -12,7 +12,7 @@ import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
 
 
     //classe asincrona per invia i media al server
-    public class HttpDownloadAsync extends AsyncTask<String,Void,InputStream> {
+    public class HttpDownloadAsync extends AsyncTask<String,Void,byte[]> {
 
         //private String nomeUtente;
         private Context ctx;
@@ -36,7 +36,7 @@ import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
 
 
         @Override
-        protected InputStream doInBackground(String... strings) {
+        protected byte[] doInBackground(String... strings) {
 
             //TODO per implementare i progressi del upload usare publicProgress
             http =new Http(this.dBgestione);
@@ -48,10 +48,10 @@ import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
         }
 
         @Override
-        protected void onPostExecute(InputStream inputStream)
+        protected void onPostExecute(byte[] arrayByte)
         {
-            super.onPostExecute(inputStream);
-            if(inputStream!=null)
+            super.onPostExecute(arrayByte);
+            if(arrayByte!=null)
             {
                 Toast.makeText(this.ctx,"Download media terminato con successo!",Toast.LENGTH_SHORT).show();
             }

@@ -123,11 +123,19 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
 
                     Http http =new Http();
                     // richiesta get
-                    InputStream inputStream=http.Ricevi(media.getPath());
-                    Log.i(this.getClass().getSimpleName(),""+inputStream.available());
+                    byte[] arrayByte=http.Ricevi(media.getPath());
+                    Log.i(this.getClass().getSimpleName(),""+arrayByte.length);
 
-                    if(inputStream!=null) {
-                        anteprima = BitmapFactory.decodeStream(inputStream, null, opzioniBitmap);
+                    if(arrayByte!=null) {
+                        opzioniBitmap.inJustDecodeBounds = true;
+                        //estraggo solamente le dimensioni
+                        anteprima = BitmapFactory.decodeByteArray(arrayByte, 0, arrayByte.length,opzioniBitmap);
+                        //Calcolo il corretto fattore di ridimensionamento
+                        opzioniBitmap.inSampleSize = calculateInSampleSize(opzioniBitmap);
+                        opzioniBitmap.inJustDecodeBounds = false;
+                        //ora decodifico
+                        anteprima = BitmapFactory.decodeByteArray(arrayByte, 0, arrayByte.length,opzioniBitmap);
+
                     }
                         break;
             }
@@ -139,41 +147,9 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
 
         }
 
-        //Log.d("Immagine scalata: ", "H: " + anteprima.getHeight() + " W: " + anteprima.getWidth()+" "+log);
-
-
-        //se il media è su server aggiungo l'icona
-        if(media.getSuServer())
-        {
-
-           // float top=anteprima.getHeight()-(iconaSuServer.getHeight());
-           // float left=48;
-           // anteprima=disegnaIcone(anteprima,iconaSuServer,left,top);
-
-        }
-        if(media.getSuDispositivo())
-        {
-            //float top=anteprima.getHeight()-(iconaSuServer.getHeight()*4);
-            //float left=10;
-            //anteprima=disegnaIcone(anteprima,iconaSuDispositivo,left,top);
-        }
+        //Log.i("Immagine scalata: ", "H: " + anteprima.getHeight() + " W: " + anteprima.getWidth()+" "+log);
         return anteprima;
     }
-
-    //disegna le icone sull'anteprima
-    private Bitmap disegnaIcone(Bitmap anteprima,Bitmap icona,float left,float top) {
-
-        //rendo l'anteprima un bitmap mutabile
-        anteprima=anteprima.copy(Bitmap.Config.ARGB_8888, true);
-
-        Canvas canvas = new Canvas(anteprima);
-        Paint paint=new Paint();
-        canvas.drawBitmap(icona, left,top, null);
-
-        return anteprima;
-    }
-
-
 
     @Override    //da guida google
     protected void onPostExecute(Bitmap bitmap) {

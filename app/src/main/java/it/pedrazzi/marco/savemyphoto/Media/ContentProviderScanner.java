@@ -98,7 +98,8 @@ public class ContentProviderScanner {
                 cursorImage.moveToPosition(i);
 
                 //estraggo il persorso assoluto del media
-                String path = (pathColumnIndex != -1) ? cursorImage.getString(pathColumnIndex):null;
+                /*String path = (pathColumnIndex != -1) ? cursorImage.getString(pathColumnIndex):null;*/
+                String path = cursorImage.getString(pathColumnIndex);
                 File file=new File(path);
 
                     //se il file esiste
@@ -113,7 +114,7 @@ public class ContentProviderScanner {
                             e.printStackTrace();
                             Log.i("Exif interface","non trovata");
                         }
-
+/*
                         //estraggo le informazioni del media
                         //operatore ternario
                         //se colonna esiste assegno il suo valore alla variabile altrimenti assegno alla variabile il valore dell'interfaccia exif o null
@@ -126,6 +127,17 @@ public class ContentProviderScanner {
                         String orientamento= (orientationColumnIndex!=-1) ? cursorImage.getString(orientationColumnIndex):ex.getAttribute(ExifInterface.TAG_ORIENTATION);
                         Double latitudine= (latitudeColumnIndex!=-1) ? cursorImage.getDouble(latitudeColumnIndex):ex.getAttributeDouble(ExifInterface.TAG_GPS_LATITUDE,0);
                         Double longitudine= (longitudeColumnIndex!=-1) ? cursorImage.getDouble(longitudeColumnIndex): ex.getAttributeDouble(ExifInterface.TAG_GPS_LONGITUDE,0);
+*/
+
+                        String bucket = cursorImage.getString(dirColumnIndex);
+                        String nome   = cursorImage.getString(nameColumnIndex);
+                        String mimeType= cursorImage.getString(mimeColumnIndex);
+                        Integer dimensione = cursorImage.getInt(sizeColumnIndex);
+                        Integer altezza    = cursorImage.getInt(heightColumnIndex);
+                        Integer larghezza  = cursorImage.getInt(widthColumnIndex);
+                        String orientamento= cursorImage.getString(orientationColumnIndex);
+                        Double latitudine=  cursorImage.getDouble(latitudeColumnIndex);
+                        Double longitudine= cursorImage.getDouble(longitudeColumnIndex);
 
 
                         Long timestamp = cursorImage.getLong(dateColumnIndex);
@@ -187,7 +199,8 @@ public class ContentProviderScanner {
                     cursorVideo.moveToPosition(i);
 
                     //estraggo il path del media
-                    String path = (pathColumnIndex!=-1)?cursorVideo.getString(pathColumnIndex):null;
+                    //String path = (pathColumnIndex!=-1)?cursorVideo.getString(pathColumnIndex):null;
+                    String path = cursorVideo.getString(pathColumnIndex);
                     File file=new File(path);
 
                         //il file esiste?
@@ -204,6 +217,7 @@ public class ContentProviderScanner {
                                 Log.i("Exif interface","non trovata");
                             }
 
+                            /*
                             //estraggo le informazioni del media
                             //operatore ternario
                             //se colonna esiste assegno il suo valore alla variabile altrimenti assegno alla variabile il valore dell'interfaccia exif o null
@@ -215,6 +229,18 @@ public class ContentProviderScanner {
                             Integer larghezza  = (widthColumnIndex!=-1) ? cursorVideo.getInt(widthColumnIndex):ex.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH,0);
                             Double latitudine= (latitudeColumnIndex!=-1) ? cursorVideo.getDouble(latitudeColumnIndex):ex.getAttributeDouble(ExifInterface.TAG_GPS_LATITUDE,0);
                             Double longitudine= (longitudeColumnIndex!=-1) ? cursorVideo.getDouble(longitudeColumnIndex): ex.getAttributeDouble(ExifInterface.TAG_GPS_LONGITUDE,0);
+
+                            */
+
+                            String bucket = cursorVideo.getString(dirColumnIndex);
+                            String nome   = cursorVideo.getString(nameColumnIndex);
+                            String mimeType= cursorVideo.getString(mimeColumnIndex);
+                            Integer dimensione = cursorVideo.getInt(sizeColumnIndex);
+                            Integer altezza    = cursorVideo.getInt(heightColumnIndex);
+                            Integer larghezza  = cursorVideo.getInt(widthColumnIndex);
+                            String orientamento= cursorVideo.getString(orientationColumnIndex);
+                            Double latitudine=  cursorVideo.getDouble(latitudeColumnIndex);
+                            Double longitudine= cursorVideo.getDouble(longitudeColumnIndex);
 
                             Long timestamp = cursorVideo.getLong(dateColumnIndex);
                             Date dataAquisizione=new Date();
@@ -268,7 +294,6 @@ public class ContentProviderScanner {
                 MediaStore.Images.Media.LATITUDE,
                 MediaStore.Images.Media.LONGITUDE};
 
-
         //definisco l'ordine del interrogazione
         final String orderBy = MediaStore.Images.Media.BUCKET_DISPLAY_NAME+" and "+MediaStore.Images.Media.DATE_TAKEN+ " DESC";
 
@@ -289,8 +314,6 @@ public class ContentProviderScanner {
         Log.i("Tot immagini "+where+": ", ""+cursor.getCount());
         return cursor;
     }
-
-
 
     private Cursor searchVideo(String where)
     {
@@ -326,13 +349,15 @@ public class ContentProviderScanner {
         return cursor;
     }
 
+
     private ArrayList<FileMedia> OrderList(ArrayList<FileMedia> list)
     {
         Collections.sort(list, new Comparator<FileMedia>() {
             @Override
             public int compare(FileMedia fileMedia1, FileMedia fileMedia2)
             {
-                return  fileMedia1.compareTo(fileMedia2);
+                Log.i("compare",fileMedia1.compareTo(fileMedia2)+"");
+                return fileMedia1.compareTo(fileMedia2);
             }
         });
         return list;

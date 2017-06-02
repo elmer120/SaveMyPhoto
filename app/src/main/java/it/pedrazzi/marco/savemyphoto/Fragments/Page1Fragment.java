@@ -2,15 +2,12 @@ package it.pedrazzi.marco.savemyphoto.Fragments;
 
 import android.app.Activity;
 import android.content.DialogInterface;
-import android.database.DataSetObservable;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.view.ContextThemeWrapper;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
@@ -19,6 +16,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
@@ -27,6 +25,7 @@ import android.widget.Toast;
 
 import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //headers gridview
 
+import java.io.File;
 import java.util.ArrayList;
 
 import it.pedrazzi.marco.savemyphoto.Media.Album;
@@ -35,11 +34,12 @@ import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
 import it.pedrazzi.marco.savemyphoto.Galleria.ImageAdapter;
 import it.pedrazzi.marco.savemyphoto.Http.HttpUploadAsync;
 import it.pedrazzi.marco.savemyphoto.R;
-import it.pedrazzi.marco.savemyphoto.WebService.GetMediaOnServer;
+import it.pedrazzi.marco.savemyphoto.WebService.AggiornaMediaAsync;
+import it.pedrazzi.marco.savemyphoto.WebService.GetMediaOnServerAsync;
 
-public class Page1Fragment extends Fragment implements StickyGridHeadersGridView.OnItemClickListener, StickyGridHeadersGridView.OnItemLongClickListener,StickyGridHeadersGridView.MultiChoiceModeListener{
+public class Page1Fragment extends Fragment implements GridView.OnItemClickListener, AbsListView.MultiChoiceModeListener{
 
-    public static GridView gridHeadersGridView;
+    public static GridView gridView;
     public static ArrayList<FileMedia> listMedia;
     public static Bitmap placeholder;
     public ContentProviderScanner contentProviderScanner;
@@ -47,7 +47,7 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     public static String nomeUtente;
     private int idDispositivo;
     boolean pulsanteBackup;
-
+    boolean eliminazioneDefinitiva;
 
 
    /*segnala il momento in cui il Fragment scopre l’Activity di appartenenza.
@@ -77,6 +77,7 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
 
         //visualizzo l'options menu
         setHasOptionsMenu(true);
+
         return view;
     }
 
@@ -102,11 +103,10 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
         this.nomeUtente = this.getArguments().getString("nomeUtente");
         this.idDispositivo = this.getArguments().getInt("idDispositivo");
 
+        //creo la base dati per la gridview
         this.contentProviderScanner=new ContentProviderScanner(this.getContext());
         this.listMedia=contentProviderScanner.getListMedia(Album.Camera,true);
         this.placeholder= BitmapFactory.decodeResource(this.getResources(), R.drawable.placeholder);
-
-
     }
 
     /**
@@ -115,13 +115,16 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     @Override
     public void onStart() {
         super.onStart();
-        this.gridHeadersGridView=(GridView)getView().findViewById(R.id.gridviewWithHeaders);
+        //recupero la gridview
+        this.gridView =(GridView)getView().findViewById(R.id.gridviewFragment1);
         this.ImageAdapter =new ImageAdapter(getContext(), listMedia, placeholder);
-        this.gridHeadersGridView.setAdapter(ImageAdapter);
-        gridHeadersGridView.setOnItemClickListener(this);
-        gridHeadersGridView.setMultiChoiceModeListener(this);
-        gridHeadersGridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
-        gridHeadersGridView.setOnItemLongClickListener(this);
+        this.gridView.setAdapter(ImageAdapter);
+        //registro callbacks
+        //evento touch
+        gridView.setOnItemClickListener(this);
+        //action mode
+        gridView.setMultiChoiceModeListener(this);
+        gridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
 
     }
 
@@ -154,18 +157,6 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
                                 Toast.LENGTH_SHORT).show();
         Log.i("Evento","onItemClick");
     }
-
-
-    //click lungo su un elemento del listview
-    //callback setOnItemLongClick
-        @Override
-        public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-            Log.i("Evento","onLongClick");
-
-            return false;
-        }
-
-
     //---------------------------------ACTION MODE INIZIO --------------------------------------------------------
 
     //callback multichoice
@@ -178,7 +169,7 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
 
         //Imposto titolo dinamicamente
         String titolo="";
-        int countSelezione=this.gridHeadersGridView.getCheckedItemCount();
+        int countSelezione=this.gridView.getCheckedItemCount();
         if(countSelezione==1){titolo=" Selezionata";} else {titolo=" Selezionate";}
         actionMode.setTitle(countSelezione+titolo);
 
@@ -201,8 +192,8 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     @Override
     public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
         //mostro o no il tasto di backup
-        MenuItem item=menu.findItem(R.id.backup);
-        item.setVisible(this.pulsanteBackup);
+        MenuItem backup=menu.findItem(R.id.backup);
+        backup.setVisible(this.pulsanteBackup);
         Log.i("Evento","onPrepareActionMode");
         Log.i("Evento",pulsanteBackup+"");
         return false;
@@ -220,7 +211,9 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
             {
                 if(!media.getSuServer())
                 {
+                    //mostro il pulsante di backup
                     this.pulsanteBackup=true;
+
                     Log.i("ActionMode","invalidata");
                 }
                 actionMode.invalidate();
@@ -230,9 +223,10 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
         //ricerco la voce del menu selezionata
         switch (menuItem.getItemId())
         {
-            case R.id.Elimina:
+            case R.id.elimina:
 
-                final ArrayList<FileMedia> mediaDaEliminare=new ArrayList<FileMedia>();
+                final ArrayList<FileMedia> mediaDaEliminareDef=new ArrayList<FileMedia>();
+                final ArrayList<FileMedia> mediaDaEliminareConBackup=new ArrayList<FileMedia>();
 
                 for (FileMedia media:listMedia)
                 {
@@ -242,39 +236,40 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
                         //se non è su server
                         if(!media.getSuServer())
                         {
-                            //lo aggiungo alla lista di candidati all'eliminazione
-                            mediaDaEliminare.add(media);
-
+                            mediaDaEliminareDef.add(media);
                         }
-                        else
+                        else if(media.getSuServer() && media.getSuDispositivo())
                         {
-
+                            mediaDaEliminareConBackup.add(media);
                         }
 
                     }
 
                 }
-
-                if(!mediaDaEliminare.isEmpty())
-                {//averto l'utente che la cancellazione è definitiva
-                    AlertDialog.Builder builder;
+                this.eliminazioneDefinitiva=false;
+                //averto l'utente che la cancellazione è definitiva
+                if(mediaDaEliminareDef.size()>0)
+                {
+                    /*AlertDialog.Builder builder;
                     builder = new AlertDialog.Builder(this.getContext(), R.style.MyAlertDialog);
-                    builder.setTitle("Eliminare la copia/e sul dispositivo?")
-                            .setMessage("Uno o più media non hanno nessun backup, l'eliminazione sarà definitiva.")
+                    builder.setTitle("Eliminazione definitiva")
+                            .setMessage("Uno o più media non hanno nessun backup, \nl'eliminazione sarà definitiva, procedere?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    EliminaMedia(mediaDaEliminare);
+                                    eliminazioneDefinitiva=true;
                                 }
                             })
                             .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    return;
+                                    eliminazioneDefinitiva=false;
                                 }
                             })
                             .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();
+                            .show();*/
 
                 }
+                EliminaMedia(mediaDaEliminareDef,mediaDaEliminareConBackup,eliminazioneDefinitiva);
+
                 Log.i("ActionMode","Click su elimina");
                 actionMode.finish();
                 break;
@@ -339,7 +334,7 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
         {
             //TODO sistemare
             case R.id.secondaria1_1:
-                GetMediaOnServer getMediaOnServer=new GetMediaOnServer(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
+                GetMediaOnServerAsync getMediaOnServer=new GetMediaOnServerAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
                 getMediaOnServer.execute();
                 break;
             case R.id.secondaria1_2:
@@ -377,13 +372,32 @@ public class Page1Fragment extends Fragment implements StickyGridHeadersGridView
     }
 
 
-    public final void EliminaMedia(ArrayList<FileMedia> mediaDaEliminare)
+    public void EliminaMedia(ArrayList<FileMedia> mediaDaEliminareDef,ArrayList<FileMedia> mediaDaEliminareConBackup,Boolean eliminazioneDefinitiva)
     {
-        this.listMedia.removeAll(mediaDaEliminare);
 
-        //TODO cancellare foto da file sistem
+        Toast.makeText(this.getContext(),"Eliminazione in corso...",Toast.LENGTH_SHORT).show();
+        if(eliminazioneDefinitiva)
+        {
+            for (FileMedia media:mediaDaEliminareDef)
+            {
+                //TODO RIVEDERE ELIMINAZIONE
+                //elimino da ram
+                this.listMedia.remove(media);
+                //elimino da file system
+                new File(media.getPath()).delete();
+            }
 
+        }
 
+        for (FileMedia media:mediaDaEliminareConBackup)
+        {
+            media.setSuDispositivo(false);
+            AggiornaMediaAsync aggiornaMediaAsync=new AggiornaMediaAsync(this.getContext(),media.getPath());
+            aggiornaMediaAsync.execute(new String[]{""+this.idDispositivo,media.getNome()});
+        }
+
+//download
+        //order list
 
 
         this.ImageAdapter.notifyDataSetChanged();

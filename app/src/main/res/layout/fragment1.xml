@@ -7,16 +7,16 @@
     android:orientation="vertical"
     >
 
-    <!--gridView con intestazione, da libreria esterna-->
+    <!--gridView-->
     <android.widget.GridView
-        android:id="@+id/gridviewWithHeaders"
+        android:id="@+id/gridviewFragment1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/black"
         android:gravity="fill"
         android:horizontalSpacing="1dp"
         android:verticalSpacing="1dp"
-        android:longClickable="true"
+
         android:numColumns="3"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
         android:scrollbarThumbVertical="@drawable/ic_menu_send"
@@ -25,19 +25,10 @@
         android:stretchMode="columnWidth"
         android:textFilterEnabled="false"
         android:touchscreenBlocksFocus="false"
+        android:transitionGroup="true">
 
-        android:transitionGroup="true"
+    </android.widget.GridView>
 
-        ></android.widget.GridView>
-
-
-    <EditText
-        android:id="@+id/txtXML"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:ems="10"
-        android:scrollbars="vertical">
-    </EditText>
 
 </LinearLayout>
 

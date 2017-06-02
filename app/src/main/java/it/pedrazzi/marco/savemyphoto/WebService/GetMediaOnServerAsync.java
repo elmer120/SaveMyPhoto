@@ -13,7 +13,7 @@ import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.RVKArrayOfString;
 import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.RVKWSsaveMyPhotoSoap;
 
 
-public class GetMediaOnServer extends AsyncTask <Void,Void,Boolean> {
+public class GetMediaOnServerAsync extends AsyncTask <Void,Void,Boolean> {
 
     String nomeUtente;
     Integer idDispositivo;
@@ -21,7 +21,7 @@ public class GetMediaOnServer extends AsyncTask <Void,Void,Boolean> {
     ArrayList<FileMedia> listMedia;
     ImageAdapter imageAdapter;
 
-    public GetMediaOnServer(Context ctx, String nomeUtente, Integer idDispositivo, ArrayList<FileMedia>listMedia,ImageAdapter imageAdapter)
+    public GetMediaOnServerAsync(Context ctx, String nomeUtente, Integer idDispositivo, ArrayList<FileMedia>listMedia, ImageAdapter imageAdapter)
     {
         this.nomeUtente=nomeUtente;
         this.idDispositivo=idDispositivo;

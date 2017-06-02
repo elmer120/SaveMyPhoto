@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/upload"
+        android:id="@+id/menuActionMode"
         android:icon="@android:drawable/ic_dialog_dialer"
-        android:title="@string/upload">
+        android:title="@string/menuActionMode">
         <!-- "file" submenu -->
         <menu>
-            <item android:id="@+id/Elimina"
-                android:title="Elimina"
+            <item android:id="@+id/elimina"
+                android:title="@string/elimina"
                 android:icon="@drawable/ic_menu_file_delete"/>
             <item android:id="@+id/backup"
                 android:title="Backup su Server"

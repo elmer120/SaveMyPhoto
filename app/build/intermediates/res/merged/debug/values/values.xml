@@ -467,10 +467,13 @@
     <string name="dataNascita">Data nascita</string>
     <string name="drawer_close">Close navigation drawer</string>
     <string name="drawer_open">Open navigation drawer</string>
+    <string name="elimina">Elimina</string>
+    <string name="eliminaCopiaDisp">Elimina copia dispositivo</string>
     <string name="hello_world">Hello world!</string>
     <string name="login">Login</string>
     <string name="mail">E-mail</string>
     <string name="mantieniAccesso">Mantieni accesso</string>
+    <string name="menuActionMode">Menu Action Mode</string>
     <string name="nomeUtente">Nome Utente</string>
     <string name="password">Password</string>
     <string name="registrati">Registrati</string>
@@ -489,13 +492,11 @@
     <style name="Animation.AppCompat.Dialog" parent="Base.Animation.AppCompat.Dialog"/>
     <style name="Animation.AppCompat.DropDownUp" parent="Base.Animation.AppCompat.DropDownUp"/>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Qui si possono personalizzare i colori ed altro -->
+        
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <!-- actionBar sovrapposta
-        <item name="android:windowActionBarOverlay">true</item>
-        <item name="windowActionBarOverlay">true</item>-->
+        
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.NoActionBar">
@@ -1512,11 +1513,11 @@
         <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
     </style>
     <style name="MyAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
-        <!-- Used for the buttons -->
+        
         <item name="colorAccent">#FFC107</item>
-        <!-- Used for the title and text -->
+        
         <item name="android:textColorPrimary">#FFFFFF</item>
-        <!-- Used for the background -->
+        
         <item name="android:background">#4CAF50</item>
     </style>
     <style name="Platform.AppCompat" parent="android:Theme">

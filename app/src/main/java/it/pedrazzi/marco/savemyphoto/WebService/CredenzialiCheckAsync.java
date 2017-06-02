@@ -17,11 +17,8 @@ import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.RVKWSsaveMyPhotoSoa
 
 public class CredenzialiCheckAsync extends AsyncTask <String[],Void,Boolean>{
 
-
-
     AccediActivity mAccediActivity;
     Context ctx;
-
     ProgressBar progressBarAcc;
     String nomeUtente=null;
 
@@ -57,7 +54,8 @@ public class CredenzialiCheckAsync extends AsyncTask <String[],Void,Boolean>{
     }
 
     @Override
-    protected void onPostExecute(Boolean aBoolean) {
+    protected void onPostExecute(Boolean aBoolean)
+    {
         super.onPostExecute(aBoolean);
         if (aBoolean)
         {

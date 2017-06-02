@@ -3,6 +3,7 @@ package it.pedrazzi.marco.savemyphoto.Media;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.security.Timestamp;
 import java.util.Date;
 
 /**
@@ -117,26 +118,20 @@ public class FileMedia implements Parcelable{
     //metodo per comparare gli oggetti
     public int compareTo(Object o)
     {
-        if (o!=null){
+
+        if (o!=null)
+        {
             FileMedia objParametro = (FileMedia)o;
-
-            if (this.dataAcquisizione.getYear()>objParametro.dataAcquisizione.getYear()){
+            //ordino per timestamp
+            if(this.dataAcquisizione.getTime()>objParametro.dataAcquisizione.getTime())
+            {
                 return -1;
-            }else{
-                if (this.dataAcquisizione.getYear()==objParametro.dataAcquisizione.getYear()){ //se anno è uguale
-
-                    if (this.dataAcquisizione.getMonth()>this.dataAcquisizione.getMonth())
-                    {
-                        return -1;
-                    }
-                    else {
-                            if(this.dataAcquisizione.getMonth()==objParametro.dataAcquisizione.getMonth()) //se mese e anno sono uguali
-                            {
-                                return 0;
-                            }
-                    }
-                }
             }
+            else if(this.dataAcquisizione.getTime()==objParametro.dataAcquisizione.getTime())
+            {
+                return 0;
+            }
+
         }
         return 1;
     }
