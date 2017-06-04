@@ -54,8 +54,7 @@ public class Page2Fragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.contentProviderScanner=new ContentProviderScanner(this.getContext()
-        );
+        this.contentProviderScanner=new ContentProviderScanner(this.getContext());
         this.listMedia=contentProviderScanner.getListMedia(Album.WhatsApp,true);
         this.placeholder= BitmapFactory.decodeResource(this.getResources(), R.drawable.placeholder);
     }
@@ -65,7 +64,6 @@ public class Page2Fragment extends Fragment {
         super.onStart();
         this.gridView=(GridView)getView().findViewById(R.id.gridview2);
         this.gridView.setAdapter(new ImageAdapter(getContext(),listMedia,placeholder));
-        /*this.gridView=(StickyGridHeadersGridView)getView().findViewById(R.id.gridviewWithHeaders);
-        this.gridView.setAdapter(new ImageAdapter(getContext(), listMedia, placeholder));*/
+
     }
 }

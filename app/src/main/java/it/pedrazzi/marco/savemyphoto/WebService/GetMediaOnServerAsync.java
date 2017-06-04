@@ -6,6 +6,7 @@ import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import it.pedrazzi.marco.savemyphoto.Galleria.ImageAdapter;
 import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
@@ -20,6 +21,7 @@ public class GetMediaOnServerAsync extends AsyncTask <Void,Void,Boolean> {
     Context ctx;
     ArrayList<FileMedia> listMedia;
     ImageAdapter imageAdapter;
+    int numeroMedia;
 
     public GetMediaOnServerAsync(Context ctx, String nomeUtente, Integer idDispositivo, ArrayList<FileMedia>listMedia, ImageAdapter imageAdapter)
     {
@@ -44,42 +46,56 @@ public class GetMediaOnServerAsync extends AsyncTask <Void,Void,Boolean> {
             if(rrcArrayOfString.getPropertyCount()>0)
             {
                 //calcolo il numero dei media ritornati
-                int numeroMedia = rrcArrayOfString.getPropertyCount() / 10;
+                numeroMedia = rrcArrayOfString.getPropertyCount() / 10;
                 //per ogni media
                 for (int i = 1; i <= numeroMedia; i++)
                 {
                     //calcolo che parte del array estrarre
                     int count = i * 10;
 
-                    ArrayList<String> media = new ArrayList<String>();
+                    ArrayList<String> metaDati = new ArrayList<String>();
 
                     for (int j = count - 10; j < count; j++) {
                         //aggiungo i metadati alla lista
-                        media.add(rrcArrayOfString.get(j));
+                        metaDati.add(rrcArrayOfString.get(j));
                     }
 
                     //creo l'oggetto per formattare string in date
                     SimpleDateFormat parser = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
 
                     //creo il media
-                    FileMedia media2 =new FileMedia
+                    FileMedia mediaTmp =new FileMedia
                                                 (
-                                                        parser.parse(media.get(0)),//dataAcquisizione
-                                                        media.get(1),//path
-                                                        media.get(2),//nome
+                                                        parser.parse(metaDati.get(0)),//dataAcquisizione
+                                                        metaDati.get(1),//path
+                                                        metaDati.get(2),//nome
                                                         "cloud",//bucket
                                                         "image/web",//mimetype
-                                                        Integer.parseInt(media.get(4)),//dimensione
-                                                        Integer.parseInt(media.get(5)),//altezza
-                                                        Integer.parseInt(media.get(6)),//larghezza
-                                                        media.get(7),//orientamento
-                                                        Double.parseDouble(media.get(8)),//latitudine
-                                                        Double.parseDouble(media.get(9)),//longitudine
+                                                        Integer.parseInt(metaDati.get(4)),//dimensione
+                                                        Integer.parseInt(metaDati.get(5)),//altezza
+                                                        Integer.parseInt(metaDati.get(6)),//larghezza
+                                                        metaDati.get(7),//orientamento
+                                                        Double.parseDouble(metaDati.get(8)),//latitudine
+                                                        Double.parseDouble(metaDati.get(9)),//longitudine
                                                         true,//su server
                                                         false//su dispositivo
                                                 );
+                    Boolean presente=false;
+                    //controllo se è già in lista
+                    for (FileMedia media:listMedia)
+                    {
+                        //se è uguale nn lo aggiungo alla lista
+                        if(media.compareTo(mediaTmp)==0)
+                        {
+                            Log.i(this.getClass().getSimpleName(),"1 media già scaricato");
+                            presente=true;
 
-                    listMedia.add(media2);
+                        }
+                    }
+                    if(!presente)
+                    {
+                        listMedia.add(mediaTmp);
+                    }
 
                 }
                 return true;
@@ -105,13 +121,17 @@ public class GetMediaOnServerAsync extends AsyncTask <Void,Void,Boolean> {
         //se ci sono media da visualizzare li aggiungo al listmedia
         if(bool)
         {
+            //ordino
+            Collections.sort(this.listMedia);
             //notifico all'adapter il cambio della base di dati
             this.imageAdapter.notifyDataSetChanged();
-            Log.i(this.getClass().getSimpleName(),"Presenti dei media da scaricare");
+            //libero la cache
+            this.imageAdapter.getCachePhoto().Clear();
+            Log.i(this.getClass().getSimpleName(),"Presenti "+numeroMedia+" media su server");
         }
         else
         {
-            Log.i(this.getClass().getSimpleName(),"Nessun media da scaricare!");
+            Log.i(this.getClass().getSimpleName(),"Nessun media su server!");
         }
     }
 

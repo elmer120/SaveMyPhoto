@@ -1,15 +1,25 @@
 package it.pedrazzi.marco.savemyphoto.Activity;
 import android.Manifest;
 import android.app.ActionBar;
+import android.app.Activity;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.widget.Toast;
-import com.lalosoft.easypermission.RegisterPermission; //permessi x android >V5
+ //permessi x android >V5
+
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+
 import java.util.List;
 import java.util.Vector;
 import it.pedrazzi.marco.savemyphoto.ConnectionCheckReceiver;
@@ -19,9 +29,9 @@ import it.pedrazzi.marco.savemyphoto.Fragments.Page3Fragment;
 import it.pedrazzi.marco.savemyphoto.Fragments.PagerAdapter;
 import it.pedrazzi.marco.savemyphoto.R;
 
-@RegisterPermission(permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE})
 
-public class SearchView extends FragmentActivity implements ActivityCompat.OnRequestPermissionsResultCallback,Page1Fragment.OnPageListener {
+
+public class SearchView extends FragmentActivity implements Page1Fragment.OnPageListener {
 
     private IntentFilter filter;
     private ConnectionCheckReceiver connectionCheckReceiver;
@@ -32,7 +42,7 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
     // lista di fragment
     List<Fragment> fragments = new Vector<>();
     //pagerAdapter
-    private PagerAdapter mPagerAdapter;
+    private PagerAdapter pagerAdapter;
     // view pager
     private ViewPager viewPager;
 
@@ -41,7 +51,8 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
 
 
     @Override //invocato all'avvio 1°
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         Toast.makeText(this, "ON CREATE", Toast.LENGTH_SHORT).show();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_view);
@@ -62,9 +73,10 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
         fragments.add(fragmentPage3);
 
         // creo l'adapter e lo aggiungo al viewPager
-        this.mPagerAdapter = new PagerAdapter(super.getSupportFragmentManager(), fragments);
-        viewPager = (ViewPager) super.findViewById(R.id.pager);
-        viewPager.setAdapter(this.mPagerAdapter);
+        this.pagerAdapter = new PagerAdapter(getSupportFragmentManager(), fragments);
+        viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager.setAdapter(this.pagerAdapter);
+
 
         //SimpleOnPageChangeListener in ascolto al cambio pagina cambia anche la selezione dei tab
         viewPager.addOnPageChangeListener(
@@ -111,8 +123,6 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
     protected void onStart() {
         super.onStart();
         Toast.makeText(this, "ON START", Toast.LENGTH_SHORT).show();
-
-
         //istanzio il broadcast receiver
         filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         connectionCheckReceiver = new ConnectionCheckReceiver();
@@ -167,15 +177,15 @@ public class SearchView extends FragmentActivity implements ActivityCompat.OnReq
     }
 
 //TODO ripristinare permessi>android 5
-    /* Permessi runTime android 6 marshmallow da libreria esterna
-    @Override
+    //Permessi runTime android 6 marshmallow da libreria esterna
+    //@Override
     public void onRequestPermissionGranted(String[] permission, int[] grantResults) {
         Toast.makeText(this,"Applicazione può continuare",Toast.LENGTH_SHORT).show();
     }
 
-    @Override
+    //@Override
     public void onRequestPermissionDenied(String[] permission, int[] grantResults) {
         Toast.makeText(this,"Applicazione verrà terminata",Toast.LENGTH_SHORT).show();
-    }*/
+    }
 
 }

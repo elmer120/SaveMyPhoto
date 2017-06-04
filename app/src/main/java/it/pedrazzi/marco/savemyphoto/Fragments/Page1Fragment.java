@@ -1,7 +1,9 @@
 package it.pedrazzi.marco.savemyphoto.Fragments;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -22,12 +24,18 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-
-import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView; //headers gridview
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+import it.pedrazzi.marco.savemyphoto.Activity.PresentazioneActivity;
 import it.pedrazzi.marco.savemyphoto.Media.Album;
 import it.pedrazzi.marco.savemyphoto.Media.ContentProviderScanner;
 import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
@@ -88,7 +96,6 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Log.i("Fragment1","onActivityCreated");
-
     }
 
    /*
@@ -99,6 +106,7 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         //recupero i dati passati dall'activity
         this.nomeUtente = this.getArguments().getString("nomeUtente");
         this.idDispositivo = this.getArguments().getInt("idDispositivo");
@@ -113,7 +121,8 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
     Chiamato quando il fragment è creato e visibile all'utente
      */
     @Override
-    public void onStart() {
+    public void onStart()
+    {
         super.onStart();
         //recupero la gridview
         this.gridView =(GridView)getView().findViewById(R.id.gridviewFragment1);
@@ -126,6 +135,10 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         gridView.setMultiChoiceModeListener(this);
         gridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
 
+        //controllo se ci sono media su server
+        /*GetMediaOnServerAsync getMediaOnServer=new GetMediaOnServerAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
+        getMediaOnServer.execute();
+*/
     }
 
     //-----------------------------------EVENTI TOUCH----------------------------------------------------------------
@@ -140,7 +153,7 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         FileMedia media=this.listMedia.get(i);
 
 
-
+this.ImageAdapter.notifyDataSetChanged();
         Toast.makeText(         this.getContext(),
                                 "Nome: "+media.getNome()+
                                 "\n DataAcqu: "+media.getDataAcquisizione()+
@@ -195,7 +208,6 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         MenuItem backup=menu.findItem(R.id.backup);
         backup.setVisible(this.pulsanteBackup);
         Log.i("Evento","onPrepareActionMode");
-        Log.i("Evento",pulsanteBackup+"");
         return false;
     }
 
@@ -295,7 +307,7 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
                 }
 
                 //invio
-                HttpUploadAsync httpMultipartAsync=new HttpUploadAsync(this.getContext(),this.nomeUtente,this.idDispositivo);
+                HttpUploadAsync httpMultipartAsync=new HttpUploadAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.ImageAdapter);
                 httpMultipartAsync.execute(mediaDaInviare);
                 actionMode.finish();
                 break;
@@ -311,8 +323,7 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         for (FileMedia fileMedia:listMedia)
         {fileMedia.setSelezionata(false);}
         this.pulsanteBackup=false;
-        //this.ImageAdapter.notifyDataSetChanged();
-        this.ImageAdapter.notifyDataSetInvalidated();
+        this.ImageAdapter.notifyDataSetChanged();
         Log.i("Evento","onDestroyActionMode");
     }
 
@@ -338,7 +349,8 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
                 getMediaOnServer.execute();
                 break;
             case R.id.secondaria1_2:
-
+                Intent intent=new Intent(this.getContext(), PresentazioneActivity.class);
+                this.getActivity().startActivity(intent);
                 break;
 
             case R.id.secondaria1_3:
@@ -392,13 +404,16 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         for (FileMedia media:mediaDaEliminareConBackup)
         {
             media.setSuDispositivo(false);
-            AggiornaMediaAsync aggiornaMediaAsync=new AggiornaMediaAsync(this.getContext(),media.getPath());
+            AggiornaMediaAsync aggiornaMediaAsync=new AggiornaMediaAsync(this.getContext(),media.getPath(),this.ImageAdapter);
             aggiornaMediaAsync.execute(new String[]{""+this.idDispositivo,media.getNome()});
         }
 
-//download
-        //order list
+        //controllo se ci sono media su server
+        //GetMediaOnServerAsync getMediaOnServer=new GetMediaOnServerAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
+        //getMediaOnServer.execute();
 
+        //order list
+        //Collections.sort(this.listMedia);
 
         this.ImageAdapter.notifyDataSetChanged();
         this.ImageAdapter.getCachePhoto().Clear();

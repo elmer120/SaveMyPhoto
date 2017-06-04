@@ -103,7 +103,10 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
                             Toast.makeText(this, "Bentornato!! "+ getEditTextUtente().getText().toString(), Toast.LENGTH_SHORT).show();
                             this.progressBarAccOffline.setVisibility(View.INVISIBLE);
                             //avvio activity
-                            AvvioActivitySuccessiva(getEditTextUtente().getText().toString());
+
+                            this.idDispositivo=this.dBgestione.getIdDispositivo(nomeUtente);
+                            SupportoActivity supportoActivity=new SupportoActivity();
+                            supportoActivity.AvvioActivity(this,this.nomeUtente,this.idDispositivo, SearchView.class);
                             finish();
                         }
                         else
@@ -135,10 +138,10 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
     private boolean CredenzialiCheckDbLocale() {
 
         this.progressBarAccOffline.setVisibility(View.VISIBLE);
-        String utenteInserito = getEditTextUtente().getText().toString();
+        this.nomeUtente = getEditTextUtente().getText().toString();
         String passwordInserita = getEditTextPassword().getText().toString();
 
-        return dBgestione.UtenteCheckDbLocale(utenteInserito, passwordInserita);
+        return dBgestione.UtenteCheckDbLocale(this.nomeUtente, passwordInserita);
     }
 
     //Associa nuovo dispositivo e registra credenziali nel db locale
@@ -169,22 +172,6 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    //Avvio activity successiva
-    public void AvvioActivitySuccessiva(String nomeUtente)
-    {
-        // mando nome utente
-        Intent intent = new Intent(this, SearchView.class);
-        this.idDispositivo=this.dBgestione.getIdDispositivo(nomeUtente);
-        Bundle bundle = new Bundle();
-        bundle.putString("nomeUtente",nomeUtente);
-        bundle.putInt("idDispositivo",idDispositivo);
-        intent.putExtras(bundle);
-        startActivity(intent);
-        //rimuovo dallo stack l'activity corrente
-        finish();
-        return;
-    }
-
     //Controllo se c'è una connessione attiva
     private boolean ConnectionCheck()
     {
@@ -206,36 +193,10 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
         return false;
     }
 
-    //Controllo  c'è connessione
-    private boolean ConnessioneCheck(){
-        ConnectivityManager connectivityManager = (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo retiAttive = connectivityManager.getActiveNetworkInfo();
 
-        //se ci sono reti attive faccio il check sul tipo di connessione
-        if (retiAttive != null)
-        {
-            if(retiAttive.getType()==connectivityManager.TYPE_WIFI)
-            {
-                if(retiAttive.isConnected())
-                {
-                    Log.i(retiAttive.getTypeName(), retiAttive.getState().name());
-                    return true;
-                }
-            }
-            else if(retiAttive.getType()==connectivityManager.TYPE_MOBILE)
-            {
-                Log.i(retiAttive.getTypeName(), retiAttive.getState().name());
-                return true;
-            }
-        }
-
-        Toast.makeText(this, "Impossibile procedere!\n Nessuna connessione rilevata!!!", Toast.LENGTH_LONG).show();
-        return false;
-    }
-
-
-    //Controllo che il database esista in caso contrario faccio il wifi check su accesso e registrazione
-    private static boolean DatabaseCheck(Context context, String dbName) {
+    //Controllo che il database esista in caso contrario faccio il check su accesso e registrazione
+    private static boolean DatabaseCheck(Context context, String dbName)
+    {
         File dbFile = context.getDatabasePath(dbName);
         return dbFile.exists();
     }

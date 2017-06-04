@@ -1,6 +1,6 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:2:1-60:12
+ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:2:1-63:12
 	package
 		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:3:5-44
 		INJECTED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml
@@ -31,21 +31,22 @@ ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifes
 		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:14:22-78
 uses-permission#android.permission.INTERNET
 ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:17:5-67
-MERGED from [lalosoft.android-utilities:easypermissions:1.0.1] C:\Users\Elmer\.android\build-cache\e87319a161025ab5245633963091da59be9c7458\output\AndroidManifest.xml:11:5-67
 	android:name
 		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:17:22-64
 application
-ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:19:5-58:19
-MERGED from [lalosoft.android-utilities:easypermissions:1.0.1] C:\Users\Elmer\.android\build-cache\e87319a161025ab5245633963091da59be9c7458\output\AndroidManifest.xml:13:5-17:19
-MERGED from [com.android.support:appcompat-v7:25.0.0] C:\Users\Elmer\.android\build-cache\67d02e31b40205caf1260b1347769f5c4b51985f\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:animated-vector-drawable:25.0.0] C:\Users\Elmer\.android\build-cache\a652ad75f7e832c149ea6f219a797aaa5740611a\output\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:support-vector-drawable:25.0.0] C:\Users\Elmer\.android\build-cache\b808b8a74284df363e6c38c5f7fe5e01646acc3c\output\AndroidManifest.xml:23:5-20
-MERGED from [com.android.support:support-v4:25.0.0] C:\Users\Elmer\.android\build-cache\2751009432e7f761977c71168b0e57aad166d62f\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-fragment:25.0.0] C:\Users\Elmer\.android\build-cache\27edf584be31e938ecac2ac26b6ebb80b0e0ef50\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-media-compat:25.0.0] C:\Users\Elmer\.android\build-cache\4e8d258174459cd4aef39421b9a2c65b6e8aa582\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-ui:25.0.0] C:\Users\Elmer\.android\build-cache\e7631a4bd16edca785f25f08e911df8e977abf7c\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-core-utils:25.0.0] C:\Users\Elmer\.android\build-cache\d29cf1b5647038d76c4039fb6d15e6faabf17dd0\output\AndroidManifest.xml:25:5-20
-MERGED from [com.android.support:support-compat:25.0.0] C:\Users\Elmer\.android\build-cache\ffa3ad3ffc5e361f978dfbc03ccaf153fb0a7c46\output\AndroidManifest.xml:25:5-20
+ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:19:5-61:19
+MERGED from [com.karumi:dexter:4.1.0] C:\Users\Elmer\.android\build-cache\1599914994ffafcfdf1c940e1a19e51bf265b754\output\AndroidManifest.xml:26:5-31:19
+MERGED from [com.android.support:design:25.2.0] C:\Users\Elmer\.android\build-cache\5b98f16f617f8d8232eeaea0c83dc7e518a80ba7\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:25.2.0] C:\Users\Elmer\.android\build-cache\ea0667d1e86b6e26309126b2caca8b8139071728\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\Elmer\.android\build-cache\c3e769e0f0bdd42aa582066cd76f9ec963d7903a\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-vector-drawable:25.2.0] C:\Users\Elmer\.android\build-cache\cd449e0e309e2529173e0f09f748c15dcca34446\output\AndroidManifest.xml:23:5-20
+MERGED from [com.android.support:transition:25.2.0] C:\Users\Elmer\.android\build-cache\13641c00d8c1e2f9b9c8d84e92f4ab7ad1f01662\output\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:25.2.0] C:\Users\Elmer\.android\build-cache\291a5ed871dfd03913017787a4ee75eb35d0a9bf\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:25.2.0] C:\Users\Elmer\.android\build-cache\14f18f3956d57d9df97df2c38c2554d95c1f065e\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\Elmer\.android\build-cache\667a104aabb61759f363784080eb1eb1020be394\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:25.2.0] C:\Users\Elmer\.android\build-cache\90714f4f2ef2a12c4541165c69fb481b2eeb8cdf\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:25.2.0] C:\Users\Elmer\.android\build-cache\27733120e9e75e428e3c50ce5da8487b67c7c36f\output\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:25.2.0] C:\Users\Elmer\.android\build-cache\308b458d7269ff1708188a54fc0f59d29f2b51f2\output\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Elmer\.android\build-cache\4b2029285a3acf6380fc82b27aae1bfc9b554408\output\AndroidManifest.xml:9:5-20
 	android:label
 		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:22:9-41
@@ -97,24 +98,39 @@ activity#it.pedrazzi.marco.savemyphoto.Activity.SearchView
 ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:55:9-57
 	android:name
 		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:55:19-54
+activity#it.pedrazzi.marco.savemyphoto.Activity.PresentazioneActivity
+ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:58:9-68
+	android:name
+		ADDED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml:58:19-65
 uses-sdk
 INJECTED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-MERGED from [lalosoft.android-utilities:easypermissions:1.0.1] C:\Users\Elmer\.android\build-cache\e87319a161025ab5245633963091da59be9c7458\output\AndroidManifest.xml:7:5-9:41
-MERGED from [com.android.support:appcompat-v7:25.0.0] C:\Users\Elmer\.android\build-cache\67d02e31b40205caf1260b1347769f5c4b51985f\output\AndroidManifest.xml:21:5-23:78
-MERGED from [com.android.support:animated-vector-drawable:25.0.0] C:\Users\Elmer\.android\build-cache\a652ad75f7e832c149ea6f219a797aaa5740611a\output\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:25.0.0] C:\Users\Elmer\.android\build-cache\b808b8a74284df363e6c38c5f7fe5e01646acc3c\output\AndroidManifest.xml:21:5-43
-MERGED from [com.android.support:support-v4:25.0.0] C:\Users\Elmer\.android\build-cache\2751009432e7f761977c71168b0e57aad166d62f\output\AndroidManifest.xml:21:5-23:54
-MERGED from [com.android.support:support-fragment:25.0.0] C:\Users\Elmer\.android\build-cache\27edf584be31e938ecac2ac26b6ebb80b0e0ef50\output\AndroidManifest.xml:21:5-23:60
-MERGED from [com.android.support:support-media-compat:25.0.0] C:\Users\Elmer\.android\build-cache\4e8d258174459cd4aef39421b9a2c65b6e8aa582\output\AndroidManifest.xml:21:5-23:63
-MERGED from [com.android.support:support-core-ui:25.0.0] C:\Users\Elmer\.android\build-cache\e7631a4bd16edca785f25f08e911df8e977abf7c\output\AndroidManifest.xml:21:5-23:58
-MERGED from [com.android.support:support-core-utils:25.0.0] C:\Users\Elmer\.android\build-cache\d29cf1b5647038d76c4039fb6d15e6faabf17dd0\output\AndroidManifest.xml:21:5-23:61
-MERGED from [com.android.support:support-compat:25.0.0] C:\Users\Elmer\.android\build-cache\ffa3ad3ffc5e361f978dfbc03ccaf153fb0a7c46\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.karumi:dexter:4.1.0] C:\Users\Elmer\.android\build-cache\1599914994ffafcfdf1c940e1a19e51bf265b754\output\AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:design:25.2.0] C:\Users\Elmer\.android\build-cache\5b98f16f617f8d8232eeaea0c83dc7e518a80ba7\output\AndroidManifest.xml:21:5-23:62
+MERGED from [com.android.support:appcompat-v7:25.2.0] C:\Users\Elmer\.android\build-cache\ea0667d1e86b6e26309126b2caca8b8139071728\output\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:animated-vector-drawable:25.2.0] C:\Users\Elmer\.android\build-cache\c3e769e0f0bdd42aa582066cd76f9ec963d7903a\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:25.2.0] C:\Users\Elmer\.android\build-cache\cd449e0e309e2529173e0f09f748c15dcca34446\output\AndroidManifest.xml:21:5-43
+MERGED from [com.android.support:recyclerview-v7:25.2.0] C:\Users\Elmer\.android\build-cache\581c9d238d5993ce413c2da0d2807c9bb50041c1\output\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:transition:25.2.0] C:\Users\Elmer\.android\build-cache\13641c00d8c1e2f9b9c8d84e92f4ab7ad1f01662\output\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:25.2.0] C:\Users\Elmer\.android\build-cache\291a5ed871dfd03913017787a4ee75eb35d0a9bf\output\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-fragment:25.2.0] C:\Users\Elmer\.android\build-cache\14f18f3956d57d9df97df2c38c2554d95c1f065e\output\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-media-compat:25.2.0] C:\Users\Elmer\.android\build-cache\667a104aabb61759f363784080eb1eb1020be394\output\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:25.2.0] C:\Users\Elmer\.android\build-cache\90714f4f2ef2a12c4541165c69fb481b2eeb8cdf\output\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:25.2.0] C:\Users\Elmer\.android\build-cache\27733120e9e75e428e3c50ce5da8487b67c7c36f\output\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-compat:25.2.0] C:\Users\Elmer\.android\build-cache\308b458d7269ff1708188a54fc0f59d29f2b51f2\output\AndroidManifest.xml:21:5-23:58
 MERGED from [com.android.support.constraint:constraint-layout:1.0.2] C:\Users\Elmer\.android\build-cache\4b2029285a3acf6380fc82b27aae1bfc9b554408\output\AndroidManifest.xml:5:5-7:41
 	tools:overrideLibrary
-		ADDED from [com.android.support:appcompat-v7:25.0.0] C:\Users\Elmer\.android\build-cache\67d02e31b40205caf1260b1347769f5c4b51985f\output\AndroidManifest.xml:23:9-75
+		ADDED from [com.android.support:design:25.2.0] C:\Users\Elmer\.android\build-cache\5b98f16f617f8d8232eeaea0c83dc7e518a80ba7\output\AndroidManifest.xml:23:9-59
 	android:targetSdkVersion
 		INJECTED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\Elmer\StudioProjects\SaveMyPhoto\app\src\main\AndroidManifest.xml
+activity#com.karumi.dexter.DexterActivity
+ADDED from [com.karumi:dexter:4.1.0] C:\Users\Elmer\.android\build-cache\1599914994ffafcfdf1c940e1a19e51bf265b754\output\AndroidManifest.xml:27:9-30:56
+	android:launchMode
+		ADDED from [com.karumi:dexter:4.1.0] C:\Users\Elmer\.android\build-cache\1599914994ffafcfdf1c940e1a19e51bf265b754\output\AndroidManifest.xml:29:13-48
+	android:theme
+		ADDED from [com.karumi:dexter:4.1.0] C:\Users\Elmer\.android\build-cache\1599914994ffafcfdf1c940e1a19e51bf265b754\output\AndroidManifest.xml:30:13-53
+	android:name
+		ADDED from [com.karumi:dexter:4.1.0] C:\Users\Elmer\.android\build-cache\1599914994ffafcfdf1c940e1a19e51bf265b754\output\AndroidManifest.xml:28:13-60

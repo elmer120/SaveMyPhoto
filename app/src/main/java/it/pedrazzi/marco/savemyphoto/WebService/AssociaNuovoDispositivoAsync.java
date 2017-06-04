@@ -8,6 +8,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import it.pedrazzi.marco.savemyphoto.Activity.AccediActivity;
+import it.pedrazzi.marco.savemyphoto.Activity.SearchView;
+import it.pedrazzi.marco.savemyphoto.Activity.SupportoActivity;
 import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
 import it.pedrazzi.marco.savemyphoto.R;
 import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.RVKWSsaveMyPhotoSoap;
@@ -83,7 +85,8 @@ public class AssociaNuovoDispositivoAsync extends AsyncTask <NuovoUtente,Void,In
             {
                 Toast.makeText(ctx, "Nuovo dispositivo associato correttamente all'account di "+mAccediActivity.nomeUtente+" !", Toast.LENGTH_SHORT).show();
                 this.progressBarAcc.setVisibility(View.INVISIBLE);
-                mAccediActivity.AvvioActivitySuccessiva(mAccediActivity.nomeUtente);
+                SupportoActivity supportoActivity=new SupportoActivity();
+                supportoActivity.AvvioActivity(ctx,mAccediActivity.nomeUtente,risposta, SearchView.class);
             }
             else
             {

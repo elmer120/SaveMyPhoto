@@ -8,6 +8,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
+import it.pedrazzi.marco.savemyphoto.Galleria.ImageAdapter;
 import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
 import it.pedrazzi.marco.savemyphoto.R;
 
@@ -20,14 +21,15 @@ public class HttpUploadAsync extends AsyncTask<ArrayList<FileMedia>,Void,Boolean
     private DBgestione dBgestione;
     private Http http;
     private int idDispositivo;
+    ImageAdapter imageAdapter;
 
-
-    public HttpUploadAsync(Context ctx, String nomeUtente, int idDispositivo)
+    public HttpUploadAsync(Context ctx, String nomeUtente, int idDispositivo, ImageAdapter imageAdapter)
     {
         this.ctx=ctx;
         this.nomeUtente=nomeUtente;
         this.dBgestione=new DBgestione(ctx);
         this.idDispositivo=idDispositivo;
+        this.imageAdapter=imageAdapter;
     }
 
     @Override
@@ -61,6 +63,8 @@ public class HttpUploadAsync extends AsyncTask<ArrayList<FileMedia>,Void,Boolean
         {
 
             Toast.makeText(this.ctx,"Upload media terminato con successo!",Toast.LENGTH_SHORT).show();
+            //notifico all'adapter il cambio della base di dati
+            this.imageAdapter.notifyDataSetChanged();
         }
         else
         {

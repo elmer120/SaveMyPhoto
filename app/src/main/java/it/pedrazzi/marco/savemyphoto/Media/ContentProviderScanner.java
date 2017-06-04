@@ -272,7 +272,7 @@ public class ContentProviderScanner {
             cursorVideo.close();
         }
 
-        OrderList(listMedia);
+        Collections.sort(listMedia);
         return this.listMedia;
     }
 
@@ -350,7 +350,7 @@ public class ContentProviderScanner {
     }
 
 
-    private ArrayList<FileMedia> OrderList(ArrayList<FileMedia> list)
+   /* private ArrayList<FileMedia> OrderList(ArrayList<FileMedia> list)
     {
         Collections.sort(list, new Comparator<FileMedia>() {
             @Override
@@ -362,7 +362,7 @@ public class ContentProviderScanner {
         });
         return list;
 
-    }
+    }*/
 
 
 

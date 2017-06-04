@@ -1,5 +1,6 @@
 package it.pedrazzi.marco.savemyphoto.Activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -7,8 +8,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.File;
+import java.util.List;
 
 import it.pedrazzi.marco.savemyphoto.DbLocale.DbString;
 import it.pedrazzi.marco.savemyphoto.R;
@@ -42,6 +51,34 @@ public class ChooseAccessActivity extends Activity implements View.OnClickListen
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
 
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //TODO rivedere permessi
+        Dexter.withActivity(this)
+                .withPermissions(
+                        Manifest.permission.INTERNET,
+                        Manifest.permission.ACCESS_NETWORK_STATE,
+                        Manifest.permission.ACCESS_WIFI_STATE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ).withListener(new MultiplePermissionsListener() {
+            @Override public void onPermissionsChecked(MultiplePermissionsReport report)
+            {
+                if(report.isAnyPermissionPermanentlyDenied())
+                {
+                    //Toast.makeText(this,"L'applicazione richiede tutti i permessi siano accettati...l'applicazione verrà terminata!",Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token)
+            {
+
+            }
+        }).check();
     }
 
     @Override //invocato alla ripresa dalla sospensione 1°

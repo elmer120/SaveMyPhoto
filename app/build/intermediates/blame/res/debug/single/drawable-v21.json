@@ -1,18 +1,34 @@
 [
     {
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\design_password_eye.xml",
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\5b98f16f617f8d8232eeaea0c83dc7e518a80ba7\\output\\res\\drawable-v21\\design_password_eye.xml"
+    },
+    {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_edit_text_material.xml",
-        "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\drawable-v21\\abc_edit_text_material.xml"
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\ea0667d1e86b6e26309126b2caca8b8139071728\\output\\res\\drawable-v21\\abc_edit_text_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\design_bottom_navigation_item_background.xml",
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\5b98f16f617f8d8232eeaea0c83dc7e518a80ba7\\output\\res\\drawable-v21\\design_bottom_navigation_item_background.xml"
     },
     {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_btn_colored_material.xml",
-        "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\drawable-v21\\abc_btn_colored_material.xml"
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\ea0667d1e86b6e26309126b2caca8b8139071728\\output\\res\\drawable-v21\\abc_btn_colored_material.xml"
     },
     {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\notification_action_background.xml",
-        "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\drawable-v21\\notification_action_background.xml"
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\ea0667d1e86b6e26309126b2caca8b8139071728\\output\\res\\drawable-v21\\notification_action_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\avd_show_password.xml",
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\5b98f16f617f8d8232eeaea0c83dc7e518a80ba7\\output\\res\\drawable-v21\\avd_show_password.xml"
+    },
+    {
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\avd_hide_password.xml",
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\5b98f16f617f8d8232eeaea0c83dc7e518a80ba7\\output\\res\\drawable-v21\\avd_hide_password.xml"
     },
     {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21\\abc_action_bar_item_background_material.xml",
-        "source": "C:\\Users\\Elmer\\.android\\build-cache\\67d02e31b40205caf1260b1347769f5c4b51985f\\output\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\ea0667d1e86b6e26309126b2caca8b8139071728\\output\\res\\drawable-v21\\abc_action_bar_item_background_material.xml"
     }
 ]

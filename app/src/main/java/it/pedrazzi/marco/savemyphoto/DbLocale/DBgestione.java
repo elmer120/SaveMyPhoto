@@ -132,8 +132,6 @@ public class DBgestione {
             cv.put(DbString.tbMedia.Server,1);
             cv.put(DbString.tbMedia.FKDispositivo,0);
 
-            //TODO se il record esiste già?
-
             long idMedia = db.insert(DbString.tbMedia.tbNome, null, cv);
             if (idMedia != -1)
             {

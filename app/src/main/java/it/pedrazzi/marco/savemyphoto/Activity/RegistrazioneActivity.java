@@ -167,29 +167,9 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
     //trova lo spazio libero rimasto sul filesystem
     public void GetSpazioLibero()
     {
-
-
         Double freeBytesExternal = (new File(getExternalFilesDir(null).toString()).getFreeSpace())/1073741824.0;
 
         //TODO arrotondare il double a 2 cifre decimali
     }
 
-    //Avvio activity successiva
-    public void AvvioActivitySuccessiva(String nomeUtente)
-    {
-        // mando nome utente
-        Intent intent = new Intent(this, SearchView.class);
-        Bundle bundle = new Bundle();
-
-        this.idDispositivo=this.dBgestione.getIdDispositivo(nomeUtente);
-
-        //TODO Mandare utente mi serve??
-        bundle.putString("utente",nomeUtente);
-        bundle.putInt("idDispositivo",idDispositivo);
-        intent.putExtras(bundle);
-        startActivity(intent);
-        //rimuovo dallo stack l'activity  corrente
-        finish();
-        return;
-    }
 }

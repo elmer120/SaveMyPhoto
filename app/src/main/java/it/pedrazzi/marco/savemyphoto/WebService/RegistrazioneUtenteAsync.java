@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import it.pedrazzi.marco.savemyphoto.Activity.SearchView;
+import it.pedrazzi.marco.savemyphoto.Activity.SupportoActivity;
 import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
 import it.pedrazzi.marco.savemyphoto.R;
 import it.pedrazzi.marco.savemyphoto.Activity.RegistrazioneActivity;
@@ -23,6 +25,7 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Intege
 
     ProgressBar progressBarReg;
     String nomeUtente;
+    int idDispositivo;
 
     public RegistrazioneUtenteAsync(Context ctx, RegistrazioneActivity mRegistrazioneActivity) {
         super();
@@ -42,8 +45,8 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Intege
         RVKWSsaveMyPhotoSoap service=new RVKWSsaveMyPhotoSoap();
         service.enableLogging=true;
         try {
-            //ritorna la risp del WS
-            int risposta= service.RegistrazioneNuovoUtente(
+            //ritorna la risp(id dispositivo) dal WS
+            this.idDispositivo = service.RegistrazioneNuovoUtente(
                                         nuovoUtentes[0].nomeUtente,
                                         nuovoUtentes[0].mail,
                                         nuovoUtentes[0].password,
@@ -51,9 +54,9 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Intege
                                         nuovoUtentes[0].modello,
                                         nuovoUtentes[0].versioneAndroid,
                                         nuovoUtentes[0].spazioLibero);
-            Log.i("Ws Reg Utente", ""+risposta);
+            Log.i("Ws Reg Utente", ""+idDispositivo);
             this.nomeUtente=nuovoUtentes[0].nomeUtente;
-            return risposta;
+            return idDispositivo;
         } catch (Exception e) {
 
             e.printStackTrace();
@@ -64,10 +67,10 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Intege
     }
 
     @Override
-    protected void onPostExecute(Integer risposta) {
-        super.onPostExecute(risposta);
+    protected void onPostExecute(Integer idDispositivo) {
+        super.onPostExecute(idDispositivo);
         //se la registrazione sul db remoto è andata a buon fine
-        if(risposta!=-1)
+        if(idDispositivo!=-1)
         {
             Toast.makeText(ctx, "Registrazione remota di " + this.nomeUtente+ " avvenuta con successo!!", Toast.LENGTH_SHORT).show();
             //registro anche in locale
@@ -75,7 +78,7 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Intege
             Boolean regLocDb=dBgestione.RegistrazioneDbLocale(  mRegistrazioneActivity.nomeUtente,
                                                                 mRegistrazioneActivity.mail,
                                                                 mRegistrazioneActivity.password,
-                                                                risposta,
+                                                                idDispositivo,
                                                                 mRegistrazioneActivity.marca,
                                                                 mRegistrazioneActivity.modello,
                                                                 mRegistrazioneActivity.versioneAndroid,
@@ -84,12 +87,13 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Intege
             if(regLocDb)
             {
                 Toast.makeText(ctx, "Registrazione locale di " + this.nomeUtente+ " avvenuta con successo!!", Toast.LENGTH_SHORT).show();
-                mRegistrazioneActivity.AvvioActivitySuccessiva(this.nomeUtente);
                 progressBarReg.setVisibility(View.INVISIBLE);
+                SupportoActivity supportoActivity=new SupportoActivity();
+                supportoActivity.AvvioActivity(ctx,this.nomeUtente,this.idDispositivo, SearchView.class);
             }
             else
             {
-                Toast.makeText(ctx, "Qualcosa è andato storto nella registrazione nel db locale !", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ctx, "Qualcosa è andato storto nella registrazione nel db locale!", Toast.LENGTH_SHORT).show();
                 progressBarReg.setVisibility(View.INVISIBLE);
             }
         }

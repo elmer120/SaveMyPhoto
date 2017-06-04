@@ -126,7 +126,7 @@ public class ImageAdapter extends BaseAdapter  {
 
 
     //l'immagine è selezionata
-       if(media.isSelezionata())
+       if(media.getSelezionata())
        {
            return SelezionaImmagine(imageViewOverlay,true);
        }

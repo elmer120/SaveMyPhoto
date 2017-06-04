@@ -2,6 +2,7 @@ package it.pedrazzi.marco.savemyphoto.Media;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import java.security.Timestamp;
 import java.util.Date;
@@ -9,12 +10,11 @@ import java.util.Date;
 /**
  * Created by elmer on 29/11/16.
  */
-public class FileMedia implements Parcelable{
+public class FileMedia implements Parcelable,Comparable<FileMedia>
+{
 
 
-    public FileMedia() {
-
-    }
+    public FileMedia() { }
 
     public String getPath() {return path;}
 
@@ -36,7 +36,9 @@ public class FileMedia implements Parcelable{
         return selezionata;
     }
 
-    public void setSelezionata() {this.selezionata=selezionata;}
+    public void setSelezionata(boolean selezionata) {
+        this.selezionata = selezionata;
+    }
 
     public Date getDataAcquisizione() {
         return dataAcquisizione;
@@ -99,7 +101,6 @@ public class FileMedia implements Parcelable{
                      Integer dimensione, Integer altezza, Integer larghezza, String orientamento,
                      Double latitudine, Double longitudine, Boolean suServer, Boolean suDispositivo){
         super();
-
         this.path=path;
         this.bucket=bucket;
         this.mimeType=mimeType;
@@ -116,9 +117,8 @@ public class FileMedia implements Parcelable{
     }
 
     //metodo per comparare gli oggetti
-    public int compareTo(Object o)
-    {
-
+    @Override
+    public int compareTo(@NonNull FileMedia o) {
         if (o!=null)
         {
             FileMedia objParametro = (FileMedia)o;
@@ -178,13 +178,5 @@ public class FileMedia implements Parcelable{
             return new FileMedia[size];
         }
     };
-
-    public boolean isSelezionata() {
-        return selezionata;
-    }
-
-    public void setSelezionata(boolean selezionata) {
-        this.selezionata = selezionata;
-    }
 }
 

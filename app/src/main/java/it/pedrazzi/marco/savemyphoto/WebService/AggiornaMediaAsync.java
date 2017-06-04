@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import java.io.File;
 
+import it.pedrazzi.marco.savemyphoto.Galleria.ImageAdapter;
 import it.pedrazzi.marco.savemyphoto.WebService.Autogenerate.RVKWSsaveMyPhotoSoap;
 
 /**
@@ -17,12 +18,14 @@ public class AggiornaMediaAsync extends AsyncTask<String[],Void,Boolean>
 {
     String mediaPath;
     Context ctx;
+    ImageAdapter imageAdapter;
 
-    public AggiornaMediaAsync(Context ctx,String mediaPath)
+    public AggiornaMediaAsync(Context ctx, String mediaPath, ImageAdapter imageAdapter)
     {
         super();
         this.mediaPath=mediaPath;
         this.ctx=ctx;
+        this.imageAdapter=imageAdapter;
     }
 
     @Override
@@ -54,6 +57,7 @@ public class AggiornaMediaAsync extends AsyncTask<String[],Void,Boolean>
             if(new File(mediaPath).delete())
             {
                 Toast.makeText(this.ctx, "Media rimosso correttamente", Toast.LENGTH_SHORT).show();
+                this.imageAdapter.notifyDataSetChanged();
             }
         }
         else

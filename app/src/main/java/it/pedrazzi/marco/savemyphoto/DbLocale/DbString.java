@@ -4,10 +4,10 @@ package it.pedrazzi.marco.savemyphoto.DbLocale;
  * Created by Elmer on 15/04/2017.
  */
 
-
+//TODO servono tutte le tabelle??
 public final class DbString {
 
-        public static final String nomeDB="SaveMyPhotoTestProva45";
+        public static final String nomeDB="SaveMyPhotoTestProva51";
 
         //TABELLE
 

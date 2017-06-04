@@ -67,7 +67,7 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
     //metodo eseguito in un thread separato
     @Override
     protected Bitmap doInBackground(FileMedia... params) {
-
+//TODO migliorabile la velocita di caricamento leggi android developer
         FileMedia media=params[0];
         String mimeType = media.getMimeType();
         String percorsoFile = media.getPath();

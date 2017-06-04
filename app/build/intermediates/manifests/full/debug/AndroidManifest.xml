@@ -11,7 +11,7 @@
     <!-- Permessi -->
 
 
-    <!-- per mac wifi -->
+    <!-- per connessione -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -59,6 +59,13 @@
 
         <!-- SearchView -->
         <activity android:name="it.pedrazzi.marco.savemyphoto.Activity.SearchView" />
+
+        <!-- Presentazione -->
+        <activity android:name="it.pedrazzi.marco.savemyphoto.Activity.PresentazioneActivity" />
+        <activity
+            android:name="com.karumi.dexter.DexterActivity"
+            android:launchMode="singleInstance"
+            android:theme="@style/Theme.Transparent" />
     </application>
 
 </manifest>
