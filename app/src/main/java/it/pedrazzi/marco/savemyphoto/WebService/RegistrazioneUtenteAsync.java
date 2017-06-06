@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import it.pedrazzi.marco.savemyphoto.Activity.SearchView;
+import it.pedrazzi.marco.savemyphoto.Activity.SearchViewActivity;
 import it.pedrazzi.marco.savemyphoto.Activity.SupportoActivity;
 import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
 import it.pedrazzi.marco.savemyphoto.R;
@@ -89,7 +89,7 @@ public class RegistrazioneUtenteAsync extends AsyncTask <NuovoUtente,Void,Intege
                 Toast.makeText(ctx, "Registrazione locale di " + this.nomeUtente+ " avvenuta con successo!!", Toast.LENGTH_SHORT).show();
                 progressBarReg.setVisibility(View.INVISIBLE);
                 SupportoActivity supportoActivity=new SupportoActivity();
-                supportoActivity.AvvioActivity(ctx,this.nomeUtente,this.idDispositivo, SearchView.class);
+                supportoActivity.AvvioActivity(ctx,this.nomeUtente,this.idDispositivo, SearchViewActivity.class);
             }
             else
             {

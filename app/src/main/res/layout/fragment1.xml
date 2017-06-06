@@ -16,7 +16,6 @@
         android:gravity="fill"
         android:horizontalSpacing="1dp"
         android:verticalSpacing="1dp"
-
         android:numColumns="3"
         android:scrollbarAlwaysDrawHorizontalTrack="true"
         android:scrollbarThumbVertical="@drawable/ic_menu_send"

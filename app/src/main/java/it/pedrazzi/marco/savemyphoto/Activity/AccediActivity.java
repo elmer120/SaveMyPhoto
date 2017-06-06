@@ -1,6 +1,5 @@
 package it.pedrazzi.marco.savemyphoto.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -106,7 +105,7 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
 
                             this.idDispositivo=this.dBgestione.getIdDispositivo(nomeUtente);
                             SupportoActivity supportoActivity=new SupportoActivity();
-                            supportoActivity.AvvioActivity(this,this.nomeUtente,this.idDispositivo, SearchView.class);
+                            supportoActivity.AvvioActivity(this,this.nomeUtente,this.idDispositivo, SearchViewActivity.class);
                             finish();
                         }
                         else

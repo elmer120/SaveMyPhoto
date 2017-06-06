@@ -31,7 +31,7 @@ import it.pedrazzi.marco.savemyphoto.R;
 
 
 
-public class SearchView extends FragmentActivity implements Page1Fragment.OnPageListener {
+public class SearchViewActivity extends FragmentActivity implements Page1Fragment.OnPageListener {
 
     private IntentFilter filter;
     private ConnectionCheckReceiver connectionCheckReceiver;

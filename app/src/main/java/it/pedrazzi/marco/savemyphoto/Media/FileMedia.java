@@ -40,9 +40,8 @@ public class FileMedia implements Parcelable,Comparable<FileMedia>
         this.selezionata = selezionata;
     }
 
-    public Date getDataAcquisizione() {
-        return dataAcquisizione;
-    }
+    public Date getDataAcquisizione()
+    {return dataAcquisizione;}
 
     public Integer getAltezza() {
         return altezza;
@@ -93,7 +92,6 @@ public class FileMedia implements Parcelable,Comparable<FileMedia>
     private Integer dimensione;
     private Boolean suServer;
     private Boolean suDispositivo;
-
     private boolean selezionata=false;
 
 
@@ -144,33 +142,47 @@ public class FileMedia implements Parcelable,Comparable<FileMedia>
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(this.path);
-        dest.writeString(this.nome);
-        dest.writeString(this.bucket);
-        dest.writeString(this.mimeType);
-
+    public void writeToParcel(Parcel dest, int flags)
+    {
+        dest.writeLong(this.dataAcquisizione.getTime());
+        dest.writeString(this.getNome());
+        dest.writeString(this.getPath());
+        dest.writeString(this.getBucket());
+        dest.writeString(this.getMimeType());
+        dest.writeInt(this.getAltezza());
+        dest.writeInt(this.getLarghezza());
+        dest.writeString(this.getOrientamento());
+        dest.writeDouble(this.getLatitudine());
+        dest.writeDouble(this.getLongitudine());
+        dest.writeInt(this.getDimensione());
+        dest.writeByte((byte) (this.getSuServer() ? 1 : 0));
+        dest.writeByte((byte) (this.getSuDispositivo() ? 1 : 0));
+        dest.writeByte((byte) (this.getSelezionata() ? 1 : 0));
     }
 
-    @SuppressWarnings("unused")
-    protected FileMedia(Parcel in) {
-        this();
-        readFromParcel(in);
-
-    }
-
-    private void readFromParcel(Parcel in) {
-        this.path = in.readString();
+    public FileMedia(Parcel in)
+    {
+        this.dataAcquisizione = new Date(in.readLong());
         this.nome = in.readString();
+        this.path=in.readString();
         this.bucket = in.readString();
         this.mimeType = in.readString();
-
+        this.altezza=in.readInt();
+        this.larghezza=in.readInt();
+        this.orientamento=in.readString();
+        this.latitudine=in.readDouble();
+        this.longitudine=in.readDouble();
+        this.dimensione=in.readInt();
+        this.suServer=in.readByte()!=0;
+        this.suDispositivo=in.readByte()!=0;
+        this.selezionata=in.readByte()!=0;
     }
+
 
     public static final Creator<FileMedia> CREATOR = new Creator<FileMedia>() {
         @Override
-        public FileMedia createFromParcel(Parcel source) {
-            return new FileMedia(source);
+        public FileMedia createFromParcel(Parcel in) {
+            return new FileMedia(in);
         }
 
         @Override

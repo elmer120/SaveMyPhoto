@@ -32,9 +32,6 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import it.pedrazzi.marco.savemyphoto.Activity.PresentazioneActivity;
 import it.pedrazzi.marco.savemyphoto.Media.Album;
 import it.pedrazzi.marco.savemyphoto.Media.ContentProviderScanner;
@@ -169,6 +166,15 @@ this.ImageAdapter.notifyDataSetChanged();
                                 "\n Su dispositivo: " + media.getSuDispositivo(),
                                 Toast.LENGTH_SHORT).show();
         Log.i("Evento","onItemClick");
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("position",i);
+        bundle.putString("nomeUtente",nomeUtente);
+        bundle.putInt("idDispositivo",idDispositivo);
+        bundle.putParcelableArrayList("listMedia",this.listMedia);
+        Intent intent=new Intent(this.getContext(), PresentazioneActivity.class);
+        intent.putExtras(bundle);
+        this.getActivity().startActivity(intent);
     }
     //---------------------------------ACTION MODE INIZIO --------------------------------------------------------
 

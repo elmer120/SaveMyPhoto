@@ -33,28 +33,21 @@ import it.pedrazzi.marco.savemyphoto.R;
 public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
     private int TARGET_IMAGE_VIEW_WIDTH = 200;
     private int TARGET_IMAGE_VIEW_HEIGHT = 200;
-    WeakReference<ImageViewOverlay> imageViewReferences; //riferimento debole dell'imageView per l'adapter, server per evitare memory leak
+    WeakReference<ImageViewOverlay> imageViewReferences;
     private int hashCode = 0;
     private MemoryCachePhoto cachePhoto;
     private int posizione;
     private Context ctx;
-    private Bitmap iconaSuDispositivo;
-    private Bitmap iconaSuServer;
 
 
     public LoadPhotoBackground(Context ctx, ImageViewOverlay imageViewOverlay, MemoryCachePhoto cachePhoto, int posizione)
     {
 
-        // Use a WeakReference to ensure the ImageView can be garbage collected
+        //riferimento debole dell'imageView per l'adapter, serve per consentire al garbage l'eliminazione
         imageViewReferences = new WeakReference<ImageViewOverlay>(imageViewOverlay);
         this.cachePhoto=cachePhoto;
         this.posizione=posizione;
         this.ctx=ctx;
-        BitmapFactory.Options opzioniIcona=new BitmapFactory.Options();
-        opzioniIcona.inSampleSize=3;
-        iconaSuDispositivo = BitmapFactory.decodeResource(this.ctx.getResources(), R.drawable.ic_dispositivo,opzioniIcona);
-        iconaSuServer = BitmapFactory.decodeResource(this.ctx.getResources(), R.drawable.ic_server,opzioniIcona);
-
     }
 
     @Override
@@ -67,13 +60,12 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
     //metodo eseguito in un thread separato
     @Override
     protected Bitmap doInBackground(FileMedia... params) {
-//TODO migliorabile la velocita di caricamento leggi android developer
+//TODO migliorabile implementando cache disk android developer
         FileMedia media=params[0];
         String mimeType = media.getMimeType();
         String percorsoFile = media.getPath();
         Bitmap anteprima = Bitmap.createBitmap(200, 200, Bitmap.Config.RGB_565);
-        BitmapFactory.Options opzioniBitmap = null;
-        opzioniBitmap = new BitmapFactory.Options();
+        BitmapFactory.Options opzioniBitmap = new BitmapFactory.Options();
         //codifica più leggera ogni pixel 2 byte
         opzioniBitmap.inPreferredConfig = Bitmap.Config.RGB_565;
         String log="";

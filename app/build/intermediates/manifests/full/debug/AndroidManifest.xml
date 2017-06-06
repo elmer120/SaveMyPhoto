@@ -57,8 +57,8 @@
             android:label="@string/registrati"
             android:theme="@style/AppTheme" />
 
-        <!-- SearchView -->
-        <activity android:name="it.pedrazzi.marco.savemyphoto.Activity.SearchView" />
+        <!-- SearchViewActivity -->
+        <activity android:name="it.pedrazzi.marco.savemyphoto.Activity.SearchViewActivity" />
 
         <!-- Presentazione -->
         <activity android:name="it.pedrazzi.marco.savemyphoto.Activity.PresentazioneActivity" />

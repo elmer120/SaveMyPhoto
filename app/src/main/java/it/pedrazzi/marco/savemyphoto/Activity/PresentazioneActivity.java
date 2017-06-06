@@ -20,15 +20,33 @@ import it.pedrazzi.marco.savemyphoto.R;
 public class PresentazioneActivity extends Activity {
 
     ArrayList<FileMedia> listMedia;
+    String nomeUtente;
+    int idDispositivo;
+    int position;
+    PresentazionePagerAdapter presentazionePagerAdapter;
+    ViewPager mViewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_presentazione);
-        this.listMedia=new ContentProviderScanner(this).getListMedia(Album.Camera,true);
-        PresentazionePagerAdapter presentazionePagerAdapter = new PresentazionePagerAdapter(this,listMedia);
 
-        ViewPager mViewPager = (ViewPager) findViewById(R.id.presentatore);
+        //recupero dati da activity precedente
+        Bundle bundle=this.getIntent().getExtras();
+        this.nomeUtente =bundle.getString("nomeUtente");
+        this.idDispositivo = bundle.getInt("idDispositivo");
+        this.position = bundle.getInt("position");
+        this.listMedia=bundle.getParcelableArrayList("listMedia");
+        this.presentazionePagerAdapter = new PresentazionePagerAdapter(this,listMedia);
+        this.mViewPager = (ViewPager) findViewById(R.id.presentatore);
         mViewPager.setAdapter(presentazionePagerAdapter);
     }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mViewPager.setCurrentItem(position);
+    }
+
 }
