@@ -34,7 +34,8 @@ public class DBddl extends SQLiteOpenHelper {
                 DbString.tbUtenti.NomeUtente +" NVARCHAR(30) NOT NULL," +
                 DbString.tbUtenti.DataNascita +" DATETIME," +
                 DbString.tbUtenti.Mail+" NVARCHAR(256) NOT NULL," +
-                DbString.tbUtenti.Password+" NVARCHAR(128) NOT NULL)";
+                DbString.tbUtenti.Password+" NVARCHAR(128) NOT NULL,"+
+                DbString.tbUtenti.MantieniAccesso+" INT NOT NULL)";
 
         String qD="CREATE TABLE "+DbString.tbDispositivi.tbNome+
                 " ("+DbString.tbDispositivi.ID+" INTEGER PRIMARY KEY NOT NULL," +

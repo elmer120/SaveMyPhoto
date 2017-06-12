@@ -38,6 +38,7 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
     private MemoryCachePhoto cachePhoto;
     private int posizione;
     private Context ctx;
+    FileMedia media;
 
 
     public LoadPhotoBackground(Context ctx, ImageViewOverlay imageViewOverlay, MemoryCachePhoto cachePhoto, int posizione)
@@ -61,7 +62,7 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
     @Override
     protected Bitmap doInBackground(FileMedia... params) {
 //TODO migliorabile implementando cache disk android developer
-        FileMedia media=params[0];
+        media=params[0];
         String mimeType = media.getMimeType();
         String percorsoFile = media.getPath();
         Bitmap anteprima = Bitmap.createBitmap(200, 200, Bitmap.Config.RGB_565);
@@ -157,7 +158,7 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
 
             if (this == bitmapWorkerTask && imageViewOverlay != null)
             {
-                cachePhoto.put((long)posizione,bitmap);
+                cachePhoto.put(media.getDataAcquisizione().getTime(),bitmap);
                 imageViewOverlay.setImageBitmap(bitmap);
             }
 

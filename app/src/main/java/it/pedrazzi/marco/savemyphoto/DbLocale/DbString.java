@@ -7,7 +7,7 @@ package it.pedrazzi.marco.savemyphoto.DbLocale;
 //TODO servono tutte le tabelle??
 public final class DbString {
 
-        public static final String nomeDB="SaveMyPhotoTestProva52";
+        public static final String nomeDB="SaveMyPhotoTestProva59";
 
         //TABELLE
 
@@ -18,6 +18,7 @@ public final class DbString {
         public static final String DataNascita="DataNascita";
         public static final String Mail="Mail";
         public static final String Password="Password";
+        public static final String MantieniAccesso="MantieniAccesso";
         }
 
         public class tbDispositivi{

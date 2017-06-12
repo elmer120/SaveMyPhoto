@@ -37,9 +37,11 @@ public class MemoryCachePhoto
     //mette un bitmap nella cache
     public void put(Long lng, Bitmap bitmap)
     {
-        if (get(lng) == null)
+        synchronized (mMemoryCache) //evita accessi concorrenziali thread lock
         {
-            mMemoryCache.put(lng, bitmap);
+            if (mMemoryCache.get(lng) == null) {
+                mMemoryCache.put(lng, bitmap);
+            }
         }
     }
 
@@ -47,5 +49,6 @@ public class MemoryCachePhoto
     {
         mMemoryCache.evictAll();
     }
+
 
 }

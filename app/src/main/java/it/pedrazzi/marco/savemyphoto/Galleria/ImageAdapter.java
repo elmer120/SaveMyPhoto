@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
 import it.pedrazzi.marco.savemyphoto.Media.FileMediaWeb;
@@ -70,7 +71,9 @@ public class ImageAdapter extends BaseAdapter  {
     }
 
     @Override
-    public void notifyDataSetChanged() {
+    public void notifyDataSetChanged()
+    {
+        Collections.sort(this.listMedia);
         super.notifyDataSetChanged();
     }
 
@@ -98,12 +101,17 @@ public class ImageAdapter extends BaseAdapter  {
             imageViewOverlay = new ImageViewOverlay(ctx,media.getSuServer(),media.getSuDispositivo());
         }
 
-        //immagine già presente in cache?
-        Bitmap bitmap = cachePhoto.get((long) position);
+        Bitmap bitmap=null;
 
+        //TODO problema cache immagini scaricate
+        //immagine già presente in cache?
+        if(media.getMimeType()!="image/web")  //se non è scaricata
+        {
+            bitmap = cachePhoto.get(media.getDataAcquisizione().getTime());
+        }
         if (bitmap != null)
         {
-            imageViewOverlay.setImageBitmap(cachePhoto.get((long) position));
+          imageViewOverlay.setImageBitmap(cachePhoto.get(media.getDataAcquisizione().getTime()));
             Log.d("Load image: ", "Cache");
         }
         else  //se non presente in cache la carico in modo asincrono

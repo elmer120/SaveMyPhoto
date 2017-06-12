@@ -251,7 +251,7 @@ public class Http {
 
             case 200:
             {
-                Log.i(this.getClass().getSimpleName(), "Upload ok! Risposta server: 200 OK!");
+                Log.i(this.getClass().getSimpleName(), "Download ok! Risposta server: 200 OK!");
                 try
                 {
                     InputStream inputStream=client.getInputStream();
@@ -261,6 +261,7 @@ public class Http {
                     while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
                         buffer.write(data, 0, nRead);
                     }
+                    client.disconnect();
                     return buffer.toByteArray();
                 }
                 catch (IOException e)
@@ -364,7 +365,7 @@ public class Http {
 
         return httpCodiceRisposta;
     }
-
+//TODO metodi da rivedere
     private int LetturaRispostaServer(HttpURLConnection client)
     {
         Log.i(this.getClass().getSimpleName(), "Attendo risposta dal server..");

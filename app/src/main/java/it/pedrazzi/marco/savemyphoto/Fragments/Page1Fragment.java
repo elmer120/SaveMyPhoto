@@ -32,6 +32,8 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import it.pedrazzi.marco.savemyphoto.Activity.PresentazioneActivity;
 import it.pedrazzi.marco.savemyphoto.Media.Album;
 import it.pedrazzi.marco.savemyphoto.Media.ContentProviderScanner;
@@ -133,9 +135,9 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         gridView.setChoiceMode(GridView.CHOICE_MODE_MULTIPLE_MODAL);
 
         //controllo se ci sono media su server
-        /*GetMediaOnServerAsync getMediaOnServer=new GetMediaOnServerAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
+        GetMediaOnServerAsync getMediaOnServer=new GetMediaOnServerAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
         getMediaOnServer.execute();
-*/
+
     }
 
     //-----------------------------------EVENTI TOUCH----------------------------------------------------------------
@@ -150,9 +152,9 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         FileMedia media=this.listMedia.get(i);
 
 
-this.ImageAdapter.notifyDataSetChanged();
-        Toast.makeText(         this.getContext(),
-                                "Nome: "+media.getNome()+
+        this.ImageAdapter.notifyDataSetChanged();
+        Log.i("Evento","onItemClick");
+        Log.i(                  "Nome: "+media.getNome(),
                                 "\n DataAcqu: "+media.getDataAcquisizione()+
                                 "\n MimeType: "+media.getMimeType()+
                                 "\n Dimensione: "+media.getDimensione()+
@@ -163,10 +165,8 @@ this.ImageAdapter.notifyDataSetChanged();
                                 "\n Latitudine: " + media.getLatitudine()+
                                 "\n Longitudine: " + media.getLongitudine()+
                                 "\n Su server: " + media.getSuServer()+
-                                "\n Su dispositivo: " + media.getSuDispositivo(),
-                                Toast.LENGTH_SHORT).show();
-        Log.i("Evento","onItemClick");
-
+                                "\n Su dispositivo: " + media.getSuDispositivo()
+                                );
         Bundle bundle = new Bundle();
         bundle.putInt("position",i);
         bundle.putString("nomeUtente",nomeUtente);
@@ -218,7 +218,7 @@ this.ImageAdapter.notifyDataSetChanged();
     }
 
     @Override
-    public boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+    public boolean onActionItemClicked(final ActionMode actionMode, MenuItem menuItem) {
 
         //se almeno un media non è sul server invalido il l'action mode, che cosi passa ad onPrepareActionMode
         pulsanteBackup=false;
@@ -242,7 +242,7 @@ this.ImageAdapter.notifyDataSetChanged();
         switch (menuItem.getItemId())
         {
             case R.id.elimina:
-
+                Log.i("ActionMode","Click su elimina");
                 final ArrayList<FileMedia> mediaDaEliminareDef=new ArrayList<FileMedia>();
                 final ArrayList<FileMedia> mediaDaEliminareConBackup=new ArrayList<FileMedia>();
 
@@ -264,31 +264,35 @@ this.ImageAdapter.notifyDataSetChanged();
                     }
 
                 }
-                this.eliminazioneDefinitiva=false;
                 //averto l'utente che la cancellazione è definitiva
                 if(mediaDaEliminareDef.size()>0)
                 {
-                    /*AlertDialog.Builder builder;
+                    AlertDialog.Builder builder;
                     builder = new AlertDialog.Builder(this.getContext(), R.style.MyAlertDialog);
                     builder.setTitle("Eliminazione definitiva")
                             .setMessage("Uno o più media non hanno nessun backup, \nl'eliminazione sarà definitiva, procedere?")
                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int which) {
-                                    eliminazioneDefinitiva=true;
+                                    EliminaMedia(mediaDaEliminareDef,mediaDaEliminareConBackup,true);
+                                    actionMode.finish();
                                 }
                             })
                             .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    eliminazioneDefinitiva=false;
+                                public void onClick(DialogInterface dialog, int which)
+                                {
+                                    actionMode.finish();
                                 }
                             })
                             .setIcon(android.R.drawable.ic_dialog_alert)
-                            .show();*/
-
+                            .show();
+                    //ritornando false blocco l'action mode dicendogli che non ha ancora gestito l'evento
+                    return false;
                 }
-                EliminaMedia(mediaDaEliminareDef,mediaDaEliminareConBackup,eliminazioneDefinitiva);
 
-                Log.i("ActionMode","Click su elimina");
+                if(mediaDaEliminareConBackup.size()>0)
+                {
+                    EliminaMedia(mediaDaEliminareDef,mediaDaEliminareConBackup,false);
+                }
                 actionMode.finish();
                 break;
 
@@ -319,6 +323,7 @@ this.ImageAdapter.notifyDataSetChanged();
                 break;
         }
         Log.i("Evento","onActionItemClicked");
+
         return true;
     }
 
@@ -390,15 +395,14 @@ this.ImageAdapter.notifyDataSetChanged();
     }
 
 
-    public void EliminaMedia(ArrayList<FileMedia> mediaDaEliminareDef,ArrayList<FileMedia> mediaDaEliminareConBackup,Boolean eliminazioneDefinitiva)
+    public void EliminaMedia(ArrayList<FileMedia> mediaDaEliminareDef,ArrayList<FileMedia> mediaDaEliminareConBackup,Boolean mediaSenzaBackup)
     {
 
         Toast.makeText(this.getContext(),"Eliminazione in corso...",Toast.LENGTH_SHORT).show();
-        if(eliminazioneDefinitiva)
+        if(mediaSenzaBackup)
         {
             for (FileMedia media:mediaDaEliminareDef)
             {
-                //TODO RIVEDERE ELIMINAZIONE
                 //elimino da ram
                 this.listMedia.remove(media);
                 //elimino da file system
@@ -415,13 +419,13 @@ this.ImageAdapter.notifyDataSetChanged();
         }
 
         //controllo se ci sono media su server
-        //GetMediaOnServerAsync getMediaOnServer=new GetMediaOnServerAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
-        //getMediaOnServer.execute();
+        GetMediaOnServerAsync getMediaOnServer=new GetMediaOnServerAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
+        getMediaOnServer.execute();
 
         //order list
-        //Collections.sort(this.listMedia);
+        Collections.sort(this.listMedia);
 
         this.ImageAdapter.notifyDataSetChanged();
-        this.ImageAdapter.getCachePhoto().Clear();
+        //this.ImageAdapter.getCachePhoto().Clear();
     }
 }

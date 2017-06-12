@@ -70,9 +70,10 @@
         android:id="@+id/cBMantieniAccesso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mantieniAccesso"
         android:layout_below="@+id/progressBarAcc"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="14dp"
+        android:checked="false"
+        android:text="@string/mantieniAccesso" />
 
 </RelativeLayout>

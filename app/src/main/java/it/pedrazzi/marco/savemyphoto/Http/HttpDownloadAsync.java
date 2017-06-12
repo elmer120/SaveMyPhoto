@@ -70,8 +70,6 @@ import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
             }
         }
 
-
-
     }
 
 

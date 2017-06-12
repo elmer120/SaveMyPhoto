@@ -121,12 +121,11 @@ public class GetMediaOnServerAsync extends AsyncTask <Void,Void,Boolean> {
         //se ci sono media da visualizzare li aggiungo al listmedia
         if(bool)
         {
-            //ordino
-            Collections.sort(this.listMedia);
+
             //notifico all'adapter il cambio della base di dati
             this.imageAdapter.notifyDataSetChanged();
             //libero la cache
-            this.imageAdapter.getCachePhoto().Clear();
+            //this.imageAdapter.getCachePhoto().Clear();
             Log.i(this.getClass().getSimpleName(),"Presenti "+numeroMedia+" media su server");
         }
         else

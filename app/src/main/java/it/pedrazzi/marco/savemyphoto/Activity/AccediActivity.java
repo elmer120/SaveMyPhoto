@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -34,7 +35,15 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
         return editTextPassword;
     }
 
+    public CheckBox getCbMantieniAccesso() {
+        return cbMantieniAccesso;
+    }
 
+    public void setCbMantieniAccesso(CheckBox cbMantieniAccesso) {
+        this.cbMantieniAccesso = cbMantieniAccesso;
+    }
+
+    private CheckBox cbMantieniAccesso;
     private EditText editTextUtente;
     private EditText editTextPassword;
 
@@ -59,6 +68,8 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
         //recupero il pulsante e setto l'evento on click
         Button btnAvanti=(Button)findViewById(R.id.btnAvanti);
         btnAvanti.setOnClickListener(this);
+
+        this.cbMantieniAccesso=(CheckBox)findViewById(R.id.cBMantieniAccesso);
 
         this.progressBarAccOffline=(ProgressBar) findViewById(R.id.progressBarAcc);
 
@@ -139,8 +150,7 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
         this.progressBarAccOffline.setVisibility(View.VISIBLE);
         this.nomeUtente = getEditTextUtente().getText().toString();
         String passwordInserita = getEditTextPassword().getText().toString();
-
-        return dBgestione.UtenteCheckDbLocale(this.nomeUtente, passwordInserita);
+        return dBgestione.UtenteCheckDbLocale(this.nomeUtente, passwordInserita,this.getCbMantieniAccesso().isChecked());
     }
 
     //Associa nuovo dispositivo e registra credenziali nel db locale

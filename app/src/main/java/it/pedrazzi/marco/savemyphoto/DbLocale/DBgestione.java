@@ -33,6 +33,7 @@ public class DBgestione {
         cv.put(DbString.tbUtenti.NomeUtente, nomeUtente);
         cv.put(DbString.tbUtenti.Mail, mail);
         cv.put(DbString.tbUtenti.Password, password);
+        cv.put(DbString.tbUtenti.MantieniAccesso,0);
         //TODO datanascita mancante!!!!
         //TODO MD5?
         //cv.put(DbString.tbUtenti.DataNascita, );
@@ -59,22 +60,38 @@ public class DBgestione {
     }
 
     //controlla le credenziali in locale
-    public boolean UtenteCheckDbLocale(String nomeUtente,String password)
+    public boolean UtenteCheckDbLocale(String nomeUtente,String password,boolean mantieniAccesso)
     {
         //lettura su db
         SQLiteDatabase db=dbddl.getReadableDatabase();
         Cursor cursor=null;
-
-        //
         cursor = db.rawQuery("SELECT id FROM " + DbString.tbUtenti.tbNome + " WHERE nomeUtente = ? AND password = ?", new String[]{nomeUtente,password});
             if (cursor.getCount() > 0) //se esiste l'utente
             {
                 cursor.close();
+               // MantieniAccesso(mantieniAccesso,nomeUtente);
                 return true;
             } else {
                 cursor.close();
                 return false;
             }
+    }
+//TODO problemi nella query update
+    public void MantieniAccesso(boolean mantieniAccesso,String nomeUtente)
+    {
+        //return database.update(DATABASE_TABLE, updateValues, KEY_ CONTACTID + "=" + contactID, null) > 0;
+        //converto
+        String accesso=(mantieniAccesso)?"1":"0";
+        //scrittura lettura su db
+        SQLiteDatabase db = dbddl.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.clear();
+        cv.put(DbString.tbUtenti.MantieniAccesso,accesso);
+        String strSQL = "UPDATE Utenti SET MantieniAccesso = '1' WHERE NomeUtente = 'elmer';";
+
+        db.execSQL(strSQL);
+
+        //db.update(DbString.tbUtenti.tbNome,cv,DbString.tbUtenti.NomeUtente+"="+nomeUtente.toString(),null);
     }
 
 
