@@ -37,6 +37,7 @@ public class RVKWSsaveMyPhotoSoap12
 
     String url="http://savemyphoto.gear.host/WsSaveMyPhoto.asmx";
 
+
     int timeOut=60000;
     public List< HeaderProperty> httpHeaders;
     public boolean enableLogging;

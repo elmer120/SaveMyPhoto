@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 
 
@@ -85,9 +86,9 @@ public class ImageAdapter extends BaseAdapter  {
     // crea un imageview per ogni view della gridview
     public View getView(int position, View convertView, ViewGroup parent)
     {
+
         FileMedia media=listMedia.get(position);
         ImageViewOverlay imageViewOverlay;
-
         //controllo se esiste già la view e posso riutilizzarla
         if (convertView != null)
         {
@@ -99,16 +100,20 @@ public class ImageAdapter extends BaseAdapter  {
         else
         {
             imageViewOverlay = new ImageViewOverlay(ctx,media.getSuServer(),media.getSuDispositivo());
+            imageViewOverlay.setLayoutParams(new GridView.LayoutParams(250, 250));
+            //imageViewOverlay.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            //imageViewOverlay.setPadding(8, 8, 8, 8);
+
         }
 
         Bitmap bitmap=null;
 
         //TODO problema cache immagini scaricate
         //immagine già presente in cache?
-        if(media.getMimeType()!="image/web")  //se non è scaricata
-        {
+        //if(media.getMimeType()!="image/web")  //se non è scaricata
+        //{
             bitmap = cachePhoto.get(media.getDataAcquisizione().getTime());
-        }
+        //}
         if (bitmap != null)
         {
           imageViewOverlay.setImageBitmap(cachePhoto.get(media.getDataAcquisizione().getTime()));

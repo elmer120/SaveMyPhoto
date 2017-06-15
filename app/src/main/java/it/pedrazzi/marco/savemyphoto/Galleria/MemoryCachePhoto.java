@@ -29,9 +29,11 @@ public class MemoryCachePhoto
 
     //ritorna la bitmap dalla cache
     public Bitmap get(long lng)
-
     {
-        return mMemoryCache.get(lng);
+        synchronized (mMemoryCache) //evita accessi concorrenziali thread lock
+        {
+            return mMemoryCache.get(lng);
+        }
     }
 
     //mette un bitmap nella cache

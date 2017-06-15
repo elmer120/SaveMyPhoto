@@ -114,6 +114,7 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         this.contentProviderScanner=new ContentProviderScanner(this.getContext());
         this.listMedia=contentProviderScanner.getListMedia(Album.Camera,true);
         this.placeholder= BitmapFactory.decodeResource(this.getResources(), R.drawable.placeholder);
+        Log.i(this.getClass().getSimpleName(),"OnCreate");
     }
 
     /**
@@ -125,8 +126,11 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         super.onStart();
         //recupero la gridview
         this.gridView =(GridView)getView().findViewById(R.id.gridviewFragment1);
-        this.ImageAdapter =new ImageAdapter(getContext(), listMedia, placeholder);
-        this.gridView.setAdapter(ImageAdapter);
+        if(this.ImageAdapter==null)
+        {
+            this.ImageAdapter = new ImageAdapter(getContext(), listMedia, placeholder);
+        }
+            this.gridView.setAdapter(ImageAdapter);
         //registro callbacks
         //evento touch
         gridView.setOnItemClickListener(this);
@@ -137,8 +141,10 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         //controllo se ci sono media su server
         GetMediaOnServerAsync getMediaOnServer=new GetMediaOnServerAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
         getMediaOnServer.execute();
-
+        Log.i(this.getClass().getSimpleName(),"OnStart");
     }
+
+
 
     //-----------------------------------EVENTI TOUCH----------------------------------------------------------------
 
@@ -150,23 +156,6 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         FileMedia media=this.listMedia.get(i);
-
-
-        this.ImageAdapter.notifyDataSetChanged();
-        Log.i("Evento","onItemClick");
-        Log.i(                  "Nome: "+media.getNome(),
-                                "\n DataAcqu: "+media.getDataAcquisizione()+
-                                "\n MimeType: "+media.getMimeType()+
-                                "\n Dimensione: "+media.getDimensione()+
-                                "\n H: "+media.getAltezza()+
-                                "\n L: "+media.getLarghezza()+
-                                "\n Path: " + media.getPath()+
-                                "\n Orientamento: "+media.getOrientamento()+
-                                "\n Latitudine: " + media.getLatitudine()+
-                                "\n Longitudine: " + media.getLongitudine()+
-                                "\n Su server: " + media.getSuServer()+
-                                "\n Su dispositivo: " + media.getSuDispositivo()
-                                );
         Bundle bundle = new Bundle();
         bundle.putInt("position",i);
         bundle.putString("nomeUtente",nomeUtente);
@@ -413,7 +402,11 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
 
         for (FileMedia media:mediaDaEliminareConBackup)
         {
-            media.setSuDispositivo(false);
+            //elimino da ram
+            this.listMedia.remove(media);
+            //elimino da file system
+            new File(media.getPath()).delete();
+            //aggiorno il media nel db remoto mettendo dispositivo a 0
             AggiornaMediaAsync aggiornaMediaAsync=new AggiornaMediaAsync(this.getContext(),media.getPath(),this.ImageAdapter);
             aggiornaMediaAsync.execute(new String[]{""+this.idDispositivo,media.getNome()});
         }

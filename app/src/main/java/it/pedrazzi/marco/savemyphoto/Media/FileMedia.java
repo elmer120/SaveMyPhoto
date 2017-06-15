@@ -98,7 +98,6 @@ public class FileMedia implements Parcelable,Comparable<FileMedia>
     public FileMedia(Date dataAcquisizione, String path, String nome, String bucket, String mimeType,
                      Integer dimensione, Integer altezza, Integer larghezza, String orientamento,
                      Double latitudine, Double longitudine, Boolean suServer, Boolean suDispositivo){
-        super();
         this.path=path;
         this.bucket=bucket;
         this.mimeType=mimeType;

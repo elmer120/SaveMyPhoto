@@ -13,7 +13,7 @@
         android:layout_gravity="right"
         android:baselineAlignBottom="false"
         android:cropToPadding="false"
-        app:srcCompat="@android:drawable/ic_menu_info_details" />
+        app:srcCompat="@android:drawable/ic_dialog_info"  />
 
     <ImageView
         android:id="@+id/imageView"

@@ -42,7 +42,7 @@ public class Http {
     private String campoDue = "idDispositivo";
     private String campoTre = "album";
     //public String urlServer="http://muletto.elmer.it"; //server casalingo
-    //public String urlServer="http://192.168.1.20:51262/WFupload.aspx"; //server locale
+    //public String urlServer="http://192.168.1.20:10762/WFupload.aspx"; //server locale
     //public String urlServer="http://posttestserver.com/post.php?dir=example"; //server dubug http
     public String urlServer ="http://savemyphoto.gear.host/WFupload.aspx"; //server hosting di test
     public int qualitaJpeg=80;

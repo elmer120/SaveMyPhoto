@@ -43,14 +43,12 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
 
     public LoadPhotoBackground(Context ctx, ImageViewOverlay imageViewOverlay, MemoryCachePhoto cachePhoto, int posizione)
     {
-
         //riferimento debole dell'imageView per l'adapter, serve per consentire al garbage l'eliminazione
         imageViewReferences = new WeakReference<ImageViewOverlay>(imageViewOverlay);
         this.cachePhoto=cachePhoto;
         this.posizione=posizione;
         this.ctx=ctx;
     }
-
     @Override
     protected void onPreExecute()
     {

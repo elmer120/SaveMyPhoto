@@ -32,7 +32,7 @@ public class ListFileMedia extends ArrayList<FileMedia> {
     }*/
 
    //popola la lista di media
-    //TODO -- Controllare date sembra che dicembre sia conteggiato come mese 11!! (prob. 0-11)
+
     /*public void AggiornaLista() throws FileNotFoundException {
 
         File[] allImagesFile=this.primaryStorage.listFiles();

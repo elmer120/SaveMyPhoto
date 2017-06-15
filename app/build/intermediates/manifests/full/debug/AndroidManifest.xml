@@ -28,9 +28,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@android:style/Theme.Holo.Light.DarkActionBar" >
-
-        <!-- service per sincronizzare i media -->
-
+        android:largeHeap="true"
 
         <!-- Scelta accesso -->
         <activity

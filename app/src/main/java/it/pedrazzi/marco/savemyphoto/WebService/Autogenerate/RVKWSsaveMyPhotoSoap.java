@@ -35,7 +35,8 @@ public class RVKWSsaveMyPhotoSoap
         java.lang.Object ProcessResult(RVKExtendedSoapSerializationEnvelope __envelope,java.lang.Object result) throws java.lang.Exception;
     }
 
-    String url="http://savemyphoto.gear.host/WsSaveMyPhoto.asmx";
+     String url="http://savemyphoto.gear.host/WsSaveMyPhoto.asmx";
+
 
     int timeOut=60000;
     public List< HeaderProperty> httpHeaders;
