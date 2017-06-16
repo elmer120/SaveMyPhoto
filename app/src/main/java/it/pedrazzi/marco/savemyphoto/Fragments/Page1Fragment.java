@@ -416,9 +416,9 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         getMediaOnServer.execute();
 
         //order list
-        Collections.sort(this.listMedia);
+        //Collections.sort(this.listMedia);
 
-        this.ImageAdapter.notifyDataSetChanged();
+        //this.ImageAdapter.notifyDataSetChanged();
         //this.ImageAdapter.getCachePhoto().Clear();
     }
 }

@@ -11,7 +11,7 @@
     <string name="accedi">Accedi</string>
     <string name="login">Login</string>
     <string name="avanti">Avanti</string>
-    <string name="versione">V 0.7.8</string>
+    <string name="versione">V 0.8.8</string>
 
 
 
@@ -21,7 +21,7 @@
     <string name="dataNascita">Data nascita</string>
 
     <string-array name="tab">
-        <item>Foto</item>
+        <item>Camera</item>
         <item>WhatsApp</item>
         <item>Altro</item>
     </string-array>

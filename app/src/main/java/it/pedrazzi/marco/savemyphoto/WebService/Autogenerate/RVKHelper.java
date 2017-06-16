@@ -130,8 +130,8 @@ public class RVKHelper
         for (java.lang.String frm : formats)
         {
             try{
-                SimpleDateFormat format = new SimpleDateFormat(frm, Locale.US);
-                format.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
+                SimpleDateFormat format = new SimpleDateFormat(frm, Locale.getDefault());
+                format.setTimeZone(java.util.TimeZone.getDefault());
                 return format.parse(strDate);
             }
             catch (java.lang.Exception ex)
@@ -143,15 +143,15 @@ public class RVKHelper
 
     public static SimpleDateFormat getDateTimeFormat()
     {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
-        format.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+        format.setTimeZone(java.util.TimeZone.getDefault());
         return format;
     }
 
     public static SimpleDateFormat getDateFormat()
     {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-        format.setTimeZone(java.util.TimeZone.getTimeZone("UTC"));
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        format.setTimeZone(java.util.TimeZone.getDefault());
         return format;
     }
     

@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
@@ -13,16 +11,12 @@ import android.media.ThumbnailUtils;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.widget.ImageView;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.ref.WeakReference;
 
 import it.pedrazzi.marco.savemyphoto.Http.Http;
-import it.pedrazzi.marco.savemyphoto.Http.HttpDownloadAsync;
 import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
-import it.pedrazzi.marco.savemyphoto.R;
 
 /**
  * Created by elmer on 25/11/16.
@@ -31,8 +25,8 @@ import it.pedrazzi.marco.savemyphoto.R;
 
 //1° parametro input doInBackgroud -- 3°parametro output doInBackground
 public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
-    private int TARGET_IMAGE_VIEW_WIDTH = 200;
-    private int TARGET_IMAGE_VIEW_HEIGHT = 200;
+    private int larghezzaMaxMedia = 100;
+    private int altezzaMaxMedia = 100;
     WeakReference<ImageViewOverlay> imageViewReferences;
     private int hashCode = 0;
     private MemoryCachePhoto cachePhoto;
@@ -82,6 +76,7 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
                 case "image/png":
                     //cerco se esiste già un anteprima nei metadati exif
                     ExifInterface exifInterface = new ExifInterface(percorsoFile);
+                    Log.i(this.getClass().getSimpleName(),exifInterface.toString());
                     if (exifInterface.hasThumbnail())
                     {
                         byte[] thumbnail = exifInterface.getThumbnail();
@@ -117,7 +112,8 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
                     byte[] arrayByte=http.Ricevi(media.getPath());
                     Log.i(this.getClass().getSimpleName(),""+arrayByte.length);
 
-                    if(arrayByte!=null) {
+                    if(arrayByte!=null)
+                    {
                         opzioniBitmap.inJustDecodeBounds = true;
                         //estraggo solamente le dimensioni
                         anteprima = BitmapFactory.decodeByteArray(arrayByte, 0, arrayByte.length,opzioniBitmap);
@@ -134,8 +130,6 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
         } catch (IOException e)
         {
             e.printStackTrace();
-
-
         }
 
         //Log.i("Immagine scalata: ", "H: " + anteprima.getHeight() + " W: " + anteprima.getWidth()+" "+log);
@@ -156,7 +150,7 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
 
             if (this == bitmapWorkerTask && imageViewOverlay != null)
             {
-                cachePhoto.put(media.getDataAcquisizione().getTime(),bitmap);
+                cachePhoto.put((long)this.posizione,bitmap);
                 imageViewOverlay.setImageBitmap(bitmap);
             }
 
@@ -164,18 +158,17 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
     }
 
 
-    //calcola il fattore di scala ottimale per l'immagine
-    //TODO foto panoramiche non vengono scalate
+    //calcola il fattore di scala ottimale per il media
     private int calculateInSampleSize(BitmapFactory.Options bmOptions)
     {
         Log.d("immagine originale: ", "H: " + bmOptions.outHeight + " W: " + bmOptions.outWidth);
         final int photoWidth = bmOptions.outWidth;
         final int photoHeight = bmOptions.outHeight;
         int scaleFactor = 1;
-        if (photoWidth > TARGET_IMAGE_VIEW_WIDTH || photoHeight > TARGET_IMAGE_VIEW_HEIGHT) {
+        if (photoWidth > larghezzaMaxMedia || photoHeight > altezzaMaxMedia) {
             final int halfPhotoWidth = photoWidth / 2;
             final int halfPhotoHeight = photoHeight / 2;
-            while (halfPhotoWidth / scaleFactor > TARGET_IMAGE_VIEW_WIDTH || halfPhotoHeight / scaleFactor > TARGET_IMAGE_VIEW_HEIGHT)
+            while (halfPhotoWidth / scaleFactor > larghezzaMaxMedia || halfPhotoHeight / scaleFactor > altezzaMaxMedia)
             {
                 scaleFactor *= 2;
             }
@@ -203,7 +196,7 @@ public class LoadPhotoBackground extends AsyncTask<FileMedia,Void,Bitmap> {
     }
 
     //da guida google
-    //data una view ritorna il thread associato!?!?
+    //data una view ritorna il thread associato
     private static LoadPhotoBackground getThreadAssociato(ImageViewOverlay imageViewOverlay) {
         if (imageViewOverlay != null) {
             final Drawable drawable = imageViewOverlay.getDrawable();

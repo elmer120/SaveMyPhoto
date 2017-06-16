@@ -1,8 +1,10 @@
 package it.pedrazzi.marco.savemyphoto.Activity;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,36 +15,48 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import it.pedrazzi.marco.savemyphoto.Http.Http;
 import it.pedrazzi.marco.savemyphoto.Http.HttpDownloadAsync;
 import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
 import it.pedrazzi.marco.savemyphoto.R;
 
-public class PresentazionePagerAdapter extends PagerAdapter implements View.OnClickListener {
+public class PresentazionePagerAdapter extends PagerAdapter {
+
+    public Context getCtx() {
+        return ctx;
+    }
+
+    public void setCtx(Context ctx) {
+        this.ctx = ctx;
+    }
 
     private Context ctx;
-    LayoutInflater mLayoutInflater;
+
+    public void setLayoutInflater(LayoutInflater layoutInflater) {
+        this.layoutInflater = layoutInflater;
+    }
+
+    LayoutInflater layoutInflater;
+
+    public ArrayList<FileMedia> getListMedia() {
+        return listMedia;
+    }
+
+    public void setListMedia(ArrayList<FileMedia> listMedia) {
+        this.listMedia = listMedia;
+    }
+
     ArrayList<FileMedia> listMedia;
 
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    int position;
-
-    public PresentazionePagerAdapter(Context context,ArrayList<FileMedia> listMedia) {
-        ctx = context;
-        this.listMedia=listMedia;
-        mLayoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public PresentazionePagerAdapter(Context ctx,ArrayList<FileMedia> listmedia) {
+        this.setCtx(ctx);
+        this.setLayoutInflater((LayoutInflater)ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
+        this.setListMedia(listmedia);
     }
 
     @Override
-    public int getCount() {
-        return listMedia.size();
+    public int getCount()
+    {
+        return this.getListMedia().size();
     }
 
     @Override
@@ -52,19 +66,22 @@ public class PresentazionePagerAdapter extends PagerAdapter implements View.OnCl
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        this.setPosition(position);
-        View itemView = mLayoutInflater.inflate(R.layout.image_view_presentazione, container, false);
+        View itemView = this.layoutInflater.inflate(R.layout.elemento_presentazione, container, false);
         ImageView imageView = (ImageView) itemView.findViewById(R.id.imageView);
-        FileMedia media=this.listMedia.get(this.getPosition());
+        FileMedia media=this.listMedia.get(position);
+        BitmapFactory.Options opzioniBitmap = new BitmapFactory.Options();
+        opzioniBitmap.inSampleSize=4;
+        //codifica più leggera ogni pixel 2 byte
+        opzioniBitmap.inPreferredConfig = Bitmap.Config.RGB_565;
         //controllo che tipo di media è
         switch (media.getMimeType())
         {
             case "image/jpg":
             case "image/jpeg":
             case "image/png":
-
-
-                imageView.setImageBitmap(BitmapFactory.decodeFile(media.getPath()));
+                imageView.setAdjustViewBounds(true);
+                imageView.setPadding(0,0,0,0);
+                imageView.setImageBitmap(BitmapFactory.decodeFile(media.getPath(),opzioniBitmap));
                 break;
             case "image/web":
                 // richiesta get
@@ -72,9 +89,7 @@ public class PresentazionePagerAdapter extends PagerAdapter implements View.OnCl
                 httpDownloadAsync.execute(media.getPath());
                 break;
         }
-        //setto i listener
-        ImageButton imageButton=(ImageButton)itemView.findViewById(R.id.imageButton);
-        imageButton.setOnClickListener(this);
+
         container.addView(itemView);
 
         return itemView;
@@ -85,33 +100,4 @@ public class PresentazionePagerAdapter extends PagerAdapter implements View.OnCl
         container.removeView((LinearLayout) object);
     }
 
-    @Override
-    public void setPrimaryItem(ViewGroup container, int position, Object object) {
-        super.setPrimaryItem(container, position, object);
-    }
-
-    @Override
-    public void onClick(View v)
-    {
-        switch (v.getId())
-        {
-            case R.id.imageButton:
-                FileMedia media=this.listMedia.get(this.getPosition());
-                Toast.makeText(this.ctx,
-                        "Nome: "+media.getNome()+
-                                "\n DataAcqu: "+media.getDataAcquisizione()+
-                                "\n MimeType: "+media.getMimeType()+
-                                "\n Dimensione: "+media.getDimensione()+
-                                "\n H: "+media.getAltezza()+
-                                "\n L: "+media.getLarghezza()+
-                                "\n Path: " + media.getPath()+
-                                "\n Orientamento: "+media.getOrientamento()+
-                                "\n Latitudine: " + media.getLatitudine()+
-                                "\n Longitudine: " + media.getLongitudine()+
-                                "\n Su server: " + media.getSuServer()+
-                                "\n Su dispositivo: " + media.getSuDispositivo()
-                        ,Toast.LENGTH_SHORT).show();
-                break;
-        }
-    }
 }

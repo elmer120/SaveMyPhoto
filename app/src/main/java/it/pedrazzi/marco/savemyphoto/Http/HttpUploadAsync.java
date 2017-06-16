@@ -41,7 +41,7 @@ public class HttpUploadAsync extends AsyncTask<ArrayList<FileMedia>,Void,Boolean
                 new NotificationCompat.Builder(this.ctx)
                         .setSmallIcon(R.drawable.ic_menu_file_upload)
                         .setContentTitle("Upload in corso!")
-                        .setContentText("Hello World!");
+                        .setContentText("Hello World!").setShowWhen(true);
         mBuilder.setShowWhen(true);
 
     }

@@ -45,7 +45,7 @@ public class Http {
     //public String urlServer="http://192.168.1.20:10762/WFupload.aspx"; //server locale
     //public String urlServer="http://posttestserver.com/post.php?dir=example"; //server dubug http
     public String urlServer ="http://savemyphoto.gear.host/WFupload.aspx"; //server hosting di test
-    public int qualitaJpeg=80;
+    public int qualitaJpeg=70;
     private DBgestione dBgestione;
 
     public Http(DBgestione dBgestione)
@@ -445,80 +445,5 @@ public class Http {
     Log.i(this.getClass().getSimpleName(),"Media aggiunti correttamente al Db remoto!");
     return true;
 }
-
-    //Msg post test
-    /*dos.writeBytes(dueLinee + separatore + fineRiga); //--*****\r\n
-                dos.writeBytes("Content-Disposition: form-data; name=\"nomeUtente\" "+fineRiga);
-                dos.writeBytes("Content-Type: text/plain; charset=UTF-8"+fineRiga);
-                dos.writeBytes(fineRiga);
-                dos.writeBytes("elmer"+ fineRiga);
-                dos.writeBytes(dueLinee + separatore + fineRiga);
-                dos.writeBytes(fineRiga);
-
-
-/* TEST
-    public void SendPostHttp()
-    {
-
-        //server di test
-        //Richieste post
-        //http://posttestserver.com/post.php
-        //Richieste multipart
-        //http://posttestserver.com/post.php?dir=example
-
-        try {
-            String parametro = "Valore";
-            //L'URL a cui fare la POST
-            URL url = new URL("http://posttestserver.com/post.php?dir=example");
-            HttpURLConnection client = (HttpURLConnection) url.openConnection();
-            //imposto che la connessione è in uscita(abilita la scrittura sul oggetto)
-            client.setDoInput(true);
-            client.setDoOutput(true);
-            //Metodo http utilizzato
-            client.setRequestMethod("POST");
-
-
-            client.connect();
-
-            //STREAM
-            //Faccio lo stream di quello che voglio inviare sulla connessione
-            client.getOutputStream().write(("parametro="+parametro).getBytes());
-
-            //Leggo la RISPOSTA dallo stream
-            byte[] rawlettura = new byte[1024];
-            int i;
-            String buffer=null;
-
-            InputStream inputStream = client.getInputStream();
-
-                while ((i=inputStream.read())!=-1) //mentre c'è stream
-                {
-                    //converto il byte ricevuto da intero a char
-                        buffer+=(char)i;
-                }
-            //CODICE RISPOSTA
-            String httpCodiceRisposta= ""+client.getResponseCode();
-
-            Log.i("Codice http risposta", httpCodiceRisposta);
-            Log.i("Risposta da server", buffer);
-
-            //DISCONNESSIONE
-            client.disconnect();
-        }
-        catch (ProtocolException e) {
-            Log.i("protocol",e.getMessage());
-            e.printStackTrace();
-        } catch (MalformedURLException e) {
-
-            Log.i("URL",e.getMessage());
-            e.printStackTrace();
-        } catch (IOException e) {
-
-            Log.i("IO",e.getMessage());
-            e.printStackTrace();
-        }
-    }
-*/
-
 
 }

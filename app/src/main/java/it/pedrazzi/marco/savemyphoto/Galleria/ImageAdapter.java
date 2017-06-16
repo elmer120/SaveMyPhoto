@@ -7,11 +7,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 
 import java.util.ArrayList;
@@ -34,15 +36,19 @@ public class ImageAdapter extends BaseAdapter  {
     private MemoryCachePhoto cachePhoto=new MemoryCachePhoto(); //istanzio classe cache per velocizzare caricamento foto
 
     private ArrayList<FileMedia> listMedia; //recupero img da caricare
-
-    private Bitmap iconaSuDispositivo;
-    private Bitmap iconaSuServer;
+    //definisco l'altezza dell'imageview in dp
+    private static final int heightImageViewDp = 100;
+    //altezza imageview in pixel
+    public static int heightImageViewPx;
 
     public ImageAdapter(Context context,ArrayList<FileMedia> lista,Bitmap placeholder)
     {
         ctx = context;
         this.listMedia =lista;
         this.placeholder=placeholder;
+        //calcolo l'altezza dell'imageview in pixel
+        final float scale = this.ctx.getResources().getDisplayMetrics().density;
+        heightImageViewPx = (int) (heightImageViewDp * scale + 0.5f);
     }
 
     public int getCount()
@@ -100,23 +106,18 @@ public class ImageAdapter extends BaseAdapter  {
         else
         {
             imageViewOverlay = new ImageViewOverlay(ctx,media.getSuServer(),media.getSuDispositivo());
-            imageViewOverlay.setLayoutParams(new GridView.LayoutParams(250, 250));
-            //imageViewOverlay.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            //imageViewOverlay.setPadding(8, 8, 8, 8);
-
         }
 
         Bitmap bitmap=null;
 
-        //TODO problema cache immagini scaricate
+
         //immagine già presente in cache?
-        //if(media.getMimeType()!="image/web")  //se non è scaricata
-        //{
-            bitmap = cachePhoto.get(media.getDataAcquisizione().getTime());
-        //}
+
+        bitmap = cachePhoto.get((long)position);
+
         if (bitmap != null)
         {
-          imageViewOverlay.setImageBitmap(cachePhoto.get(media.getDataAcquisizione().getTime()));
+          imageViewOverlay.setImageBitmap(cachePhoto.get((long)position));
             Log.d("Load image: ", "Cache");
         }
         else  //se non presente in cache la carico in modo asincrono
@@ -134,10 +135,6 @@ public class ImageAdapter extends BaseAdapter  {
                 }
         }
 
-        //Log.w("Immagine caricata: ","H: "+bitmap.getHeight()+"W: "+bitmap.getWidth());
-
-
-
     //l'immagine è selezionata
        if(media.getSelezionata())
        {
@@ -147,8 +144,6 @@ public class ImageAdapter extends BaseAdapter  {
        {
            return SelezionaImmagine(imageViewOverlay,false);
        }
-
-
     }
 
     //selezione immagini
@@ -167,7 +162,6 @@ public class ImageAdapter extends BaseAdapter  {
                 imageViewOverlay.setPadding(0,0,0,0);
                 imageViewOverlay.setBackgroundColor(Color.BLACK);
             }
-
         return imageViewOverlay;
     }
 

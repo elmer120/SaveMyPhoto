@@ -121,7 +121,8 @@ public class GetMediaOnServerAsync extends AsyncTask <Void,Void,Boolean> {
         //se ci sono media da visualizzare li aggiungo al listmedia
         if(bool)
         {
-
+            //ordino la lista
+            Collections.sort(this.listMedia);
             //notifico all'adapter il cambio della base di dati
             this.imageAdapter.notifyDataSetChanged();
             //libero la cache

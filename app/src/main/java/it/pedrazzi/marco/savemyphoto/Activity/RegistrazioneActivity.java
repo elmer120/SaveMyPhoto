@@ -143,20 +143,10 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
         this.nomeUtente=getEditTextUtente().getText().toString();
         this.mail=getEditTextMail().getText().toString();
         this.password=getEditTextPassword().getText().toString();
-        this.marca=   Build.MANUFACTURER;
-        this.modello= Build.MODEL;
-        this.versioneAndroid= null;
-        try
-        {
-            this.versioneAndroid = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-        }
-        catch (PackageManager.NameNotFoundException e)
-        {
-            this.versioneAndroid="Non trovata";
-            e.printStackTrace();
-        }
-        //TODO mancante spazio libero
-        this.spazioLibero=10;
+        this.marca =  Build.MANUFACTURER;
+        this.modello = Build.MODEL;
+        this.versioneAndroid = Build.VERSION.RELEASE;
+        this.spazioLibero=GetSpazioLibero();
 
         //chiamo il Web service remoto
         NuovoUtente nuovoUtente=new NuovoUtente(nomeUtente,mail,password,marca,modello,versioneAndroid,spazioLibero);
@@ -164,12 +154,12 @@ public class RegistrazioneActivity extends Activity implements View.OnClickListe
         registrazioneUtenteAsync.execute(nuovoUtente);
     }
 
-    //trova lo spazio libero rimasto sul filesystem
-    public void GetSpazioLibero()
+    //trova lo spazio libero in gb rimasto sul filesystem
+    public int GetSpazioLibero()
     {
         Double freeBytesExternal = (new File(getExternalFilesDir(null).toString()).getFreeSpace())/1073741824.0;
-
-        //TODO arrotondare il double a 2 cifre decimali
+        return freeBytesExternal.intValue();
     }
+
 
 }

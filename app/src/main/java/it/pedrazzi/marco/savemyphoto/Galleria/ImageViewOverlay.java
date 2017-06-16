@@ -36,9 +36,11 @@ public class ImageViewOverlay extends android.support.v7.widget.AppCompatImageVi
         this.iconaServer=BitmapFactory.decodeResource(this.ctx.getResources(), R.drawable.ic_server);
         this.iconaDispositivo=BitmapFactory.decodeResource(this.ctx.getResources(), R.drawable.ic_dispositivo);
         //definisco l'altezza minima
-        //this.setMinimumHeight(300);
+        this.setMinimumHeight(ImageAdapter.heightImageViewPx);
+        this.setMaxHeight(ImageAdapter.heightImageViewPx);
         //scalo l'img centrandola
-        //this.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        this.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
     }
 
     //Al render del imageview

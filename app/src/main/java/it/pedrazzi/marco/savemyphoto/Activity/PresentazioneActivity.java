@@ -21,31 +21,19 @@ import it.pedrazzi.marco.savemyphoto.R;
  * Created by Elmer on 04/06/2017.
  */
 
-public class PresentazioneActivity extends Activity{
+public class PresentazioneActivity extends Activity implements View.OnClickListener{
 
+    public ArrayList<FileMedia> getListMedia()
+    {
+        return listMedia;
+    }
     ArrayList<FileMedia> listMedia;
     String nomeUtente;
     int idDispositivo;
 
-    public ArrayList<FileMedia> getListMedia() {
-        return listMedia;
-    }
-
-    public void setListMedia(ArrayList<FileMedia> listMedia) {
-        this.listMedia = listMedia;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    int position;
     PresentazionePagerAdapter presentazionePagerAdapter;
     ViewPager mViewPager;
+    int position;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,11 +45,16 @@ public class PresentazioneActivity extends Activity{
         this.nomeUtente =bundle.getString("nomeUtente");
         this.idDispositivo = bundle.getInt("idDispositivo");
         this.position = bundle.getInt("position");
-        this.listMedia=bundle.getParcelableArrayList("listMedia");
+        this.listMedia= bundle.getParcelableArrayList("listMedia");
+
+        //istanzio il pagerAdapter
         this.presentazionePagerAdapter = new PresentazionePagerAdapter(this,listMedia);
-        this.presentazionePagerAdapter.setPosition(position);
         this.mViewPager = (ViewPager) findViewById(R.id.presentatore);
         mViewPager.setAdapter(presentazionePagerAdapter);
+
+        //setto i listener
+        ImageButton imageButton=(ImageButton)this.findViewById(R.id.imageButton);
+        imageButton.setOnClickListener(this);
 
     }
 
@@ -70,6 +63,32 @@ public class PresentazioneActivity extends Activity{
     protected void onStart() {
         super.onStart();
         mViewPager.setCurrentItem(position);
+    }
+
+    @Override
+    public void onClick(View v)
+    {
+        switch (v.getId())
+        {
+
+            case R.id.imageButton:
+                FileMedia media=this.listMedia.get(this.mViewPager.getCurrentItem());
+                Toast.makeText(this,
+                        "Nome: "+media.getNome()+
+                                "\n DataAcqu: "+media.getDataAcquisizione()+
+                                "\n MimeType: "+media.getMimeType()+
+                                "\n Dimensione: "+media.getDimensione()+
+                                "\n H: "+media.getAltezza()+
+                                "\n L: "+media.getLarghezza()+
+                                "\n Path: " + media.getPath()+
+                                "\n Orientamento: "+media.getOrientamento()+
+                                "\n Latitudine: " + media.getLatitudine()+
+                                "\n Longitudine: " + media.getLongitudine()+
+                                "\n Su server: " + media.getSuServer()+
+                                "\n Su dispositivo: " + media.getSuDispositivo()
+                        ,Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 
 

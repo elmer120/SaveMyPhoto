@@ -186,22 +186,4 @@ public class DBgestione {
         }
     }
 
-    //svuota il db
-    //TODO si può cancellare
-    public boolean delete(long id)
-    {
-        SQLiteDatabase db=dbddl.getWritableDatabase();
-        try
-        {
-            if (db.delete(DbString.tbUtenti.tbNome, DbString.tbUtenti.ID+"=?", new String[]{Long.toString(id)})>0)
-                return true;
-            return false;
-        }
-        catch (SQLiteException sqle)
-        {
-            return false;
-        }
-
-    }
-
 }

@@ -28,12 +28,16 @@
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\ea0667d1e86b6e26309126b2caca8b8139071728\\output\\res\\layout\\notification_action.xml"
     },
     {
-        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item.xml",
-        "source": "C:\\Users\\Elmer\\.android\\build-cache\\5b98f16f617f8d8232eeaea0c83dc7e518a80ba7\\output\\res\\layout\\design_navigation_item.xml"
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\elemento_presentazione.xml",
+        "source": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\layout\\elemento_presentazione.xml"
     },
     {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_search_view.xml",
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\ea0667d1e86b6e26309126b2caca8b8139071728\\output\\res\\layout\\abc_search_view.xml"
+    },
+    {
+        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_item.xml",
+        "source": "C:\\Users\\Elmer\\.android\\build-cache\\5b98f16f617f8d8232eeaea0c83dc7e518a80ba7\\output\\res\\layout\\design_navigation_item.xml"
     },
     {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_list_menu_item_icon.xml",
@@ -110,10 +114,6 @@
     {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_screen_simple_overlay_action_mode.xml",
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\ea0667d1e86b6e26309126b2caca8b8139071728\\output\\res\\layout\\abc_screen_simple_overlay_action_mode.xml"
-    },
-    {
-        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\image_view_presentazione.xml",
-        "source": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\layout\\image_view_presentazione.xml"
     },
     {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\design_navigation_menu.xml",
@@ -214,10 +214,6 @@
     {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_part_chronometer.xml",
         "source": "C:\\Users\\Elmer\\.android\\build-cache\\ea0667d1e86b6e26309126b2caca8b8139071728\\output\\res\\layout\\notification_template_part_chronometer.xml"
-    },
-    {
-        "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\layout.xml",
-        "source": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\layout\\layout.xml"
     },
     {
         "merged": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\build\\intermediates\\res\\merged\\debug\\layout\\abc_alert_dialog_material.xml",

@@ -1,6 +1,7 @@
 package it.pedrazzi.marco.savemyphoto.Http;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.widget.ImageView;
@@ -61,6 +62,10 @@ import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
                 Toast.makeText(this.ctx,"Download media terminato con successo!",Toast.LENGTH_SHORT).show();
                 if(this.imageView!=null) //usata solo in presentazione
                 {
+                    BitmapFactory.Options opzioniBitmap = new BitmapFactory.Options();
+                    opzioniBitmap.inSampleSize=4;
+                    //codifica più leggera ogni pixel 2 byte
+                    opzioniBitmap.inPreferredConfig = Bitmap.Config.RGB_565;
                     imageView.setImageBitmap(BitmapFactory.decodeByteArray(arrayByte, 0, arrayByte.length));
                 }
             }

@@ -3,6 +3,7 @@ import android.Manifest;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.IntentFilter;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -88,6 +89,8 @@ public class SearchViewActivity extends FragmentActivity implements Page1Fragmen
                 });
 
         actionBar = getActionBar();
+        actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark)));
+        actionBar.setStackedBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimaryDark)));
         // Modalita actionBar
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 

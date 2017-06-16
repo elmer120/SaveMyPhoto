@@ -24,7 +24,7 @@ public class ContentProviderScanner {
 
 
     private ArrayList<FileMedia> listMedia;
-    final private String camera="bucket_display_name='100MEDIA' OR bucket_display_name='Camera' OR bucket_display_name='100ANDRO'";
+    final private String camera="bucket_display_name='100MEDIA' OR bucket_display_name='Camera' OR bucket_display_name='100ANDRO' OR bucket_display_name='DCIM'";
     final private String whatsApp ="bucket_display_name='WhatsApp Images'";
     final private String all=null;
 
@@ -98,37 +98,13 @@ public class ContentProviderScanner {
                 cursorImage.moveToPosition(i);
 
                 //estraggo il persorso assoluto del media
-                /*String path = (pathColumnIndex != -1) ? cursorImage.getString(pathColumnIndex):null;*/
                 String path = cursorImage.getString(pathColumnIndex);
                 File file=new File(path);
 
                     //se il file esiste
                     if(file.exists())
                     {
-                        ExifInterface ex= null;
-                        try
-                        {
-                            ex = new ExifInterface(path);
-                        } catch (IOException e)
-                        {
-                            e.printStackTrace();
-                            Log.i("Exif interface","non trovata");
-                        }
-/*
-                        //estraggo le informazioni del media
-                        //operatore ternario
-                        //se colonna esiste assegno il suo valore alla variabile altrimenti assegno alla variabile il valore dell'interfaccia exif o null
-                        String bucket = (dirColumnIndex != -1) ? cursorImage.getString(dirColumnIndex) : null;
-                        final String nome   = (nameColumnIndex!= -1) ? cursorImage.getString(nameColumnIndex): null;
-                        String mimeType= (mimeColumnIndex!=-1) ? cursorImage.getString(mimeColumnIndex): null;
-                        Integer dimensione = (sizeColumnIndex!=-1) ?  cursorImage.getInt(sizeColumnIndex):ex.getAttributeInt(ExifInterface.TAG_IMAGE_LENGTH,0);
-                        Integer altezza    = (heightColumnIndex!=-1)? cursorImage.getInt(heightColumnIndex):null;
-                        Integer larghezza  = (widthColumnIndex!=-1) ? cursorImage.getInt(widthColumnIndex):ex.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH,0);
-                        String orientamento= (orientationColumnIndex!=-1) ? cursorImage.getString(orientationColumnIndex):ex.getAttribute(ExifInterface.TAG_ORIENTATION);
-                        Double latitudine= (latitudeColumnIndex!=-1) ? cursorImage.getDouble(latitudeColumnIndex):ex.getAttributeDouble(ExifInterface.TAG_GPS_LATITUDE,0);
-                        Double longitudine= (longitudeColumnIndex!=-1) ? cursorImage.getDouble(longitudeColumnIndex): ex.getAttributeDouble(ExifInterface.TAG_GPS_LONGITUDE,0);
-*/
-
+                        //estraggo le informazioni
                         String bucket = cursorImage.getString(dirColumnIndex);
                         String nome   = cursorImage.getString(nameColumnIndex);
                         String mimeType= cursorImage.getString(mimeColumnIndex);
@@ -139,15 +115,12 @@ public class ContentProviderScanner {
                         Double latitudine=  cursorImage.getDouble(latitudeColumnIndex);
                         Double longitudine= cursorImage.getDouble(longitudeColumnIndex);
 
-
                         Long timestamp = cursorImage.getLong(dateColumnIndex);
                         Date dataAquisizione=new Date();
                         dataAquisizione.setTime(timestamp);
 
-
                         Boolean suServer=false;
                         Boolean suDispositivo=true;
-
 
                         //se il media è già presente nel db locale
                         if(dBgestione.CheckMedia(nome))
@@ -158,7 +131,6 @@ public class ContentProviderScanner {
 
                         //aggiungo il media alla lista
                         fileMedia = new FileMedia(dataAquisizione,path,nome,bucket, mimeType,dimensione,altezza,larghezza,orientamento,latitudine,longitudine,suServer,suDispositivo);
-
 
                         this.listMedia.add(fileMedia);
 
@@ -206,31 +178,6 @@ public class ContentProviderScanner {
                         //il file esiste?
                         if(file.exists())
                         {
-
-                            ExifInterface ex= null;
-                            try
-                            {
-                                ex = new ExifInterface(path);
-                            } catch (IOException e)
-                            {
-                                e.printStackTrace();
-                                Log.i("Exif interface","non trovata");
-                            }
-
-                            /*
-                            //estraggo le informazioni del media
-                            //operatore ternario
-                            //se colonna esiste assegno il suo valore alla variabile altrimenti assegno alla variabile il valore dell'interfaccia exif o null
-                            String bucket = (dirColumnIndex != -1) ? cursorVideo.getString(dirColumnIndex) : null;
-                            String nome   = (nameColumnIndex!= -1) ? cursorVideo.getString(nameColumnIndex): null;
-                            String mimeType= (mimeColumnIndex!=-1) ? cursorVideo.getString(mimeColumnIndex): null;
-                            Integer dimensione = (sizeColumnIndex!=-1) ?  cursorVideo.getInt(sizeColumnIndex):ex.getAttributeInt(ExifInterface.TAG_IMAGE_LENGTH,0);
-                            Integer altezza    = (heightColumnIndex!=-1)? cursorVideo.getInt(heightColumnIndex):null;
-                            Integer larghezza  = (widthColumnIndex!=-1) ? cursorVideo.getInt(widthColumnIndex):ex.getAttributeInt(ExifInterface.TAG_IMAGE_WIDTH,0);
-                            Double latitudine= (latitudeColumnIndex!=-1) ? cursorVideo.getDouble(latitudeColumnIndex):ex.getAttributeDouble(ExifInterface.TAG_GPS_LATITUDE,0);
-                            Double longitudine= (longitudeColumnIndex!=-1) ? cursorVideo.getDouble(longitudeColumnIndex): ex.getAttributeDouble(ExifInterface.TAG_GPS_LONGITUDE,0);
-
-                            */
 
                             String bucket = cursorVideo.getString(dirColumnIndex);
                             String nome   = cursorVideo.getString(nameColumnIndex);
@@ -348,21 +295,6 @@ public class ContentProviderScanner {
         Log.i("Tot video "+where+": ", ""+cursor.getCount());
         return cursor;
     }
-
-
-   /* private ArrayList<FileMedia> OrderList(ArrayList<FileMedia> list)
-    {
-        Collections.sort(list, new Comparator<FileMedia>() {
-            @Override
-            public int compare(FileMedia fileMedia1, FileMedia fileMedia2)
-            {
-                Log.i("compare",fileMedia1.compareTo(fileMedia2)+"");
-                return fileMedia1.compareTo(fileMedia2);
-            }
-        });
-        return list;
-
-    }*/
 
 
 

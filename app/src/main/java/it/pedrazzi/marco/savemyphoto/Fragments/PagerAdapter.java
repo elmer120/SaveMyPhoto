@@ -38,15 +38,6 @@ public class PagerAdapter extends FragmentPagerAdapter
         return this.fragments.size();
     }
 
-    /**
-     * This method may be called by the ViewPager to obtain a title string
-     * to describe the specified page. This method may return null
-     * indicating no title for this page. The default implementation returns
-     * null.
-     *
-     * @param position The position of the title requested
-     * @return A title for the requested page
-     */
     @Override
     public CharSequence getPageTitle(int position) {
         return super.getPageTitle(position);
