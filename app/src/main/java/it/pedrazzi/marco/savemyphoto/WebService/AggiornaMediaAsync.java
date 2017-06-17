@@ -54,7 +54,7 @@ public class AggiornaMediaAsync extends AsyncTask<String[],Void,Boolean>
 
         if(aBoolean)
         {
-            if(new File(mediaPath).delete())
+            if(new File(mediaPath).delete()) //rimuovo da filesystem
             {
                 Toast.makeText(this.ctx, "Media rimosso correttamente", Toast.LENGTH_SHORT).show();
                 this.imageAdapter.notifyDataSetChanged();

@@ -161,16 +161,9 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
         this.marca=   Build.MANUFACTURER;
         this.modello= Build.MODEL;
         this.versioneAndroid= null;
-        try
-        {
-            this.versioneAndroid = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-        }
-        catch (PackageManager.NameNotFoundException e)
-        {
-            this.versioneAndroid="Non trovata";
-            e.printStackTrace();
-        }
-        this.spazioLibero=10;
+        this.versioneAndroid = Build.VERSION.RELEASE;
+        this.spazioLibero=GetSpazioLibero();
+
 
 
         //avvia task asincrono per associare il nuovo dispositivo nel db remoto
@@ -208,6 +201,13 @@ public class AccediActivity extends AppCompatActivity implements View.OnClickLis
     {
         File dbFile = context.getDatabasePath(dbName);
         return dbFile.exists();
+    }
+
+    //trova lo spazio libero in gb rimasto sul filesystem
+    public int GetSpazioLibero()
+    {
+        Double freeBytesExternal = (new File(getExternalFilesDir(null).toString()).getFreeSpace())/1073741824.0;
+        return freeBytesExternal.intValue();
     }
 }
 

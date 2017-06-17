@@ -7,6 +7,8 @@ import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
+import java.util.Locale;
 
 import it.pedrazzi.marco.savemyphoto.Galleria.ImageAdapter;
 import it.pedrazzi.marco.savemyphoto.Media.FileMedia;
@@ -59,14 +61,15 @@ public class GetMediaOnServerAsync extends AsyncTask <Void,Void,Boolean> {
                         //aggiungo i metadati alla lista
                         metaDati.add(rrcArrayOfString.get(j));
                     }
-
+                    //TODO datetime conversione errata un anno in più
                     //creo l'oggetto per formattare string in date
-                    SimpleDateFormat parser = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a");
-
+                    SimpleDateFormat parser = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss a", Locale.getDefault());
+                    parser.setTimeZone(java.util.TimeZone.getDefault());
+                    Date mediaDate=parser.parse(metaDati.get(0));
                     //creo il media
                     FileMedia mediaTmp =new FileMedia
                                                 (
-                                                        parser.parse(metaDati.get(0)),//dataAcquisizione
+                                                        mediaDate,//dataAcquisizione
                                                         metaDati.get(1),//path
                                                         metaDati.get(2),//nome
                                                         "cloud",//bucket
@@ -125,12 +128,11 @@ public class GetMediaOnServerAsync extends AsyncTask <Void,Void,Boolean> {
             Collections.sort(this.listMedia);
             //notifico all'adapter il cambio della base di dati
             this.imageAdapter.notifyDataSetChanged();
-            //libero la cache
-            //this.imageAdapter.getCachePhoto().Clear();
             Log.i(this.getClass().getSimpleName(),"Presenti "+numeroMedia+" media su server");
         }
         else
         {
+            //Collections.sort(listMedia);
             Log.i(this.getClass().getSimpleName(),"Nessun media su server!");
         }
     }

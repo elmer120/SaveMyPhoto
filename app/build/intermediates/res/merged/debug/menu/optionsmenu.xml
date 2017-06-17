@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-        <item android:id="@+id/principale1"
-            android:title="Voce primaria" >
-            <!-- "file" submenu -->
-            <menu>
-                <item android:id="@+id/secondaria1.1"
-                    android:title="Check Download" />
-                <item android:id="@+id/secondaria1.2"
-                    android:title="Presentazione" />
-                <item android:id="@+id/secondaria1.3"
-                    android:title="test" />
-                <item android:id="@+id/secondaria1.4"
-                    android:title="test" />
-            </menu>
-        </item>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+    android:id="@+id/refresh"
+    android:orderInCategory="100"
+    app:showAsAction="always"
+    android:icon="@drawable/ic_refresh"
+    android:title="Refresh"/>
+
+    <item
+        android:id="@+id/check"
+        android:orderInCategory="100"
+        android:title="Send"
+        android:icon="@drawable/ic_menu_send"
+        app:showAsAction="always" />
 </menu>

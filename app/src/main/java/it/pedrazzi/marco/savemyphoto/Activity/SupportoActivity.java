@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import java.io.File;
+
 import it.pedrazzi.marco.savemyphoto.DbLocale.DBgestione;
 
 /**
@@ -29,6 +31,8 @@ public class SupportoActivity {
         ((Activity) ctx).finish();
         return;
     }
+
+
 
 
 }

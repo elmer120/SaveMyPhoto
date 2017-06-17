@@ -113,11 +113,11 @@ public class ImageAdapter extends BaseAdapter  {
 
         //immagine già presente in cache?
 
-        bitmap = cachePhoto.get((long)position);
+        bitmap = cachePhoto.get(media.getDataAcquisizione().getTime());
 
         if (bitmap != null)
         {
-          imageViewOverlay.setImageBitmap(cachePhoto.get((long)position));
+          imageViewOverlay.setImageBitmap(cachePhoto.get(media.getDataAcquisizione().getTime()));
             Log.d("Load image: ", "Cache");
         }
         else  //se non presente in cache la carico in modo asincrono

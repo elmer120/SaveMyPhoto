@@ -12,15 +12,7 @@
                     "endOffset": 230
                 },
                 "from": {
-                    "file": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\values\\strings.xml",
-                    "position": {
-                        "startLine": 22,
-                        "startColumn": 4,
-                        "startOffset": 810,
-                        "endLine": 26,
-                        "endColumn": 19,
-                        "endOffset": 944
-                    }
+                    "file": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\values\\strings.xml"
                 }
             },
             {
@@ -926,7 +918,14 @@
                     "endOffset": 6500
                 },
                 "from": {
-                    "file": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\values\\colors.xml"
+                    "file": "C:\\Users\\Elmer\\StudioProjects\\SaveMyPhoto\\app\\src\\main\\res\\values\\colors.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 153,
+                        "endColumn": 45,
+                        "endOffset": 194
+                    }
                 }
             },
             {

@@ -1,7 +1,7 @@
 <resources>
 
 
-    <!--//TODO Temi utilizzati non corretti!!! Stile base dell'app-->
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Qui si possono personalizzare i colori ed altro -->
         <item name="colorPrimary">@color/colorPrimary</item>

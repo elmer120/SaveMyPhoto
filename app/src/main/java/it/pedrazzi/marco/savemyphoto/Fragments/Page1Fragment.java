@@ -2,6 +2,7 @@ package it.pedrazzi.marco.savemyphoto.Fragments;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.LayoutInflater;
@@ -22,6 +24,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.karumi.dexter.Dexter;
@@ -85,6 +88,7 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         //visualizzo l'options menu
         setHasOptionsMenu(true);
 
+
         return view;
     }
 
@@ -130,7 +134,8 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         {
             this.ImageAdapter = new ImageAdapter(getContext(), listMedia, placeholder);
         }
-            this.gridView.setAdapter(ImageAdapter);
+        this.gridView.setAdapter(ImageAdapter);
+
         //registro callbacks
         //evento touch
         gridView.setOnItemClickListener(this);
@@ -306,7 +311,8 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
                 }
 
                 //invio
-                HttpUploadAsync httpMultipartAsync=new HttpUploadAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.ImageAdapter);
+                ProgressBar progressBar=(ProgressBar)this.getActivity().findViewById(R.id.progressBar);
+                HttpUploadAsync httpMultipartAsync=new HttpUploadAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.ImageAdapter,progressBar);
                 httpMultipartAsync.execute(mediaDaInviare);
                 actionMode.finish();
                 break;
@@ -344,19 +350,13 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
         switch(id)
         {
             //TODO sistemare
-            case R.id.secondaria1_1:
+            case R.id.refresh:
                 GetMediaOnServerAsync getMediaOnServer=new GetMediaOnServerAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
                 getMediaOnServer.execute();
                 break;
-            case R.id.secondaria1_2:
+            case R.id.check:
                 Intent intent=new Intent(this.getContext(), PresentazioneActivity.class);
                 this.getActivity().startActivity(intent);
-                break;
-
-            case R.id.secondaria1_3:
-                break;
-
-            case R.id.secondaria1_4:
                 break;
         }
         return false;
@@ -402,21 +402,20 @@ public class Page1Fragment extends Fragment implements GridView.OnItemClickListe
 
         for (FileMedia media:mediaDaEliminareConBackup)
         {
-            //elimino da ram
-            this.listMedia.remove(media);
-            //elimino da file system
-            new File(media.getPath()).delete();
             //aggiorno il media nel db remoto mettendo dispositivo a 0
             AggiornaMediaAsync aggiornaMediaAsync=new AggiornaMediaAsync(this.getContext(),media.getPath(),this.ImageAdapter);
             aggiornaMediaAsync.execute(new String[]{""+this.idDispositivo,media.getNome()});
-        }
+            //elimino da ram
+            this.listMedia.remove(media);
+            //this.ImageAdapter.getCachePhoto().Clear();
 
+        }
+        Toast.makeText(this.getContext(),"Eliminazione completata",Toast.LENGTH_SHORT).show();
         //controllo se ci sono media su server
         GetMediaOnServerAsync getMediaOnServer=new GetMediaOnServerAsync(this.getContext(),this.nomeUtente,this.idDispositivo,this.listMedia,this.ImageAdapter);
         getMediaOnServer.execute();
 
-        //order list
-        //Collections.sort(this.listMedia);
+
 
         //this.ImageAdapter.notifyDataSetChanged();
         //this.ImageAdapter.getCachePhoto().Clear();

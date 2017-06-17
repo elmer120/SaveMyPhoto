@@ -6,12 +6,12 @@ repositories {
 
 android {
     compileSdkVersion 25
-    buildToolsVersion '25.0.2'
+    buildToolsVersion '25.0.3'
 
     defaultConfig {
         applicationId "it.pedrazzi.marco.savemyphoto"
         minSdkVersion 16
-        targetSdkVersion 23
+        targetSdkVersion 25
         versionCode 1
         versionName "0.8.3"
     }

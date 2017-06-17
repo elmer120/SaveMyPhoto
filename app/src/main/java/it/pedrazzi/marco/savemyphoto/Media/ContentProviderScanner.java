@@ -242,7 +242,7 @@ public class ContentProviderScanner {
                 MediaStore.Images.Media.LONGITUDE};
 
         //definisco l'ordine del interrogazione
-        final String orderBy = MediaStore.Images.Media.BUCKET_DISPLAY_NAME+" and "+MediaStore.Images.Media.DATE_TAKEN+ " DESC";
+        final String orderBy = MediaStore.Images.Media.DATE_TAKEN+ " ASC";
 
         //eseguo query sul content provider
         Cursor cursor = contentResolver.query(

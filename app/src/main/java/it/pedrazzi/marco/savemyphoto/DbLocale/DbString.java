@@ -7,7 +7,7 @@ package it.pedrazzi.marco.savemyphoto.DbLocale;
 //TODO servono tutte le tabelle??
 public final class DbString {
 
-        public static final String nomeDB="SaveMyPhotoTestProva62";
+        public static final String nomeDB="SaveMyPhotoTestProva66";
 
         //TABELLE
 
